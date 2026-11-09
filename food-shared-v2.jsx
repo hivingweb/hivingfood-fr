@@ -329,7 +329,7 @@ function PageShell({ current, children }) {
     <div style={{ background: P.bg, color: P.ink, fontFamily: P.sans, position: 'relative', overflow: 'hidden' }}>
       <FoodCursor />
       <FoodNav2 current={current} />
-      {children}
+      <main id="contenu">{children}</main>
       <FoodFooter2 />
     </div>
   );

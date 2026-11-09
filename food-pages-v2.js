@@ -415,7 +415,7 @@ function FoodTalentsPage2() {
         overflow: 'hidden',
         position: 'relative'
       }
-    }, t.photo ? /*#__PURE__*/React.createElement("img", {
+    }, t.photo ? /*#__PURE__*/React.createElement(FoodImg, {
       src: t.photo,
       alt: t.name,
       loading: "lazy",
@@ -570,7 +570,7 @@ function FoodTalentPage2() {
       overflow: 'hidden',
       position: 'relative'
     }
-  }, t.photo ? /*#__PURE__*/React.createElement("img", {
+  }, t.photo ? /*#__PURE__*/React.createElement(FoodImg, {
     src: t.photo,
     alt: t.name,
     loading: "lazy",

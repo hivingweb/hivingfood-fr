@@ -652,7 +652,9 @@ function PageShell({
     }
   }, /*#__PURE__*/React.createElement(FoodCursor, null), /*#__PURE__*/React.createElement(FoodNav2, {
     current: current
-  }), children, /*#__PURE__*/React.createElement(FoodFooter2, null));
+  }), /*#__PURE__*/React.createElement("main", {
+    id: "contenu"
+  }, children), /*#__PURE__*/React.createElement(FoodFooter2, null));
 }
 
 // ── CTA banner used at bottom of pages ──────────────────────────────

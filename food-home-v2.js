@@ -457,6 +457,15 @@ function FoodNav2({
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  // Menu mobile : fermeture au clavier (Échap)
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = e => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
   const inSub = typeof window !== 'undefined' && window.location.pathname.includes('/food/');
   const sub = p => inSub ? p : 'food/' + p;
   const links = [{
@@ -484,7 +493,10 @@ function FoodNav2({
     label: 'Blog',
     href: sub('blog.html')
   }];
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
+    href: "#contenu",
+    className: "food-skip"
+  }, "Aller au contenu"), /*#__PURE__*/React.createElement("nav", {
     style: {
       position: 'sticky',
       top: 0,
@@ -677,7 +689,10 @@ function FoodNav2({
       fontWeight: 700
     }
   }, "↗")), /*#__PURE__*/React.createElement("button", {
+    type: "button",
     onClick: () => setOpen(true),
+    "aria-label": "Ouvrir le menu",
+    "aria-expanded": open,
     className: "food2-toggle",
     style: {
       display: 'none',
@@ -692,7 +707,8 @@ function FoodNav2({
     width: "18",
     height: "14",
     viewBox: "0 0 18 14",
-    fill: "none"
+    fill: "none",
+    "aria-hidden": "true"
   }, /*#__PURE__*/React.createElement("path", {
     d: "M0 1h18M0 7h18M0 13h18",
     stroke: "currentColor",
@@ -759,7 +775,9 @@ function FoodNav2({
       transform: 'rotate(1deg) skewX(-4deg)'
     }
   })))), /*#__PURE__*/React.createElement("button", {
+    type: "button",
     onClick: () => setOpen(false),
+    "aria-label": "Fermer le menu",
     style: {
       background: 'transparent',
       border: 'none',
@@ -787,6 +805,12 @@ function FoodNav2({
       }
       .food2-pill[data-active="false"]:hover .food2-pill-dot {
         transform: translateY(-50%) scale(1) !important;
+      }
+      .food-skip { position: absolute; left: 12px; top: -200px; z-index: 2000; padding: 10px 16px; background: ${FOOD_PAL.ink}; color: ${FOOD_PAL.bg}; font-family: ${FOOD_PAL.sans}; font-size: 14px; border-radius: 8px; text-decoration: none; }
+      .food-skip:focus { top: 12px; }
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible, [tabindex]:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
       }
       @media (max-width: 1024px) {
         .food2-nav-links { display: none !important; }
@@ -1255,6 +1279,14 @@ function FoodHero2() {
       fontWeight: 600
     }
   }, "Notre savoir-faire en 90 sec")), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    "aria-label": "Lire ou mettre en pause la vidéo",
+    onClick: () => {
+      const v = document.querySelector('video[src="/showreel-2026.mp4"]');
+      if (v) {
+        if (v.paused) v.play();else v.pause();
+      }
+    },
     style: {
       width: 56,
       height: 56,
@@ -1270,7 +1302,8 @@ function FoodHero2() {
   }, /*#__PURE__*/React.createElement("svg", {
     width: "14",
     height: "14",
-    viewBox: "0 0 14 14"
+    viewBox: "0 0 14 14",
+    "aria-hidden": "true"
   }, /*#__PURE__*/React.createElement("path", {
     d: "M3 2l9 5-9 5V2z",
     fill: "currentColor"
@@ -1659,7 +1692,7 @@ function FoodTalents2() {
         borderRadius: 12,
         overflow: 'hidden'
       }
-    }, t.photo ? /*#__PURE__*/React.createElement("img", {
+    }, t.photo ? /*#__PURE__*/React.createElement(FoodImg, {
       src: t.photo,
       alt: t.name,
       loading: "lazy",
@@ -4689,7 +4722,7 @@ function FoodEcosystem2() {
     }, [...b.photos, ...b.photos, ...b.photos].map((p, i) => /*#__PURE__*/React.createElement("div", {
       className: "eco2-rcard",
       key: i
-    }, /*#__PURE__*/React.createElement("img", {
+    }, /*#__PURE__*/React.createElement(FoodImg, {
       src: p.src,
       alt: p.name,
       loading: "lazy"
@@ -4820,7 +4853,9 @@ function FoodHomePage2() {
     }
   }, /*#__PURE__*/React.createElement(FoodCursor, null), /*#__PURE__*/React.createElement(FoodNav2, {
     current: "home"
-  }), /*#__PURE__*/React.createElement(FoodHero2, null), /*#__PURE__*/React.createElement(FoodContentWall2, null), /*#__PURE__*/React.createElement(FoodManifesto2, null), /*#__PURE__*/React.createElement(FoodEcosystem2, null), /*#__PURE__*/React.createElement(FoodCampaigns2, null), /*#__PURE__*/React.createElement(FoodBrands2, null), /*#__PURE__*/React.createElement(FoodTalents2, null), /*#__PURE__*/React.createElement(FoodProcess2, null), /*#__PURE__*/React.createElement(FoodStudios2, null), /*#__PURE__*/React.createElement(FoodFAQ2, null), /*#__PURE__*/React.createElement(FoodFooter2, null));
+  }), /*#__PURE__*/React.createElement("main", {
+    id: "contenu"
+  }, /*#__PURE__*/React.createElement(FoodHero2, null), /*#__PURE__*/React.createElement(FoodContentWall2, null), /*#__PURE__*/React.createElement(FoodManifesto2, null), /*#__PURE__*/React.createElement(FoodEcosystem2, null), /*#__PURE__*/React.createElement(FoodCampaigns2, null), /*#__PURE__*/React.createElement(FoodBrands2, null), /*#__PURE__*/React.createElement(FoodTalents2, null), /*#__PURE__*/React.createElement(FoodProcess2, null), /*#__PURE__*/React.createElement(FoodStudios2, null), /*#__PURE__*/React.createElement(FoodFAQ2, null)), /*#__PURE__*/React.createElement(FoodFooter2, null));
 }
 Object.assign(window, {
   FoodHomePage2,
