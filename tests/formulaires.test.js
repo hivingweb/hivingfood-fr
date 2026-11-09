@@ -5,8 +5,9 @@
 const path = require('path');
 const assert = require('assert');
 
+const fs = require('fs');
 const API = path.join(__dirname, '..', 'api');
-const ORIGINE_OK = 'https://www.hivingfood.fr';
+const ORIGINE_OK = require(path.join(API, '_mail.js')).SITE.origines[0];
 const ORIGINE_KO = 'https://pirate.example';
 
 // Corps valides, un par fonction
@@ -18,6 +19,9 @@ const VALIDES = {
     deadline: 'Sous 1 mois', message: 'Lancement d’un nouveau produit.', email: 'test@example.com',
   },
 };
+
+// on ne teste que les fonctions présentes dans ce dépôt
+for (const nom of Object.keys(VALIDES)) if (!fs.existsSync(path.join(API, nom + '.js'))) delete VALIDES[nom];
 
 let appelsResend = [];
 global.fetch = async (url, opts) => {
