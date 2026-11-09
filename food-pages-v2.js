@@ -2852,11 +2852,7 @@ function FoodBlogPage2() {
       display: 'flex',
       gap: 0
     },
-    onSubmit: e => {
-      e.preventDefault();
-      const em = e.currentTarget.querySelector('input').value.trim();
-      if (em) window.location.href = 'mailto:contact@hivingfood.fr?subject=' + encodeURIComponent('Inscription à la lettre du chef') + '&body=' + encodeURIComponent('Bonjour, je souhaite recevoir la lettre du chef. Mon email : ' + em);
-    }
+    onSubmit: e => { e.preventDefault(); const f = e.currentTarget, i = f.querySelector('input'), em = i.value.trim(); if (!em) return; i.disabled = true; fetch('/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: em, source: 'journal' }) }).then(r => { i.value = ''; i.placeholder = r.ok ? 'Merci, c\u2019est noté !' : 'Oups, réessayez plus tard'; }).catch(() => { i.placeholder = 'Oups, réessayez plus tard'; }).finally(() => { i.disabled = false; }); }
   }, /*#__PURE__*/React.createElement("input", {
     required: true,
     type: "email",

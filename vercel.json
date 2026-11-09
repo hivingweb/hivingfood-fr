@@ -200,6 +200,18 @@
   ],
   "rewrites": [
     {
+      "source": "/api/contact/",
+      "destination": "/api/contact"
+    },
+    {
+      "source": "/api/newsletter/subscribe",
+      "destination": "/api/newsletter"
+    },
+    {
+      "source": "/api/newsletter/subscribe/",
+      "destination": "/api/newsletter"
+    },
+    {
       "source": "/blog/:slug((?!.*\\.).+)",
       "destination": "/blog/:slug.html"
     }

@@ -1853,7 +1853,7 @@ function FoodFooter2() {
                 fontFamily: FOOD_PAL.sans, fontSize: 13, color: FOOD_PAL.bg, opacity: 0.7,
                 margin: '0 0 16px', lineHeight: 1.55,
               }}>Une fois par mois, les insights food et les coulisses des campagnes.</p>
-              <form onSubmit={e => e.preventDefault()} style={{
+              <form onSubmit={e => { e.preventDefault(); const f = e.currentTarget, i = f.querySelector('input'), em = i.value.trim(); if (!em) return; i.disabled = true; fetch('/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: em, source: 'footer' }) }).then(r => { i.value = ''; i.placeholder = r.ok ? 'Merci, c\u2019est noté !' : 'Oups, réessayez plus tard'; }).catch(() => { i.placeholder = 'Oups, réessayez plus tard'; }).finally(() => { i.disabled = false; }); }} style={{
                 display: 'flex', gap: 6, padding: 5,
                 background: FOOD_PAL.bg, color: FOOD_PAL.ink, borderRadius: 999,
                 border: `1.5px solid ${FOOD_PAL.lime}`,
