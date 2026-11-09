@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://www.hivingfood.fr/food/article.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Article · Hiving Food</title>
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Hiving Food" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:url" content="https://www.hivingfood.fr/food/article.html" />
+<meta property="og:title" content="Article · Hiving Food" />
+<meta property="og:description" content="Insights sur l'influence food." />
+<meta property="og:image" content="https://www.hivingfood.fr/img/eco-v2/food-1.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta name="description" content="Insights sur l'influence food." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Familjen+Grotesk:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #fafaf5; color: #0a0908; }
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; cursor: none;  }
+  * { box-sizing: border-box; }
+  img, svg, video { max-width: 100%; height: auto; }
+  ::selection { background: #d4e85a; color: #0a0908; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #f0ecdf; }
+  ::-webkit-scrollbar-thumb { background: #0a0908; border-radius: 4px; }
+  a, button, [data-cursor] { cursor: none; }
+  @media (max-width: 1024px) {
+    body { cursor: auto; }
+    a, button, [data-cursor] { cursor: pointer; }
+    .food-cursor { display: none !important; }
+  }
+</style>
+<noscript><style>.ssr-content { display: block !important; }</style></noscript>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="../food-data.js?v=20260706a"></script>
+<script src="../food-home-v2.js?v=20260706a"></script>
+<script src="../food-shared-v2.js?v=20260706a"></script>
+<script src="../food-pages-v2.js?v=20260706a"></script>
+<script>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+const __mount = () => root.render(/*#__PURE__*/React.createElement(FoodArticlePage2, null));
+(window.FOOD_STATS_READY || Promise.resolve()).then(__mount, __mount);
+
+
+</script>
+<script>
+setTimeout(function(){
+  if (!document.body.classList.contains('react-mounted')) {
+    var s = document.querySelector('.ssr-content');
+    if (s) s.classList.add('show-fallback');
+  }
+}, 10000);
+</script>
+</body>
+</html>
