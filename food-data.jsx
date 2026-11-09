@@ -533,7 +533,7 @@ window.FOOD_STATS_READY = (function () {
   var MAP = { 'flo': 'eco-16', 'abellini': 'eco-17', 'julios': 'eco-18', 'chefologue': 'eco-19', 'julia': 'eco-20', 'drice-cook': 'eco-22', 'swissfitcook': 'eco-23', 'chester-foodies': 'eco-24', 'vincent-salur': 'eco-26', 'damien-pichon': 'eco-27', 'peppe': 'eco-30', 'qistoh': 'eco-31', 'dorian-tudeau': 'eco-32', 'killian-franceschi': 'eco-33' };
   function fmt(n) { n = +n; if (!n) return null; if (n >= 1e6) { return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'; } return Math.round(n / 1000) + 'K'; }
   var t0 = setTimeout(function () {}, 0);
-  return fetch('https://pmrqrbjxikljlarhkseu.supabase.co/rest/v1/influencers?select=eco_id,current_metrics(platform,followers)', { headers: { apikey: 'sb_publishable_j_kHa-caXfSxkSyeGd-veA_ZdUvNCw8' } })
+  var live = fetch('https://pmrqrbjxikljlarhkseu.supabase.co/rest/v1/influencers?select=eco_id,current_metrics(platform,followers)', { headers: { apikey: 'sb_publishable_j_kHa-caXfSxkSyeGd-veA_ZdUvNCw8' } })
     .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
     .then(function (rows) {
       var byEco = {};
@@ -546,6 +546,8 @@ window.FOOD_STATS_READY = (function () {
       });
     })
     .catch(function () { /* indisponible : les chiffres statiques restent affichés */ });
+  // Filet de sécurité : l'affichage n'attend jamais plus de 3 s la base (chiffres statiques sinon)
+  return Promise.race([live, new Promise(function (res) { setTimeout(res, 3000); })]);
 })();
 
 
