@@ -1659,7 +1659,7 @@ function FoodTalents2() {
         borderRadius: 12,
         overflow: 'hidden'
       }
-    }, t.photo ? /*#__PURE__*/React.createElement("img", {
+    }, t.photo ? /*#__PURE__*/React.createElement(FoodImg, {
       src: t.photo,
       alt: t.name,
       loading: "lazy",
@@ -4126,7 +4126,7 @@ function FoodEcosystem2() {
     }, [...b.photos, ...b.photos, ...b.photos].map((p, i) => /*#__PURE__*/React.createElement("div", {
       className: "eco2-rcard",
       key: i
-    }, /*#__PURE__*/React.createElement("img", {
+    }, /*#__PURE__*/React.createElement(FoodImg, {
       src: p.src,
       alt: p.name,
       loading: "lazy"

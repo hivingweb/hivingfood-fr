@@ -1026,3 +1026,27 @@ window.LazyVid = function LazyVid(props) {
   for (var k2 in rest) base[k2] = rest[k2];
   return React.createElement('video', base);
 };
+
+// ── FoodImg : <picture> AVIF + WebP (img/optim/…) avec repli sur l'image d'origine ──
+// Mêmes props qu'un <img> ; <picture> en display:contents pour ne rien changer à la mise en page.
+window.FoodImg = function FoodImg(props) {
+  var m = typeof props.src === 'string' && props.src.match(/^(\/?)img\/(talents|eco-v2)\/([^?#]+)\.(jpe?g|png)$/i);
+  var p = {
+    decoding: 'async'
+  };
+  for (var k in props) p[k] = props[k];
+  var img = React.createElement('img', p);
+  if (!m) return img;
+  var base = m[1] + 'img/optim/' + m[2] + '/' + m[3];
+  return React.createElement('picture', {
+    style: {
+      display: 'contents'
+    }
+  }, React.createElement('source', {
+    type: 'image/avif',
+    srcSet: base + '.avif'
+  }), React.createElement('source', {
+    type: 'image/webp',
+    srcSet: base + '.webp'
+  }), img);
+};

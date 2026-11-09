@@ -263,7 +263,7 @@ function FoodTalentsPage2() {
               >
                 <Polaroid taped={true} tapeColor={tapes[i % tapes.length]} caption={t.handle}>
                   <div style={{ aspectRatio: '3/4', overflow: 'hidden', position: 'relative' }}>
-                    {t.photo ? (<img src={t.photo} alt={t.name} loading="lazy" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', display: 'block' }} />) : (<FoodPH aspect="3/4" label={t.name.toUpperCase()} tone={tones[i % 4]} />)}
+                    {t.photo ? (<FoodImg src={t.photo} alt={t.name} loading="lazy" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', display: 'block' }} />) : (<FoodPH aspect="3/4" label={t.name.toUpperCase()} tone={tones[i % 4]} />)}
                     {/* Stamp "exclusif" sur tous les talents — tous sont exclusifs Hiving Food */}
                     <div style={{
                       position: 'absolute', top: 12, right: 12,
@@ -343,7 +343,7 @@ function FoodTalentPage2() {
             <div style={{ position: 'sticky', top: 100 }}>
               <Polaroid taped={true} tapeColor={PP.lime} caption={t.handle} rotate={-1.5}>
                 <div style={{ aspectRatio: '4/5', overflow: 'hidden', position: 'relative' }}>
-                  {t.photo ? (<img src={t.photo} alt={t.name} loading="lazy" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', display: 'block' }} />) : (<FoodPH aspect="4/5" label={t.name.toUpperCase()} tone="cream" />)}
+                  {t.photo ? (<FoodImg src={t.photo} alt={t.name} loading="lazy" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', display: 'block' }} />) : (<FoodPH aspect="4/5" label={t.name.toUpperCase()} tone="cream" />)}
                   <div style={{ position: 'absolute', bottom: 20, right: 20 }}>
                     <Stamp top="EXCLUSIF" mid="hiving food" bottom="·" color={PP.tomato || '#c8492f'} size={82} rotate={-8} />
                   </div>

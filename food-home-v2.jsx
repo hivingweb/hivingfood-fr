@@ -930,7 +930,7 @@ function FoodTalents2() {
                   border: `1.5px solid ${FOOD_PAL.ink}`, borderRadius: 12, overflow: 'hidden',
                 }}>
                   {t.photo ? (
-                    <img src={t.photo} alt={t.name} loading="lazy" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', display: 'block', filter: 'saturate(1.05)' }} />
+                    <FoodImg src={t.photo} alt={t.name} loading="lazy" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', display: 'block', filter: 'saturate(1.05)' }} />
                   ) : (
                     <FoodPH aspect="3/4" label={t.name.toUpperCase()} tone={tones[i]} />
                   )}
@@ -2255,7 +2255,7 @@ function FoodEcosystem2() {
                   <div className="eco2-reel__track">
                     {[...b.photos, ...b.photos, ...b.photos].map((p, i) => (
                       <div className="eco2-rcard" key={i}>
-                        <img src={p.src} alt={p.name} loading="lazy" />
+                        <FoodImg src={p.src} alt={p.name} loading="lazy" />
                         <span className="eco2-rname">{p.name}</span>
                       </div>
                     ))}
