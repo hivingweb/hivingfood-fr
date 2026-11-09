@@ -120,7 +120,7 @@ function FoodAgencePage2() {
             {[
               { v: '14', l: 'Créateurs en exclusivité' },
               { v: '50+', l: 'Marques accompagnées' },
-              { v: '100M+', l: 'Vues générées' },
+              { v: '420M+', l: 'Vues générées' },
               { v: '4', l: 'Années d\'existence' },
             ].map((s, i) => (
               <div key={i} style={{
@@ -162,33 +162,11 @@ function FoodAgencePage2() {
       <section style={{ padding: '96px 40px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1300, margin: '0 auto' }}>
           <SectionHead
-            eyebrow="L'équipe · 12 personnes en cuisine"
+            eyebrow="L'équipe"
             title="On gère le ballet"
             italic="entre marques & créateurs."
             kicker="Talent management, production, post-prod, stratégie. Tous food-obsessed depuis 2022."
           />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32, marginTop: 8 }} className="food2-team-grid">
-            {[
-              { name: 'Mathieu', role: 'Cofondateur · CEO', sig: 'M.', tape: PP.lime, rot: -2.5 },
-              { name: 'Léa', role: 'Cofondatrice · Talent', sig: 'L. ✶', tape: PP.tomato || '#c8492f', rot: 1.8 },
-              { name: 'Thomas', role: 'Head of Production', sig: 'Tom.', tape: PP.ink, rot: -1.5 },
-              { name: 'Camille', role: 'Strategy Director', sig: 'Cam.', tape: PP.lime, rot: 2.5 },
-            ].map((m, i) => {
-              const tones = ['cream', 'warm', 'paper', 'lime'];
-              return (
-                <Polaroid key={i} caption={m.sig} rotate={m.rot} tapeColor={m.tape}>
-                  <div style={{ aspectRatio: '3/4', overflow: 'hidden', position: 'relative' }}>
-                    <FoodPH aspect="3/4" label={m.name.toUpperCase()} tone={tones[i]} />
-                  </div>
-                  <div style={{
-                    position: 'absolute', bottom: 38, left: 14, right: 14, textAlign: 'center',
-                    fontFamily: PP.mono, fontSize: 9, letterSpacing: '0.16em',
-                    textTransform: 'uppercase', color: PP.inkSoft,
-                  }}>{m.role}</div>
-                </Polaroid>
-              );
-            })}
-          </div>
 
           {/* Note du chef — sticky note bas */}
           <div style={{ marginTop: 64, display: 'flex', justifyContent: 'center' }}>
@@ -285,7 +263,7 @@ function FoodTalentsPage2() {
               >
                 <Polaroid taped={true} tapeColor={tapes[i % tapes.length]} caption={t.handle}>
                   <div style={{ aspectRatio: '3/4', overflow: 'hidden', position: 'relative' }}>
-                    {t.photo ? (<img src={t.photo} alt={t.name} loading="lazy" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', display: 'block' }} />) : (<FoodPH aspect="3/4" label={t.name.toUpperCase()} tone={tones[i % 4]} />)}
+                    {t.photo ? (<FoodImg src={t.photo} alt={t.name} loading="lazy" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', display: 'block' }} />) : (<FoodPH aspect="3/4" label={t.name.toUpperCase()} tone={tones[i % 4]} />)}
                     {/* Stamp "exclusif" sur tous les talents — tous sont exclusifs Hiving Food */}
                     <div style={{
                       position: 'absolute', top: 12, right: 12,
@@ -365,7 +343,7 @@ function FoodTalentPage2() {
             <div style={{ position: 'sticky', top: 100 }}>
               <Polaroid taped={true} tapeColor={PP.lime} caption={t.handle} rotate={-1.5}>
                 <div style={{ aspectRatio: '4/5', overflow: 'hidden', position: 'relative' }}>
-                  {t.photo ? (<img src={t.photo} alt={t.name} loading="lazy" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', display: 'block' }} />) : (<FoodPH aspect="4/5" label={t.name.toUpperCase()} tone="cream" />)}
+                  {t.photo ? (<FoodImg src={t.photo} alt={t.name} loading="lazy" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', display: 'block' }} />) : (<FoodPH aspect="4/5" label={t.name.toUpperCase()} tone="cream" />)}
                   <div style={{ position: 'absolute', bottom: 20, right: 20 }}>
                     <Stamp top="EXCLUSIF" mid="hiving food" bottom="·" color={PP.tomato || '#c8492f'} size={82} rotate={-8} />
                   </div>
@@ -1465,19 +1443,7 @@ function FoodBlogPage2() {
               </div>
               <p style={{ fontFamily: PP.sans, fontSize: 14, color: PP.ink, margin: '8px 0 0', maxWidth: 540 }}>Insights food, tarifs, cas d'études et coups de cœur de la rédac', à lire en mangeant.</p>
             </div>
-            <div style={{ display: 'flex', gap: 0 }}>
-              <input type="email" placeholder="prenom@marque.com" style={{
-                background: PP.bg, border: `1.5px solid ${PP.ink}`, borderRight: 'none',
-                padding: '14px 18px', fontFamily: PP.sans, fontSize: 14, color: PP.ink,
-                outline: 'none', width: 240,
-              }} />
-              <button style={{
-                background: PP.ink, color: PP.lime,
-                padding: '14px 22px', border: `1.5px solid ${PP.ink}`,
-                fontFamily: PP.display, fontWeight: 600, fontSize: 12, letterSpacing: '0.14em',
-                textTransform: 'uppercase', cursor: 'pointer',
-              }}>S'abonner →</button>
-            </div>
+            <FoodNewsletterForm source="blog" variant="blog" />
           </div>
         </div>
         <style>{`@media (max-width: 800px) { .food2-blog-news { grid-template-columns: 1fr !important; } .food2-blog-news > div:last-child { width: 100%; } .food2-blog-news input { flex: 1; } }`}</style>
@@ -1703,7 +1669,7 @@ function FoodArticlePage2() {
               <div style={{
                 marginTop: 16, fontFamily: PP.hand, fontWeight: 700, fontSize: 26,
                 color: PP.ink, transform: 'rotate(-2deg)', textAlign: 'right',
-              }}>L. & M.</div>
+              }}>la rédac'.</div>
             </div>
           </div>
 

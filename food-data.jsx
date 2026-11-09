@@ -44,7 +44,7 @@ const FOOD_TALENTS = [
     awards: ['Top Chef Pâtisserie · Demi-finaliste 2023'],
   },
     {
-    slug: 'killian-franceschi', photo: '/img/talents/Kilian%202.jpg', name: 'Kilian Franceschi', firstName: 'Kilian',
+    slug: 'killian-franceschi', photo: '/img/talents/kilian.jpg', name: 'Kilian Franceschi', firstName: 'Kilian',
     role: 'Chef Cuisinier', specialty: 'Cuisine française · Bistro moderne',
     handle: '@kilianfranceschi', insta: '427K', tiktok: '136K', yt: '92K',
     cities: 'Lyon', joined: '2022',
@@ -342,7 +342,7 @@ const FOOD_WHY = [
   { icon: '▶', title: 'Des contenus qui convertissent',   desc: "UGC, Reels, TikTok, YouTube, recettes, lives. Des contenus qui donnent faim et qui performent. ROI mesurable." },
   { icon: '▲', title: '100% Food. Rien d\'autre.',        desc: "On ne fait que de la food. Cette spécialisation fait notre force : on connaît les codes, les tendances, les audiences." },
   { icon: '◆', title: 'Talents exclusifs',             desc: "Chefs, pâtissiers, food creators. Un roster unique de créateurs culinaires avec des millions d'abonnés engagés." },
-  { icon: '●', title: '+100M de vues générées',           desc: "Des résultats concrets et mesurables. On ne promet pas, on livre. Reporting détaillé sur chaque campagne." },
+  { icon: '●', title: '+420M de vues générées',           desc: "Des résultats concrets et mesurables. On ne promet pas, on livre. Reporting détaillé sur chaque campagne." },
 ];
 
 // ── FAQ
@@ -406,7 +406,7 @@ const FOOD_ARTICLES = [
     title: "Guide du Marketing d'Influence Food en 2026",
     excerpt: "Comment réussir votre campagne d'influence culinaire : stratégie, choix des créateurs, formats, budget et KPIs. Le guide de référence en 15 minutes.",
     date: '12 mars 2026', readTime: '15 min', featured: true,
-    author: 'Mathieu · CEO Hiving Food',
+    author: 'La rédaction Hiving Food',
     sections: [
       { h: "Pourquoi l'influence food a tout changé en 2026", p: "Le food a basculé. Là où il reposait sur quelques figures macro, il s'est recomposé autour de créateurs spécialisés (chefs, pâtissiers, food storytellers) qui produisent des contenus mieux que la plupart des agences créa traditionnelles. C'est un changement structurel : la marque qui veut performer en food doit jouer sur ce terrain-là." },
       { h: "Les 3 leviers à activer", p: "D'abord, le casting. Pas le créateur le plus gros, mais celui dont la cuisine ressemble à votre produit. Ensuite, le format : recettes filmées, UGC, lives : chacun a sa logique de performance. Enfin, la diffusion : trop de marques sous-investissent dans le paid post-publication, alors que c'est là que le ROI se débloque." },
@@ -420,7 +420,7 @@ const FOOD_ARTICLES = [
     title: "Tarifs d'une campagne d'influence food en 2026",
     excerpt: "Grille tarifaire détaillée par taille de créateur, format et plateforme. Du nano à la celebrity, ROI attendu et conseils de négociation.",
     date: '02 avril 2026', readTime: '10 min',
-    author: 'Léa · Head of Talents',
+    author: 'La rédaction Hiving Food',
     sections: [
       { h: "Combien coûte un créateur food ?", p: "Le tarif d'un créateur food en France oscille entre 800 € (nano <50K) et 25 000 € (top tier 500K+) pour un Reel + TikTok cross-postés. Les tarifs UGC sans diffusion organique commencent à 400 € le contenu." },
       { h: "Ce qui fait varier le prix", p: "L'exclusivité demandée, la fenêtre de droits paid, le format (live coûte 1.5x), la complexité de production (recette signature vs. unboxing), et le calendrier (Q4 +20%)." },
@@ -433,7 +433,7 @@ const FOOD_ARTICLES = [
     title: "Top 10 tendances du marketing food en 2026",
     excerpt: "IA générative, nano-influenceurs, shoppable video, sustainability, live cooking : les 10 leviers food à activer cette année.",
     date: '08 avril 2026', readTime: '12 min',
-    author: 'Camille · Strategy Director',
+    author: 'La rédaction Hiving Food',
     sections: [
       { h: "1. Le retour du long format", p: "YouTube reprend du terrain. Les recettes 8-12 minutes performent à nouveau, en particulier pour les marques premium qui veulent du storytelling profond." },
       { h: "2. Le nano-créateur de niche", p: "Mieux vaut 5 nano-créateurs ciblés (sans gluten, low carb, vegan, etc.) qu'un macro généraliste. ROI souvent 2-3x supérieur." },
@@ -446,7 +446,7 @@ const FOOD_ARTICLES = [
     title: "Brief campagne influence food : modèle 2026",
     excerpt: "Le modèle de brief utilisé par Hiving Food avec METRO, Président et Picard. 13 sections clés et checklist finale.",
     date: '15 avril 2026', readTime: '15 min',
-    author: 'Mathieu · CEO Hiving Food',
+    author: 'La rédaction Hiving Food',
     sections: [
       { h: "Les 13 sections du brief parfait", p: "Contexte marque, audience cible, objectif business mesurable, KPIs, casting souhaité, format, plateforme, contraintes légales, ton de marque, exemples à éviter, calendrier, budget, livrables." },
     ],
@@ -457,7 +457,7 @@ const FOOD_ARTICLES = [
     title: "Comment choisir son agence d'influence food",
     excerpt: "Les critères essentiels pour sélectionner la bonne agence et maximiser le ROI de vos campagnes culinaires.",
     date: '20 avril 2026', readTime: '10 min',
-    author: 'Mathieu · CEO Hiving Food',
+    author: 'La rédaction Hiving Food',
     sections: [
       { h: "Spécialiste vs. généraliste", p: "Une agence d'influence généraliste connaît les outils. Une agence food connaît les produits. Sur des sujets aussi sensibles que la cuisson, le pack ou le packaging, la spécialisation paie." },
       { h: "Studios in-house ou pas", p: "Une agence food sans studio dépend des créateurs (chez eux, lumière approximative) ou loue (cher, contrainte). Avoir des studios en propre = qualité garantie + délais courts." },
@@ -469,7 +469,7 @@ const FOOD_ARTICLES = [
     title: "Influenceur food TikTok : tendances 2026",
     excerpt: "Les formats, trends et créateurs qui dominent TikTok food cette année. Ce qui marche vraiment en influence culinaire.",
     date: '25 mars 2026', readTime: '7 min',
-    author: 'Léa · Head of Talents',
+    author: 'La rédaction Hiving Food',
     sections: [
       { h: "Les formats qui performent", p: "Le tuto 60s + voix off reste le format le plus rentable en CPV. Le \"frigo de la semaine\" explose. Le live cooking devient un rendez-vous." },
     ],
@@ -480,7 +480,7 @@ const FOOD_ARTICLES = [
     title: "Location studio cuisine Paris : le guide complet",
     excerpt: "Tout ce qu'il faut savoir pour louer un studio cuisine professionnel en région parisienne : prix, équipements, conseils.",
     date: '02 mars 2026', readTime: '8 min',
-    author: 'Thomas · Head of Production',
+    author: 'La rédaction Hiving Food',
     sections: [
       { h: "Combien coûte un studio cuisine à Paris ?", p: "Entre 50 € et 150 € de l'heure selon les équipements. Une journée complète : 500 à 1 500 €. Vérifiez ce qui est inclus (lumière, électroménager, vaisselle)." },
     ],
@@ -516,16 +516,7 @@ const FOOD_EVENT_SERVICES = [
 ];
 
 // ── TEAM
-const FOOD_TEAM = [
-  { name: 'Mathieu', role: 'Cofondateur · CEO', tone: 'cream',
-    bio: "Ex-stratégie chez Publicis Conseil. Mathieu a fondé Hiving en 2022 après 8 ans à voir des marques food rater leur passage au social. Il pilote la stratégie globale et les comptes flagship." },
-  { name: 'Léa', role: 'Cofondatrice · Head of Talents', tone: 'warm',
-    bio: "Ancienne booker en agence créa, Léa connaît chaque créateur food français comme sa famille. Elle dirige le pôle talents et s'assure que chaque casting soit chirurgical." },
-  { name: 'Thomas', role: 'Head of Production', tone: 'paper',
-    bio: "Réalisateur passé par Konbini Food. Thomas dirige nos studios à Clichy et chapeaute toute la production : du brief au montage final." },
-  { name: 'Camille', role: 'Strategy Director', tone: 'lime',
-    bio: "Stratège data-first ex-Wavemaker. Camille construit les frameworks de mesure de chaque campagne et lit le business derrière chaque KPI." },
-];
+const FOOD_TEAM = [];
 
 // ── STUDIOS (kept for studios redirect if needed)
 const FOOD_STUDIOS = [];
@@ -542,7 +533,7 @@ window.FOOD_STATS_READY = (function () {
   var MAP = { 'flo': 'eco-16', 'abellini': 'eco-17', 'julios': 'eco-18', 'chefologue': 'eco-19', 'julia': 'eco-20', 'drice-cook': 'eco-22', 'swissfitcook': 'eco-23', 'chester-foodies': 'eco-24', 'vincent-salur': 'eco-26', 'damien-pichon': 'eco-27', 'peppe': 'eco-30', 'qistoh': 'eco-31', 'dorian-tudeau': 'eco-32', 'killian-franceschi': 'eco-33' };
   function fmt(n) { n = +n; if (!n) return null; if (n >= 1e6) { return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'; } return Math.round(n / 1000) + 'K'; }
   var t0 = setTimeout(function () {}, 0);
-  return fetch('https://pmrqrbjxikljlarhkseu.supabase.co/rest/v1/influencers?select=eco_id,current_metrics(platform,followers)', { headers: { apikey: 'sb_publishable_j_kHa-caXfSxkSyeGd-veA_ZdUvNCw8' } })
+  var live = fetch('https://pmrqrbjxikljlarhkseu.supabase.co/rest/v1/influencers?select=eco_id,current_metrics(platform,followers)', { headers: { apikey: 'sb_publishable_j_kHa-caXfSxkSyeGd-veA_ZdUvNCw8' } })
     .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
     .then(function (rows) {
       var byEco = {};
@@ -555,6 +546,8 @@ window.FOOD_STATS_READY = (function () {
       });
     })
     .catch(function () { /* indisponible : les chiffres statiques restent affichés */ });
+  // Filet de sécurité : l'affichage n'attend jamais plus de 3 s la base (chiffres statiques sinon)
+  return Promise.race([live, new Promise(function (res) { setTimeout(res, 3000); })]);
 })();
 
 
@@ -596,4 +589,19 @@ window.LazyVid = function LazyVid(props) {
   var base = { ref: ref, preload: 'none', muted: true, loop: true, playsInline: true };
   for (var k2 in rest) base[k2] = rest[k2];
   return React.createElement('video', base);
+};
+
+// ── FoodImg : <picture> AVIF + WebP (img/optim/…) avec repli sur l'image d'origine ──
+// Mêmes props qu'un <img> ; <picture> en display:contents pour ne rien changer à la mise en page.
+window.FoodImg = function FoodImg(props) {
+  var m = typeof props.src === 'string' && props.src.match(/^(\/?)img\/(talents|eco-v2)\/([^?#]+)\.(jpe?g|png)$/i);
+  var p = { decoding: 'async' };
+  for (var k in props) p[k] = props[k];
+  var img = React.createElement('img', p);
+  if (!m) return img;
+  var base = m[1] + 'img/optim/' + m[2] + '/' + m[3];
+  return React.createElement('picture', { style: { display: 'contents' } },
+    React.createElement('source', { type: 'image/avif', srcSet: base + '.avif' }),
+    React.createElement('source', { type: 'image/webp', srcSet: base + '.webp' }),
+    img);
 };

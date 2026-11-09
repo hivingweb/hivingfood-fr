@@ -934,7 +934,7 @@ window.FOOD_STATS_READY = function () {
     return Math.round(n / 1000) + 'K';
   }
   var t0 = setTimeout(function () {}, 0);
-  return fetch('https://pmrqrbjxikljlarhkseu.supabase.co/rest/v1/influencers?select=eco_id,current_metrics(platform,followers)', {
+  var live = fetch('https://pmrqrbjxikljlarhkseu.supabase.co/rest/v1/influencers?select=eco_id,current_metrics(platform,followers)', {
     headers: {
       apikey: 'sb_publishable_j_kHa-caXfSxkSyeGd-veA_ZdUvNCw8'
     }
@@ -958,6 +958,10 @@ window.FOOD_STATS_READY = function () {
       if (tt) t.tiktok = tt;
     });
   }).catch(function () {/* indisponible : les chiffres statiques restent affichés */});
+  // Filet de sécurité : l'affichage n'attend jamais plus de 3 s la base (chiffres statiques sinon)
+  return Promise.race([live, new Promise(function (res) {
+    setTimeout(res, 3000);
+  })]);
 }();
 
 // ── LazyVid : vidéo à chargement différé (ne télécharge qu'à l'approche du viewport) ──
@@ -1025,4 +1029,28 @@ window.LazyVid = function LazyVid(props) {
   };
   for (var k2 in rest) base[k2] = rest[k2];
   return React.createElement('video', base);
+};
+
+// ── FoodImg : <picture> AVIF + WebP (img/optim/…) avec repli sur l'image d'origine ──
+// Mêmes props qu'un <img> ; <picture> en display:contents pour ne rien changer à la mise en page.
+window.FoodImg = function FoodImg(props) {
+  var m = typeof props.src === 'string' && props.src.match(/^(\/?)img\/(talents|eco-v2)\/([^?#]+)\.(jpe?g|png)$/i);
+  var p = {
+    decoding: 'async'
+  };
+  for (var k in props) p[k] = props[k];
+  var img = React.createElement('img', p);
+  if (!m) return img;
+  var base = m[1] + 'img/optim/' + m[2] + '/' + m[3];
+  return React.createElement('picture', {
+    style: {
+      display: 'contents'
+    }
+  }, React.createElement('source', {
+    type: 'image/avif',
+    srcSet: base + '.avif'
+  }), React.createElement('source', {
+    type: 'image/webp',
+    srcSet: base + '.webp'
+  }), img);
 };

@@ -20,8 +20,11 @@
 <meta name="twitter:image" content="https://www.hivingfood.fr/img/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="preconnect" href="https://pmrqrbjxikljlarhkseu.supabase.co" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Familjen+Grotesk:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="manifest" href="/manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#fafaf5">
@@ -46,6 +49,7 @@
   .ssr-content.show-fallback { display: block; }
 </style>
 <noscript><style>.ssr-content { display: block !important; }</style></noscript>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.hivingfood.fr/"}, {"@type": "ListItem", "position": 2, "name": "Campagnes", "item": "https://www.hivingfood.fr/food/campagnes.html"}, {"@type": "ListItem", "position": 3, "name": "Levi’s Paris", "item": "https://www.hivingfood.fr/food/campagnes/levis-paris/"}]}</script>
 </head>
 <body>
 
@@ -67,21 +71,18 @@
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
-<script type="text/babel" src="/food-data.jsx"></script>
-<script type="text/babel" src="/food-home-v2.jsx?v=20261109a"></script>
-<script type="text/babel" src="/food-shared-v2.jsx"></script>
-<script type="text/babel" src="/food-pages-v2.jsx"></script>
-<script type="text/babel">
-// Set slug in URL params for the React component
-const urlParams = new URLSearchParams(window.location.search);
-if (!urlParams.get('slug')) {
-  // Inject slug from path
+<script src="/food-data.js?v=20261109lot"></script>
+<script src="/food-home-v2.js?v=20261109lot"></script>
+<script src="/food-shared-v2.js?v=20261109lot"></script>
+<script src="/food-pages-v2.js?v=20261109lot"></script>
+<script>
+// Slug de la campagne transmis au composant React (versions .js compilées)
+if (!new URLSearchParams(window.location.search).get('slug')) {
   history.replaceState(null, '', '/food/campagne.html?slug=levis-paris');
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<FoodCampagneDetail2 />);
-// Hide SSR content once React mounts
+const __mount = () => root.render(/*#__PURE__*/React.createElement(FoodCampagneDetail2, null));
+(window.FOOD_STATS_READY || Promise.resolve()).then(__mount, __mount);
 setTimeout(() => document.body.classList.add('react-mounted'), 1500);
 </script>
 <script>

@@ -8,6 +8,7 @@
     <meta name="description" content="Hiving Food conçoit des expériences culinaires sur mesure pour vos événements d'entreprise : pâtisseries brandées, traiteur pizza, cocktails. Dior, Nike, LVMH, Porsche nous font confiance.">
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -863,6 +864,11 @@
             font-family: inherit;
             width: 100%;
         }
+        .ev-form-piege { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+        .ev-form-statut { margin: 0; font-size: 0.9rem; color: var(--accent); text-align: center; }
+        .ev-form-statut:empty { display: none; }
+        .ev-form-statut a { color: inherit; }
+        .ev-form .ev-cta[disabled] { opacity: 0.6; cursor: wait; }
         .ev-form-success {
             display: none;
             text-align: center;
@@ -921,7 +927,7 @@
 <body>
 
     <header class="header" id="header" style="background:rgba(0,0,0,0.95);backdrop-filter:blur(12px)">
-        <a href="/" class="header-logo"><img src="/img/logo/food.svg" alt="Hiving Food" class="header-logo-food"></a>
+        <a href="/" class="header-logo"><img src="/img/logo/food.svg" alt="Hiving Food" class="header-logo-food" width="183" height="48"></a>
         <nav class="header-nav" id="headerNav">
             <a href="/">Accueil</a>
             <a href="/agence-influence-food">L'agence</a>
@@ -1529,12 +1535,17 @@
                 <label for="ev-message">Votre projet</label>
                 <textarea id="ev-message" name="message" placeholder="Décrivez votre événement : lieu, ambiance, attentes..." rows="4"></textarea>
             </div>
+            <div class="ev-form-piege" aria-hidden="true">
+                <label for="ev-website">Ne pas remplir</label>
+                <input type="text" id="ev-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
             <div class="ev-form-full">
                 <button type="submit" class="ev-cta">Envoyer ma demande</button>
             </div>
+            <p class="ev-form-full ev-form-statut" id="evFormStatut" role="status" aria-live="polite"></p>
         </form>
 
-        <div class="ev-form-success" id="evFormSuccess">
+        <div class="ev-form-success" id="evFormSuccess" role="status" aria-live="polite" tabindex="-1">
             <div class="ev-check">&#10003;</div>
             <h3>Demande envoyée !</h3>
             <p>On revient vers vous sous 24h avec une proposition sur mesure.</p>
@@ -1543,7 +1554,7 @@
 
     <footer class="footer">
         <div class="footer-inner">
-            <span class="footer-logo"><img src="/img/logo/hiving-white.png" alt="Hiving" class="footer-logo-img"></span>
+            <span class="footer-logo"><img src="/img/logo/hiving-white.png" alt="Hiving" class="footer-logo-img" width="1535" height="496" loading="lazy" decoding="async"></span>
             <span class="footer-copy">&copy; <script>document.write(new Date().getFullYear())</script> Hiving Food. Tous droits réservés. &middot; <a href="/mentions-legales.html" style="color:var(--gray-light);text-decoration:underline;text-underline-offset:3px">Mentions l&eacute;gales</a> &middot; <a href="/politique-confidentialite.html" style="color:var(--gray-light);text-decoration:underline;text-underline-offset:3px">Confidentialit&eacute;</a> &middot; <a href="#" data-hf-consent-open style="color:var(--gray-light);text-decoration:underline;text-underline-offset:3px">Gérer mes cookies</a></span>
         </div>
     </footer>
@@ -1588,13 +1599,20 @@
     !function(){
         var form = document.getElementById('evContactForm');
         if (!form) return;
+        var statut = document.getElementById('evFormStatut');
+        var indispo = 'Envoi momentanément indisponible, écrivez-nous à <a href="mailto:contact@hivingfood.fr">contact@hivingfood.fr</a>.';
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             var d = new FormData(form);
             var btn = form.querySelector('button[type="submit"]');
+            if (btn.disabled) return;
+            var email = String(d.get('email') || '').trim();
+            if (!String(d.get('name') || '').trim() || !email) { statut.textContent = 'Merci d’indiquer votre nom et votre e-mail.'; return; }
+            if (!form.querySelector('#ev-email').checkValidity()) { statut.textContent = 'Adresse e-mail invalide.'; return; }
             var btnText = btn.textContent;
             btn.disabled = true;
             btn.textContent = 'Envoi en cours...';
+            statut.textContent = 'Envoi en cours…';
 
             // Fold extra fields into message
             var parts = [];
@@ -1602,30 +1620,36 @@
             if (d.get('date')) parts.push('Date : ' + d.get('date'));
             if (d.get('guests')) parts.push('Invités : ' + d.get('guests'));
             if (d.get('message')) parts.push('\n' + d.get('message'));
-            var fullMessage = parts.join('\n');
+            var fullMessage = parts.join('\n') || '(pas de détail)';
 
-            fetch('/api/contact/', {
+            fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     name: d.get('name'),
-                    email: d.get('email'),
+                    email: email,
                     company: d.get('company') || '',
-                    message: fullMessage
+                    subject: 'Demande événementiel Hiving Food',
+                    source: 'evenementiel',
+                    message: fullMessage,
+                    website: d.get('website') || ''
                 })
             })
             .then(function(res) {
-                if (!res.ok) throw new Error('Erreur serveur');
-                return res.json();
-            })
-            .then(function() {
-                form.style.display = 'none';
-                document.getElementById('evFormSuccess').classList.add('show');
-            })
-            .catch(function() {
+                return res.json().catch(function() { return {}; }).then(function(data) { return { ok: res.ok, status: res.status, data: data }; });
+            }, function() { return { ok: false, status: 0, data: {} }; })
+            .then(function(r) {
+                if (r.ok) {
+                    form.style.display = 'none';
+                    var ok = document.getElementById('evFormSuccess');
+                    ok.classList.add('show');
+                    ok.focus();
+                    return;
+                }
                 btn.disabled = false;
                 btn.textContent = btnText;
-                alert('Une erreur est survenue. Réessayez ou contactez-nous directement à contact@hivingfood.fr');
+                if (r.status === 400 && r.data.error) statut.textContent = r.data.error;
+                else statut.innerHTML = indispo;
             });
         });
     }();

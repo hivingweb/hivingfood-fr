@@ -415,7 +415,7 @@ function FoodTalentsPage2() {
         overflow: 'hidden',
         position: 'relative'
       }
-    }, t.photo ? /*#__PURE__*/React.createElement("img", {
+    }, t.photo ? /*#__PURE__*/React.createElement(FoodImg, {
       src: t.photo,
       alt: t.name,
       loading: "lazy",
@@ -570,7 +570,7 @@ function FoodTalentPage2() {
       overflow: 'hidden',
       position: 'relative'
     }
-  }, t.photo ? /*#__PURE__*/React.createElement("img", {
+  }, t.photo ? /*#__PURE__*/React.createElement(FoodImg, {
     src: t.photo,
     alt: t.name,
     loading: "lazy",
@@ -2847,46 +2847,10 @@ function FoodBlogPage2() {
       margin: '8px 0 0',
       maxWidth: 540
     }
-  }, "Insights food, tarifs, cas d'études et coups de cœur de la rédac', à lire en mangeant.")), /*#__PURE__*/React.createElement("form", {
-    style: {
-      display: 'flex',
-      gap: 0
-    },
-    onSubmit: e => {
-      e.preventDefault();
-      const em = e.currentTarget.querySelector('input').value.trim();
-      if (em) window.location.href = 'mailto:contact@hivingfood.fr?subject=' + encodeURIComponent('Inscription à la lettre du chef') + '&body=' + encodeURIComponent('Bonjour, je souhaite recevoir la lettre du chef. Mon email : ' + em);
-    }
-  }, /*#__PURE__*/React.createElement("input", {
-    required: true,
-    type: "email",
-    placeholder: "prenom@marque.com",
-    style: {
-      background: PP.bg,
-      border: `1.5px solid ${PP.ink}`,
-      borderRight: 'none',
-      padding: '14px 18px',
-      fontFamily: PP.sans,
-      fontSize: 14,
-      color: PP.ink,
-      outline: 'none',
-      width: 240
-    }
-  }), /*#__PURE__*/React.createElement("button", {
-    type: "submit",
-    style: {
-      background: PP.ink,
-      color: PP.lime,
-      padding: '14px 22px',
-      border: `1.5px solid ${PP.ink}`,
-      fontFamily: PP.display,
-      fontWeight: 600,
-      fontSize: 12,
-      letterSpacing: '0.14em',
-      textTransform: 'uppercase',
-      cursor: 'pointer'
-    }
-  }, "S'abonner →")))), /*#__PURE__*/React.createElement("style", null, `@media (max-width: 800px) { .food2-blog-news { grid-template-columns: 1fr !important; } .food2-blog-news > div:last-child { width: 100%; } .food2-blog-news input { flex: 1; } }`)), /*#__PURE__*/React.createElement("section", {
+  }, "Insights food, tarifs, cas d'études et coups de cœur de la rédac', à lire en mangeant.")), /*#__PURE__*/React.createElement(FoodNewsletterForm, {
+    source: "blog",
+    variant: "blog"
+  }))), /*#__PURE__*/React.createElement("style", null, `@media (max-width: 800px) { .food2-blog-news { grid-template-columns: 1fr !important; } .food2-blog-news > div:last-child { width: 100%; } .food2-blog-news input { flex: 1; } }`)), /*#__PURE__*/React.createElement("section", {
     style: {
       padding: '64px 40px 96px'
     }

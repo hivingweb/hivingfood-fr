@@ -45,6 +45,7 @@
     </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -250,15 +251,16 @@
     </style>
 </head>
 <body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 
     <header class="header" id="header" style="background:rgba(0,0,0,0.95);backdrop-filter:blur(12px)">
-        <a href="/" class="header-logo"><img src="/img/logo/food.svg" alt="Hiving Food" class="header-logo-food"></a>
+        <a href="/" class="header-logo"><img src="/img/logo/food.svg" alt="Hiving Food" class="header-logo-food" width="183" height="48"></a>
         <nav class="header-nav" id="headerNav">
             <a href="/">Accueil</a>
-            <a href="/agence-influence-food">L'agence</a>
-            <a href="/influenceurs-food">Talents</a>
-            <a href="/studio-food">Studios</a>
-            <a href="/campagnes-influence-food">Campagnes</a>
+            <a href="/food/agence.html">L'agence</a>
+            <a href="/food/talents.html">Talents</a>
+            <a href="/food/studios.html">Studios</a>
+            <a href="/food/campagnes.html">Campagnes</a>
             <a href="/blog">Blog</a>
             <a href="/#contact" class="nav-cta">CONTACT</a>
         </nav>
@@ -267,7 +269,7 @@
         </button>
     </header>
 
-    <main class="blog-page">
+    <main id="contenu" class="blog-page">
         <nav class="blog-breadcrumb"><a href="/">Accueil</a> &rsaquo; Blog</nav>
 
         <div class="blog-hero">
@@ -310,20 +312,22 @@
                 <p>Recevez les dernières tendances food et conseils marketing.</p>
             </div>
             <div>
-                <form id="newsletterForm">
-                    <input type="email" placeholder="Votre email" required id="newsletterEmail">
+                <form id="newsletterForm" style="position:relative">
+                    <label for="newsletterEmail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">Votre adresse e-mail</label>
+                    <input type="email" placeholder="Votre email" required id="newsletterEmail" autocomplete="email">
+                    <span aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><input type="text" name="website" id="newsletterWebsite" tabindex="-1" autocomplete="off"></span>
                     <button type="submit" class="btn-pill btn-accent">S'inscrire</button>
                 </form>
-                <p class="newsletter-feedback" id="newsletterFeedback" style="font-size:0.78rem;margin-top:6px;color:var(--accent)"></p>
+                <p class="newsletter-feedback" id="newsletterFeedback" role="status" aria-live="polite" style="font-size:0.78rem;margin-top:6px;color:var(--accent)"></p>
             </div>
         </div>
 
-        <p class="blog-discover">Découvrez aussi <a href="/influenceurs-food">nos créateurs food</a> et <a href="/agence-influence-food">notre agence</a>.</p>
+        <p class="blog-discover">Découvrez aussi <a href="/food/talents.html">nos créateurs food</a> et <a href="/food/agence.html">notre agence</a>.</p>
     </main>
 
     <footer class="footer">
         <div class="footer-inner">
-            <span class="footer-logo"><img src="/img/logo/hiving-white.png" alt="Hiving" class="footer-logo-img"></span>
+            <span class="footer-logo"><img src="/img/logo/hiving-white.png" alt="Hiving" class="footer-logo-img" width="1535" height="496" loading="lazy" decoding="async"></span>
             <span class="footer-copy">&copy; <script>document.write(new Date().getFullYear())</script> Hiving Food. Tous droits réservés. &middot; <a href="/mentions-legales.html" style="color:var(--gray-light);text-decoration:underline;text-underline-offset:3px">Mentions légales</a> &middot; <a href="/politique-confidentialite.html" style="color:var(--gray-light);text-decoration:underline;text-underline-offset:3px">Confidentialité</a> &middot; <a href="#" data-hf-consent-open style="color:var(--gray-light);text-decoration:underline;text-underline-offset:3px">Gérer mes cookies</a></span>
         </div>
     </footer>
@@ -350,7 +354,7 @@
 }();
 
 // Newsletter
-!function(){var f=document.getElementById("newsletterForm"),e=document.getElementById("newsletterEmail"),fb=document.getElementById("newsletterFeedback");if(!f)return;f.addEventListener("submit",function(ev){ev.preventDefault();var email=e.value.trim();if(!email)return;fb.textContent="Envoi...";fb.style.color="#999";fetch("/api/newsletter/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,source:"blog"})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,data:d}});}).then(function(res){if(res.data.status==="already_subscribed"){fb.textContent="Vous êtes déjà inscrit(e) !";fb.style.color="#c8ff00"}else if(res.ok){fb.textContent="Merci pour votre inscription !";fb.style.color="#c8ff00";e.value=""}else{fb.textContent=res.data.error||"Erreur";fb.style.color="#ff4444"}}).catch(function(){fb.textContent="Erreur réseau";fb.style.color="#ff4444"})})}();
+!function(){var f=document.getElementById("newsletterForm"),e=document.getElementById("newsletterEmail"),hp=document.getElementById("newsletterWebsite"),fb=document.getElementById("newsletterFeedback");if(!f)return;var btn=f.querySelector("button");f.addEventListener("submit",function(ev){ev.preventDefault();var email=e.value.trim();if(!email||btn.disabled)return;btn.disabled=true;fb.textContent="Envoi en cours…";fetch("/api/newsletter",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,source:"blog",website:hp?hp.value:""})}).then(function(r){return r.json().catch(function(){return{}}).then(function(d){return{ok:r.ok,status:r.status,data:d}})},function(){return{ok:false,status:0,data:{}}}).then(function(res){btn.disabled=false;if(res.ok){fb.textContent="Merci pour votre inscription !";e.value=""}else if(res.status===400&&res.data.error){fb.textContent=res.data.error}else{fb.innerHTML='Envoi momentanément indisponible, écrivez-nous à <a href="mailto:contact@hivingfood.fr" style="color:inherit">contact@hivingfood.fr</a>.'}})})}();
 
 // Burger menu
 !function(){var b=document.getElementById("burger"),n=document.getElementById("headerNav");if(!b||!n)return;b.addEventListener("click",function(){var o=n.classList.toggle("open");b.classList.toggle("active");b.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":""});n.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){n.classList.remove("open");b.classList.remove("active");b.setAttribute("aria-expanded","false");document.body.style.overflow=""})})}()
