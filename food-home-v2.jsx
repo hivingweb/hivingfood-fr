@@ -1325,7 +1325,7 @@ function FoodStudios2() {
             </p>
           </div>
 
-          <a href="https://hivingstudio.com/" target="_blank" rel="noopener" data-cursor className="food2-cta" style={{
+          <a href="https://hivingstudio.fr/" target="_blank" rel="noopener" data-cursor className="food2-cta" style={{
             background: FOOD_PAL.lime, color: FOOD_PAL.ink,
             border: `1.5px solid ${FOOD_PAL.ink}`,
             fontFamily: FOOD_PAL.display, fontWeight: 600, fontSize: 12,

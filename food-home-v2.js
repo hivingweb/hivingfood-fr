@@ -2364,7 +2364,7 @@ function FoodStudios2() {
       color: FOOD_PAL.inkSoft
     }
   }, "80m² inox pro, 65m² parquet chevron lifestyle, ou 45m² fond blanc studio lifestyle. Trois ambiances, trois usages, une seule adresse à Clichy.")), /*#__PURE__*/React.createElement("a", {
-    href: "https://hivingstudio.com/",
+    href: "https://hivingstudio.fr/",
     target: "_blank",
     rel: "noopener",
     "data-cursor": true,
