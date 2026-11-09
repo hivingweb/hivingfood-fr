@@ -204,6 +204,14 @@
       "destination": "/api/contact"
     },
     {
+      "source": "/api/brief/",
+      "destination": "/api/brief"
+    },
+    {
+      "source": "/api/newsletter/",
+      "destination": "/api/newsletter"
+    },
+    {
       "source": "/api/newsletter/subscribe",
       "destination": "/api/newsletter"
     },

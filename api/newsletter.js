@@ -1,15 +1,15 @@
-// POST /api/newsletter — inscription à « La lettre du chef »
+// POST /api/newsletter — inscription à la newsletter
 // Corps JSON : { email, source? ('footer', 'blog'…), website? (piège à robots) }
-// Prévient contact@hivingfood.fr par e-mail. Si RESEND_AUDIENCE_ID est défini,
+// Prévient l'adresse de contact par e-mail. Si RESEND_AUDIENCE_ID est défini,
 // ajoute aussi l'adresse à l'audience Resend (liste de diffusion).
 
-const { origineAutorisee, enTetes, lireCorps, EMAIL_RE, texte, envoyerEmail, dateParis } = require('./_mail');
+const { SITE, controlesDeBase, lireCorps, EMAIL_RE, texte, ligne, indisponible, envoyerEmail, dateParis } = require('./_mail');
 
 async function ajouterAudience(email) {
   const cle = process.env.RESEND_API_KEY;
   const audience = process.env.RESEND_AUDIENCE_ID;
   if (!cle || !audience) return;
-  const r = await fetch(`https://api.resend.com/audiences/${audience}/contacts`, {
+  const r = await fetch(`https://api.resend.com/audiences/${encodeURIComponent(audience)}/contacts`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${cle}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, unsubscribed: false }),
@@ -18,24 +18,22 @@ async function ajouterAudience(email) {
 }
 
 module.exports = async (req, res) => {
-  enTetes(req, res);
-  if (req.method === 'OPTIONS') return res.status(204).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Méthode non autorisée' });
-  if (!origineAutorisee(req.headers.origin)) return res.status(403).json({ error: 'Origine refusée' });
+  if (controlesDeBase(req, res)) return;
 
   const b = await lireCorps(req);
   if (texte(b.website, 200)) return res.status(200).json({ success: true });
 
-  const email = texte(b.email, 254).toLowerCase();
-  const source = texte(b.source || 'footer', 40);
-  if (!EMAIL_RE.test(email)) return res.status(400).json({ error: 'Email invalide' });
+  const email = ligne(b.email, 254).toLowerCase();
+  const source = ligne(b.source || 'footer', 40);
+  if (!EMAIL_RE.test(email)) return res.status(400).json({ error: 'Adresse e-mail invalide.' });
+  if (!process.env.RESEND_API_KEY) return indisponible(res);
 
   await ajouterAudience(email);
   const envoi = await envoyerEmail({
-    sujet: `Nouvelle inscription à la lettre du chef : ${email}`,
-    corps: `Inscription newsletter depuis hivingfood.fr\n\nEmail : ${email}\nSource : ${source}\nDate : ${dateParis()}\n`,
+    sujet: `Nouvelle inscription newsletter ${SITE.nom} : ${email}`,
+    corps: `Inscription newsletter depuis ${SITE.domaine}\n\nE-mail : ${email}\nSource : ${source}\nDate : ${dateParis()}\n`,
     replyTo: email,
   });
-  if (!envoi.ok) return res.status(503).json({ error: 'Inscription momentanément indisponible.' });
+  if (!envoi.ok) return indisponible(res);
   return res.status(200).json({ success: true, message: 'Merci, c’est noté !' });
 };

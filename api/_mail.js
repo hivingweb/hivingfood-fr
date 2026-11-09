@@ -1,34 +1,73 @@
-// Outils communs aux fonctions de formulaire (contact, newsletter).
+// Outils communs aux fonctions de formulaire (contact, newsletter, brief).
 // Envoi des e-mails par l'API Resend. Aucun secret dans le code :
 // la clé est lue dans la variable d'environnement RESEND_API_KEY (réglages Vercel).
+// Le fichier commence par « _ » : Vercel ne le publie pas comme une adresse.
 
-const ORIGINES = ['https://www.hivingfood.fr', 'https://hivingfood.fr'];
+const SITE = {
+  nom: 'Hiving Food',
+  domaine: 'hivingfood.fr',
+  contact: 'contact@hivingfood.fr',
+  expediteur: 'Hiving Food <noreply@hivingfood.fr>',
+  origines: ['https://www.hivingfood.fr', 'https://hivingfood.fr'],
+  // prévisualisations Vercel de ce projet (hivingfood-fr-xxxx.vercel.app, hivingfood-fr-git-branche-equipe.vercel.app)
+  previews: /^https:\/\/hivingfood-fr(-[a-z0-9-]+)?\.vercel\.app$/,
+};
 
 function origineAutorisee(origin) {
-  if (!origin) return true; // appel direct (curl, tests)
-  if (ORIGINES.includes(origin)) return true;
-  // adresses de prévisualisation Vercel de ce projet
-  return /^https:\/\/hivingfood-[a-z0-9-]+\.vercel\.app$/.test(origin) || origin === 'https://hivingfood-fr.vercel.app';
+  if (!origin) return true; // appel direct sans navigateur (curl, tests) : pot de miel et validation restent actifs
+  if (SITE.origines.includes(origin)) return true;
+  if (/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) return true; // npx vercel dev
+  return SITE.previews.test(origin);
 }
 
 function enTetes(req, res) {
-  const origin = req.headers.origin || '';
-  res.setHeader('Access-Control-Allow-Origin', origineAutorisee(origin) && origin ? origin : 'https://www.hivingfood.fr');
+  const origin = (req.headers && req.headers.origin) || '';
+  if (origin && origineAutorisee(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Cache-Control', 'no-store');
+  res.setHeader('X-Robots-Tag', 'noindex');
+}
+
+// Contrôles communs : méthode et origine. Renvoie true si la réponse est déjà partie.
+function controlesDeBase(req, res) {
+  enTetes(req, res);
+  if (req.method === 'OPTIONS') { res.status(204).end(); return true; }
+  if (req.method !== 'POST') { res.status(405).json({ error: 'Méthode non autorisée' }); return true; }
+  if (!origineAutorisee(req.headers && req.headers.origin)) { res.status(403).json({ error: 'Origine refusée' }); return true; }
+  return false;
 }
 
 async function lireCorps(req) {
-  if (req.body && typeof req.body === 'object') return req.body;
-  if (typeof req.body === 'string') { try { return JSON.parse(req.body); } catch { return {}; } }
+  if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) return req.body;
+  if (typeof req.body === 'string') { try { return JSON.parse(req.body) || {}; } catch { return {}; } }
   return {};
 }
 
-const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,24}$/;
+const EMAIL_RE = /^[^\s@<>"]{1,64}@[^\s@<>"]{1,190}\.[^\s@<>"]{2,24}$/;
 
+// Texte libre : caractères de contrôle retirés (sauf retours à la ligne), longueur limitée.
 function texte(v, max) {
-  return String(v == null ? '' : v).replace(/\u0000/g, '').trim().slice(0, max);
+  return String(v == null ? '' : v).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim().slice(0, max);
+}
+
+// Valeur sur une seule ligne (sujet, nom) : jamais de retour à la ligne.
+function ligne(v, max) {
+  return texte(v, max).replace(/[\r\n\t]+/g, ' ');
+}
+
+function adresseContact() {
+  return process.env.CONTACT_TO || SITE.contact;
+}
+
+function indisponible(res) {
+  return res.status(503).json({
+    error: `Envoi momentanément indisponible, écrivez-nous à ${adresseContact()}.`,
+    contact: adresseContact(),
+  });
 }
 
 async function envoyerEmail({ sujet, corps, replyTo }) {
@@ -37,17 +76,23 @@ async function envoyerEmail({ sujet, corps, replyTo }) {
     console.error('[formulaire] RESEND_API_KEY absente : e-mail non envoyé');
     return { ok: false, raison: 'config' };
   }
-  const r = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${cle}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      from: process.env.MAIL_FROM || 'Hiving Food <noreply@hivingfood.fr>',
-      to: [process.env.CONTACT_TO || 'contact@hivingfood.fr'],
-      reply_to: replyTo || undefined,
-      subject: sujet,
-      text: corps,
-    }),
-  });
+  let r;
+  try {
+    r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${cle}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: process.env.MAIL_FROM || SITE.expediteur,
+        to: [adresseContact()],
+        reply_to: replyTo || undefined,
+        subject: ligne(sujet, 200),
+        text: corps,
+      }),
+    });
+  } catch (e) {
+    console.error('[formulaire] Resend injoignable', e && e.message);
+    return { ok: false, raison: 'envoi' };
+  }
   if (!r.ok) {
     console.error('[formulaire] Resend a refusé l\'envoi', r.status, await r.text().catch(() => ''));
     return { ok: false, raison: 'envoi' };
@@ -59,4 +104,7 @@ function dateParis() {
   return new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
 }
 
-module.exports = { origineAutorisee, enTetes, lireCorps, EMAIL_RE, texte, envoyerEmail, dateParis };
+module.exports = {
+  SITE, origineAutorisee, enTetes, controlesDeBase, lireCorps, EMAIL_RE, texte, ligne,
+  adresseContact, indisponible, envoyerEmail, dateParis,
+};
