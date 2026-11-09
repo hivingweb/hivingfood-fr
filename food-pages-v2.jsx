@@ -705,7 +705,7 @@ function FoodCampagneDetail2() {
     <PageShell current="campagnes">
       <Crumbs items={[
         { label: 'Hiving Food', href: '/' },
-        { label: 'Campagnes', href: 'campagnes.html' },
+        { label: 'Campagnes', href: '/food/campagnes.html' },
         { label: c.brand },
       ]} />
 
@@ -957,9 +957,8 @@ function FoodCampagneDetail2() {
                 border: `2.5px solid ${PP.tomato || '#c8492f'}`,
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                 fontFamily: PP.display, fontWeight: 800,
-                color: PP.tomato || '#c8492f', textAlign: 'center', lineHeight: 1.1,
+                color: PP.ink, textAlign: 'center', lineHeight: 1.1, // texte encre : le rouge sur crème ne passait pas le contraste AA
                 transform: 'rotate(-8deg)', textTransform: 'uppercase',
-                opacity: 0.85,
               }}>
                 <span style={{ fontSize: 10, letterSpacing: '0.18em' }}>★</span>
                 <span style={{ fontSize: 18, letterSpacing: '0.06em', margin: '2px 0' }}>approved</span>
@@ -1107,7 +1106,7 @@ function FoodCampagneDetail2() {
             {others.map((o, i) => {
               const tones = ['paper', 'warm', 'lime'];
               return (
-                <a key={o.slug} href={`campagne.html?slug=${o.slug}`} data-cursor style={{ textDecoration: 'none', color: PP.ink }}>
+                <a key={o.slug} href={`/food/campagnes/${o.slug}/`} data-cursor style={{ textDecoration: 'none', color: PP.ink }}>
                   <div style={{ border: `1.5px solid ${PP.ink}`, borderRadius: 12, overflow: 'hidden' }}>
                     <FoodPH aspect="16/10" kind="video" label={o.brand.toUpperCase()} tone={tones[i]} />
                   </div>

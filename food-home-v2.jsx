@@ -7,7 +7,9 @@
 // Asset path helper — works from root + /food/ subpages
 function foodAsset(p) {
   const inSub = typeof window !== 'undefined' && window.location.pathname.includes('/food/');
-  return (inSub ? '../' : '') + p;
+  // Adresse absolue : fonctionne depuis toutes les profondeurs (/food/campagnes/<slug>/, /talents/<slug>…)
+  if (typeof p === 'string' && (p.charAt(0) === '/' || /^https?:/.test(p))) return p;
+  return '/' + p;
 }
 function foodHomePath() {
   return '/';
@@ -298,7 +300,7 @@ function FoodNav2({ current = 'home' }) {
   }, [open]);
 
   const inSub = typeof window !== 'undefined' && window.location.pathname.includes('/food/');
-  const sub = (p) => inSub ? p : 'food/' + p;
+  const sub = (p) => '/food/' + p; // absolu : les pages /food/campagnes/<slug>/ cassaient les liens relatifs
   const links = [
     { id: 'agence', label: "L'agence", href: sub('agence.html') },
     { id: 'talents', label: 'Talents', href: sub('talents.html') },
@@ -859,7 +861,7 @@ function FoodManifesto2() {
                 display: 'flex', alignItems: 'flex-start', gap: 20,
               }}>
                 <div style={{
-                  fontFamily: FOOD_PAL.hand, fontSize: 32, color: FOOD_PAL.lime,
+                  fontFamily: FOOD_PAL.hand, fontSize: 32, color: FOOD_PAL.ink,
                   fontWeight: 700, lineHeight: 1, flexShrink: 0,
                 }}>{c.num}</div>
                 <div>
@@ -1257,8 +1259,8 @@ function FoodStudios2() {
       {/* Decorative scribbles */}
       <div aria-hidden="true" style={{
         position: 'absolute', top: 80, left: '6%',
-        fontFamily: FOOD_PAL.hand, fontSize: 22, color: FOOD_PAL.ink,
-        opacity: 0.4, transform: 'rotate(-8deg)', pointerEvents: 'none',
+        fontFamily: FOOD_PAL.hand, fontSize: 22, color: FOOD_PAL.inkSoft,
+        transform: 'rotate(-8deg)', pointerEvents: 'none',
       }}>2 plateaux ↓</div>
       <div aria-hidden="true" style={{
         position: 'absolute', top: 140, right: '8%', pointerEvents: 'none',
@@ -1550,7 +1552,6 @@ function FoodStudios2() {
             position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)',
             display: 'flex', alignItems: 'center', gap: 12,
             fontFamily: FOOD_PAL.hand, fontSize: 18, color: FOOD_PAL.inkSoft,
-            opacity: 0.7,
           }}>
             <svg width="40" height="14" viewBox="0 0 40 14" fill="none">
               <path d="M0 7 Q 10 2, 20 7 T 40 7" stroke={FOOD_PAL.ink} strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="2 3" />
@@ -1629,8 +1630,7 @@ function FoodFAQ2() {
                 }}>
                   <span style={{ display: 'flex', gap: 16, alignItems: 'baseline' }}>
                     <span style={{
-                      fontFamily: FOOD_PAL.hand, fontSize: 24, color: FOOD_PAL.lime,
-                      WebkitTextStroke: `1px ${FOOD_PAL.ink}`,
+                      fontFamily: FOOD_PAL.hand, fontSize: 24, color: FOOD_PAL.ink,
                     }}>{String(i + 1).padStart(2, '0')}</span>
                     {f.q}
                   </span>
@@ -1666,7 +1666,7 @@ function FoodFAQ2() {
 // ── FORMULAIRES (fonctions Vercel /api/*, envoi par e-mail via Resend) ──
 // Aucun traceur. Messages lus par les lecteurs d'écran (aria-live).
 const HF_CONTACT = 'contact@hivingfood.fr';
-const HF_INDISPO = `Envoi momentanément indisponible, écrivez-nous à ${HF_CONTACT}.`;
+const HF_INDISPO = `Envoi momentanément indisponible, écris-nous à ${HF_CONTACT}.`;
 const HF_SR_ONLY = { position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 };
 const HF_PIEGE = { position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' };
 
@@ -1785,14 +1785,14 @@ function FoodBriefForm() {
 
   const verifier = (n) => {
     const er = {};
-    if (n === 1 && !d.type) er.type = 'Choisissez un type de demande.';
+    if (n === 1 && !d.type) er.type = 'Choisis un type de demande.';
     if (n === 2) {
-      if (d.company.trim().length < 2) er.company = 'Indiquez votre marque ou société.';
-      if (!d.budget) er.budget = 'Choisissez un budget indicatif.';
-      if (!d.deadline) er.deadline = 'Choisissez une échéance.';
+      if (d.company.trim().length < 2) er.company = 'Indique ta marque ou ta société.';
+      if (!d.budget) er.budget = 'Choisis un budget indicatif.';
+      if (!d.deadline) er.deadline = 'Choisis une échéance.';
     }
     if (n === 3) {
-      if (d.message.trim().length < 10) er.message = 'Décrivez votre projet en quelques mots (10 caractères minimum).';
+      if (d.message.trim().length < 10) er.message = 'Décris ton projet en quelques mots (10 caractères minimum).';
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email.trim())) er.email = 'Adresse e-mail invalide.';
     }
     setErreurs(er);
@@ -1864,13 +1864,13 @@ function FoodBriefForm() {
           Brief reçu, merci !
         </h3>
         <p role="status" aria-live="polite" style={{ fontFamily: FOOD_PAL.sans, fontSize: 16, lineHeight: 1.55, margin: 0 }}>
-          On revient vers vous sous 48h à l’adresse indiquée.
+          On revient vers toi sous 48h à l’adresse indiquée.
         </p>
       </div>
     );
   }
 
-  const titres = { 1: 'Votre demande', 2: 'Votre marque et votre cadre', 3: 'Votre projet' };
+  const titres = { 1: 'Ta demande', 2: 'Ta marque et ton cadre', 3: 'Ton projet' };
 
   return (
     <form onSubmit={envoyer} noValidate style={carte} aria-labelledby="hf-brief-titre">
@@ -1922,7 +1922,7 @@ function FoodBriefForm() {
       {etape === 3 && (
         <div style={{ display: 'grid', gap: 22 }}>
           <div>
-            <label htmlFor="hf-brief-message" style={etiquette}>Votre message *</label>
+            <label htmlFor="hf-brief-message" style={etiquette}>Ton message *</label>
             <textarea id="hf-brief-message" rows={5} value={d.message} onChange={maj('message')} style={{ ...champ, resize: 'vertical' }}
               placeholder="Produit, cible, objectifs, formats envisagés…"
               aria-invalid={erreurs.message ? 'true' : undefined} aria-describedby={erreurs.message ? 'hf-brief-message-e' : undefined} />
@@ -1965,7 +1965,7 @@ function FoodBriefForm() {
 function FoodFooter2() {
   const inSub = typeof window !== 'undefined' && window.location.pathname.includes('/food/');
   const homeBase = '/';
-  const sub = (p) => inSub ? p : 'food/' + p;
+  const sub = (p) => '/food/' + p; // absolu : les pages /food/campagnes/<slug>/ cassaient les liens relatifs
 
   return (
     <footer id="contact" style={{ position: 'relative' }}>
@@ -2007,7 +2007,7 @@ function FoodFooter2() {
               fontFamily: FOOD_PAL.hand, fontWeight: 600,
               transform: 'rotate(-3deg)', display: 'inline-block',
               fontSize: '0.7em', marginRight: 16, color: FOOD_PAL.ink,
-            }}>passez</span>
+            }}>passe</span>
             à <span style={{
               fontFamily: FOOD_PAL.serif, fontStyle: 'italic', fontWeight: 400,
               position: 'relative', display: 'inline-block',
@@ -2026,7 +2026,7 @@ function FoodFooter2() {
             fontSize: 'clamp(18px, 1.6vw, 22px)', lineHeight: 1.55, color: FOOD_PAL.ink,
           }}>
             Brief en 30 min. Devis sous 48h. Une équipe qui ne fait que ça depuis 2022.
-            Si la food, c'est votre marque, c'est notre métier.
+            Si la food, c'est ta marque, c'est notre métier.
           </p>
 
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -2156,6 +2156,9 @@ function FoodFooter2() {
                   { l: 'Influence restaurant', h: '/food/influence-restaurant/' },
                   { l: 'Influence GMS', h: '/food/influence-grande-distribution/' },
                   { l: 'Vins & spiritueux', h: '/food/influence-vins-spiritueux/' },
+                  { l: 'Nutrition & sport', h: '/food/influence-nutrition-sport/' },
+                  { l: 'Pâtisserie & boulangerie', h: '/food/influence-patisserie-boulangerie/' },
+                  { l: 'Glossaire influence food', h: '/food/glossaire-influence-food/' },
                   { l: 'Contact', h: 'mailto:contact@hivingfood.fr' },
                 ].map(it => (
                   <li key={it.l}>

@@ -13,6 +13,9 @@ Ne jamais casser une de ces adresses sans redirection dans `vercel.json` (voir C
 - https://www.hivingfood.fr/food/influence-restaurant/ (ajoutée le 2026-11-09)
 - https://www.hivingfood.fr/food/influence-grande-distribution/ (ajoutée le 2026-11-09)
 - https://www.hivingfood.fr/food/influence-vins-spiritueux/ (ajoutée le 2026-11-09)
+- https://www.hivingfood.fr/food/influence-nutrition-sport/ (ajoutée le 2026-11-09, branche modif/w2-food)
+- https://www.hivingfood.fr/food/influence-patisserie-boulangerie/ (ajoutée le 2026-11-09, branche modif/w2-food)
+- https://www.hivingfood.fr/food/glossaire-influence-food/ (ajoutée le 2026-11-09, branche modif/w2-food)
 - https://www.hivingfood.fr/food/campagnes/picard/
 - https://www.hivingfood.fr/food/campagnes/metro/
 - https://www.hivingfood.fr/food/campagnes/coyote-20-ans/

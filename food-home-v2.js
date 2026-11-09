@@ -7,7 +7,9 @@
 // Asset path helper — works from root + /food/ subpages
 function foodAsset(p) {
   const inSub = typeof window !== 'undefined' && window.location.pathname.includes('/food/');
-  return (inSub ? '../' : '') + p;
+  // Adresse absolue : fonctionne depuis toutes les profondeurs (/food/campagnes/<slug>/, /talents/<slug>…)
+  if (typeof p === 'string' && (p.charAt(0) === '/' || /^https?:/.test(p))) return p;
+  return '/' + p;
 }
 function foodHomePath() {
   return '/';
@@ -467,7 +469,7 @@ function FoodNav2({
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
   const inSub = typeof window !== 'undefined' && window.location.pathname.includes('/food/');
-  const sub = p => inSub ? p : 'food/' + p;
+  const sub = p => '/food/' + p; // absolu : les pages /food/campagnes/<slug>/ cassaient les liens relatifs
   const links = [{
     id: 'agence',
     label: "L'agence",
@@ -1544,7 +1546,7 @@ function FoodManifesto2() {
     style: {
       fontFamily: FOOD_PAL.hand,
       fontSize: 32,
-      color: FOOD_PAL.lime,
+      color: FOOD_PAL.ink,
       fontWeight: 700,
       lineHeight: 1,
       flexShrink: 0
@@ -2244,8 +2246,7 @@ function FoodStudios2() {
       left: '6%',
       fontFamily: FOOD_PAL.hand,
       fontSize: 22,
-      color: FOOD_PAL.ink,
-      opacity: 0.4,
+      color: FOOD_PAL.inkSoft,
       transform: 'rotate(-8deg)',
       pointerEvents: 'none'
     }
@@ -2684,8 +2685,7 @@ function FoodStudios2() {
       gap: 12,
       fontFamily: FOOD_PAL.hand,
       fontSize: 18,
-      color: FOOD_PAL.inkSoft,
-      opacity: 0.7
+      color: FOOD_PAL.inkSoft
     }
   }, /*#__PURE__*/React.createElement("svg", {
     width: "40",
@@ -2835,8 +2835,7 @@ function FoodFAQ2() {
     style: {
       fontFamily: FOOD_PAL.hand,
       fontSize: 24,
-      color: FOOD_PAL.lime,
-      WebkitTextStroke: `1px ${FOOD_PAL.ink}`
+      color: FOOD_PAL.ink
     }
   }, String(i + 1).padStart(2, '0')), f.q), /*#__PURE__*/React.createElement("span", {
     style: {
@@ -2869,7 +2868,7 @@ function FoodFAQ2() {
 // ── FORMULAIRES (fonctions Vercel /api/*, envoi par e-mail via Resend) ──
 // Aucun traceur. Messages lus par les lecteurs d'écran (aria-live).
 const HF_CONTACT = 'contact@hivingfood.fr';
-const HF_INDISPO = `Envoi momentanément indisponible, écrivez-nous à ${HF_CONTACT}.`;
+const HF_INDISPO = `Envoi momentanément indisponible, écris-nous à ${HF_CONTACT}.`;
 const HF_SR_ONLY = {
   position: 'absolute',
   width: 1,
@@ -3095,14 +3094,14 @@ function FoodBriefForm() {
   });
   const verifier = n => {
     const er = {};
-    if (n === 1 && !d.type) er.type = 'Choisissez un type de demande.';
+    if (n === 1 && !d.type) er.type = 'Choisis un type de demande.';
     if (n === 2) {
-      if (d.company.trim().length < 2) er.company = 'Indiquez votre marque ou société.';
-      if (!d.budget) er.budget = 'Choisissez un budget indicatif.';
-      if (!d.deadline) er.deadline = 'Choisissez une échéance.';
+      if (d.company.trim().length < 2) er.company = 'Indique ta marque ou ta société.';
+      if (!d.budget) er.budget = 'Choisis un budget indicatif.';
+      if (!d.deadline) er.deadline = 'Choisis une échéance.';
     }
     if (n === 3) {
-      if (d.message.trim().length < 10) er.message = 'Décrivez votre projet en quelques mots (10 caractères minimum).';
+      if (d.message.trim().length < 10) er.message = 'Décris ton projet en quelques mots (10 caractères minimum).';
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email.trim())) er.email = 'Adresse e-mail invalide.';
     }
     setErreurs(er);
@@ -3261,12 +3260,12 @@ function FoodBriefForm() {
         lineHeight: 1.55,
         margin: 0
       }
-    }, "On revient vers vous sous 48h à l’adresse indiquée."));
+    }, "On revient vers toi sous 48h à l’adresse indiquée."));
   }
   const titres = {
-    1: 'Votre demande',
-    2: 'Votre marque et votre cadre',
-    3: 'Votre projet'
+    1: 'Ta demande',
+    2: 'Ta marque et ton cadre',
+    3: 'Ton projet'
   };
   return /*#__PURE__*/React.createElement("form", {
     onSubmit: envoyer,
@@ -3366,7 +3365,7 @@ function FoodBriefForm() {
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
     htmlFor: "hf-brief-message",
     style: etiquette
-  }, "Votre message *"), /*#__PURE__*/React.createElement("textarea", {
+  }, "Ton message *"), /*#__PURE__*/React.createElement("textarea", {
     id: "hf-brief-message",
     rows: 5,
     value: d.message,
@@ -3459,7 +3458,7 @@ function FoodBriefForm() {
 function FoodFooter2() {
   const inSub = typeof window !== 'undefined' && window.location.pathname.includes('/food/');
   const homeBase = '/';
-  const sub = p => inSub ? p : 'food/' + p;
+  const sub = p => '/food/' + p; // absolu : les pages /food/campagnes/<slug>/ cassaient les liens relatifs
   return /*#__PURE__*/React.createElement("footer", {
     id: "contact",
     style: {
@@ -3549,7 +3548,7 @@ function FoodFooter2() {
       marginRight: 16,
       color: FOOD_PAL.ink
     }
-  }, "passez"), "à ", /*#__PURE__*/React.createElement("span", {
+  }, "passe"), "à ", /*#__PURE__*/React.createElement("span", {
     style: {
       fontFamily: FOOD_PAL.serif,
       fontStyle: 'italic',
@@ -3580,7 +3579,7 @@ function FoodFooter2() {
       lineHeight: 1.55,
       color: FOOD_PAL.ink
     }
-  }, "Brief en 30 min. Devis sous 48h. Une équipe qui ne fait que ça depuis 2022. Si la food, c'est votre marque, c'est notre métier."), /*#__PURE__*/React.createElement("div", {
+  }, "Brief en 30 min. Devis sous 48h. Une équipe qui ne fait que ça depuis 2022. Si la food, c'est ta marque, c'est notre métier."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: 16,
@@ -3843,6 +3842,15 @@ function FoodFooter2() {
   }, {
     l: 'Vins & spiritueux',
     h: '/food/influence-vins-spiritueux/'
+  }, {
+    l: 'Nutrition & sport',
+    h: '/food/influence-nutrition-sport/'
+  }, {
+    l: 'Pâtisserie & boulangerie',
+    h: '/food/influence-patisserie-boulangerie/'
+  }, {
+    l: 'Glossaire influence food',
+    h: '/food/glossaire-influence-food/'
   }, {
     l: 'Contact',
     h: 'mailto:contact@hivingfood.fr'

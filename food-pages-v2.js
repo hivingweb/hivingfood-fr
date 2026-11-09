@@ -1267,7 +1267,7 @@ function FoodCampagneDetail2() {
       href: '/'
     }, {
       label: 'Campagnes',
-      href: 'campagnes.html'
+      href: '/food/campagnes.html'
     }, {
       label: c.brand
     }]
@@ -1824,12 +1824,11 @@ function FoodCampagneDetail2() {
       justifyContent: 'center',
       fontFamily: PP.display,
       fontWeight: 800,
-      color: PP.tomato || '#c8492f',
+      color: PP.ink,
       textAlign: 'center',
       lineHeight: 1.1,
       transform: 'rotate(-8deg)',
-      textTransform: 'uppercase',
-      opacity: 0.85
+      textTransform: 'uppercase'
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
@@ -2178,7 +2177,7 @@ function FoodCampagneDetail2() {
     const tones = ['paper', 'warm', 'lime'];
     return /*#__PURE__*/React.createElement("a", {
       key: o.slug,
-      href: `campagne.html?slug=${o.slug}`,
+      href: `/food/campagnes/${o.slug}/`,
       "data-cursor": true,
       style: {
         textDecoration: 'none',
