@@ -3758,7 +3758,22 @@ function FoodFooter2() {
       color: 'inherit',
       textDecoration: 'none'
     }
-  }, "Mentions"))))), /*#__PURE__*/React.createElement("style", null, `
+  }, "Mentions"), /*#__PURE__*/React.createElement("a", {
+    href: "/politique-confidentialite.html",
+    "data-cursor": true,
+    style: {
+      color: 'inherit',
+      textDecoration: 'none'
+    }
+  }, "Confidentialité"), /*#__PURE__*/React.createElement("a", {
+    href: "#",
+    "data-hf-consent-open": true,
+    "data-cursor": true,
+    style: {
+      color: 'inherit',
+      textDecoration: 'none'
+    }
+  }, "Gérer mes cookies"))))), /*#__PURE__*/React.createElement("style", null, `
         @keyframes food2-marq { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
         @keyframes food2-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
         @media (max-width: 1100px) {
