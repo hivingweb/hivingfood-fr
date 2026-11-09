@@ -247,7 +247,7 @@ function FoodStatus() {
     'AGENCE INFLUENCE FOOD #01',
     '⊹ CLICHY · 92 ⊹',
     'CRÉATEURS EXCLUSIFS',
-    '★ +100M VUES GÉNÉRÉES ★',
+    '★ +420M VUES GÉNÉRÉES ★',
     '2 STUDIOS PRO',
     'DEPUIS 2022',
   ];
@@ -730,7 +730,7 @@ function FoodHero2() {
         }} className="food2-stats">
           {[
             { value: '14', label: 'Créateurs exclusifs' },
-            { value: '100M+', label: 'Vues générées' },
+            { value: '420M+', label: 'Vues générées' },
             { value: '50+', label: 'Marques' },
             { value: '3', label: 'Studios à Clichy' },
           ].map((s, i) => (
