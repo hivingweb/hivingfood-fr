@@ -21,7 +21,7 @@
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=26995932726660328&ev=PageView&noscript=1"/></noscript>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hiving Food · Première agence d'influence dédiée à la gastronomie</title>
+<title>Hiving Food · Agence d'influence food &amp; gastronomie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Familjen+Grotesk:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,9 +40,15 @@
     a, button, [data-cursor] { cursor: pointer; }
     .food-cursor { display: none !important; }
   }
+  /* Contenu de secours sans JavaScript (masqué une fois React monté) */
+  .ssr-content { display: none; max-width: 1200px; margin: 0 auto; padding: 60px 24px 40px; }
+  .ssr-content h1 { font-family: 'Familjen Grotesk', sans-serif; font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.03em; line-height: 1; margin: 0 0 24px; font-weight: 700; }
+  .ssr-content p, .ssr-content li { font-size: 16px; line-height: 1.6; }
+  .ssr-content a { color: inherit; }
+  .ssr-content.show-fallback { display: block; }
 </style>
 <link rel="canonical" href="https://www.hivingfood.fr/">
-<meta name="description" content="Hiving Food, première agence d'influence dédiée à la gastronomie en France. Campagnes avec les meilleurs créateurs culinaires, chefs et food creators. Studios à Clichy, production de A à Z. Gastronomie, lifestyle, sport et divertissement.">
+<meta name="description" content="Hiving Food, première agence d'influence food en France : créateurs culinaires, chefs, studios à Clichy et production de A à Z. Parlons de ta marque.">
     <meta name="keywords" content="agence influence food, talent management food, studio cuisine paris, production vidéo culinaire, brand content alimentaire, créateur food, location studio cuisine, agence food paris">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Hiving Food">
@@ -173,6 +179,20 @@
 <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRNZZVKC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+<div class="ssr-content">
+  <h1>Hiving Food, première agence d'influence dédiée à la gastronomie</h1>
+  <p>Campagnes avec les meilleurs créateurs culinaires, chefs et food creators. Studios à Clichy, production de A à Z. Gastronomie, lifestyle, sport et divertissement.</p>
+  <p>Location de studios cuisine professionnels équipés pour tournages vidéo, photo et production culinaire, au 4 rue Mozart, 92110 Clichy.</p>
+  <ul>
+    <li><a href="/food/agence.html">L'agence d'influence food</a></li>
+    <li><a href="/food/talents.html">Nos créateurs food</a></li>
+    <li><a href="/food/campagnes.html">Campagnes d'influence food</a></li>
+    <li><a href="/food/studios.html">Nos studios cuisine à Clichy</a></li>
+    <li><a href="/food/evenementiel.html">Événementiel culinaire</a></li>
+    <li><a href="/food/blog.html">Blog food marketing</a></li>
+  </ul>
+  <p>Contact : <a href="mailto:contact@hivingfood.fr">contact@hivingfood.fr</a></p>
+</div>
 <div id="root"></div>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
@@ -184,7 +204,7 @@
 
 <script>
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const mountHome = () => root.render(/*#__PURE__*/React.createElement(FoodHomePage2, null));
+const mountHome = () => { root.render(/*#__PURE__*/React.createElement(FoodHomePage2, null)); document.body.classList.add('react-mounted'); };
 (window.FOOD_STATS_READY || Promise.resolve()).then(mountHome, mountHome);
 
 

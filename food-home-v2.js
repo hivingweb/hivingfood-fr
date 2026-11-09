@@ -1150,7 +1150,7 @@ function FoodHero2() {
       flexWrap: 'wrap'
     }
   }, /*#__PURE__*/React.createElement("a", {
-    href: "food/contact.html",
+    href: "#contact",
     "data-cursor": true,
     style: {
       background: FOOD_PAL.ink,

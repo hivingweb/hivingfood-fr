@@ -89,6 +89,56 @@
       "permanent": true
     },
     {
+      "source": "/projects(/.*)?",
+      "destination": "/food/campagnes.html",
+      "permanent": true
+    },
+    {
+      "source": "/case-study(/.*)?",
+      "destination": "/food/campagnes.html",
+      "permanent": true
+    },
+    {
+      "source": "/blogs(/.*)?",
+      "destination": "/food/blog.html",
+      "permanent": true
+    },
+    {
+      "source": "/about(/.*)?",
+      "destination": "/food/agence.html",
+      "permanent": true
+    },
+    {
+      "source": "/expertise(/.*)?",
+      "destination": "/food/agence.html",
+      "permanent": true
+    },
+    {
+      "source": "/talent(/.*)?",
+      "destination": "/food/talents.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact(/.*)?",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/200.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/marketing-influence-food.html",
+      "destination": "/blog/marketing-influence-food",
+      "permanent": true
+    },
+    {
+      "source": "/blog/marketing-influence-food/",
+      "destination": "/blog/marketing-influence-food",
+      "permanent": true
+    },
+    {
       "source": "/:file(.*\\.(?:mp4|glb))",
       "destination": "https://xy8wkkceax6fodpg.public.blob.vercel-storage.com/hivingfood-fr/:file",
       "permanent": false
