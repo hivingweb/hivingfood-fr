@@ -2105,7 +2105,8 @@ function FoodFooter2() {
 
             <div style={{ display: 'flex', gap: 18, opacity: 0.55 }}>
               <a href="/mentions-legales.html" data-cursor style={{ color: 'inherit', textDecoration: 'none' }}>Mentions</a>
-              
+              <a href="/politique-confidentialite.html" data-cursor style={{ color: 'inherit', textDecoration: 'none' }}>Confidentialité</a>
+              <a href="#" data-hf-consent-open data-cursor style={{ color: 'inherit', textDecoration: 'none' }}>Gérer mes cookies</a>
             </div>
           </div>
         </div>
