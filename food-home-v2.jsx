@@ -657,7 +657,7 @@ function FoodHero2() {
               {' '}des talents en exclusivité, 3 studios, une équipe stratégie-prod-média sous le même toit.
             </p>
             <div style={{ marginTop: 40, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-              <a href="food/contact.html" data-cursor style={{
+              <a href="#contact" data-cursor style={{
                 background: FOOD_PAL.ink, color: FOOD_PAL.bg,
                 padding: '18px 32px', borderRadius: 999,
                 fontFamily: FOOD_PAL.display, fontWeight: 600, fontSize: 14,
