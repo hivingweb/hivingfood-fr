@@ -289,6 +289,13 @@ function FoodNav2({ current = 'home' }) {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  // Menu mobile : fermeture au clavier (Échap)
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
 
   const inSub = typeof window !== 'undefined' && window.location.pathname.includes('/food/');
   const sub = (p) => inSub ? p : 'food/' + p;
@@ -303,6 +310,7 @@ function FoodNav2({ current = 'home' }) {
 
   return (
     <>
+    <a href="#contenu" className="food-skip">Aller au contenu</a>
     <nav style={{
       position: 'sticky', top: 0, zIndex: 100,
       padding: scrolled ? '14px 32px' : '20px 32px',
@@ -430,11 +438,11 @@ function FoodNav2({ current = 'home' }) {
               borderRadius: 999, lineHeight: 1, fontWeight: 700,
             }}>↗</span>
           </a>
-          <button onClick={() => setOpen(true)} className="food2-toggle" style={{
+          <button type="button" onClick={() => setOpen(true)} aria-label="Ouvrir le menu" aria-expanded={open} className="food2-toggle" style={{
             display: 'none', background: 'transparent', border: `1.5px solid ${FOOD_PAL.ink}`,
             color: FOOD_PAL.ink, padding: '10px 12px', borderRadius: 8, cursor: 'pointer',
           }}>
-            <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" strokeWidth="1.6" /></svg>
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" strokeWidth="1.6" /></svg>
           </button>
         </div>
       </div>
@@ -460,7 +468,7 @@ function FoodNav2({ current = 'home' }) {
               </span>
             </span>
           </div>
-          <button onClick={() => setOpen(false)} style={{
+          <button type="button" onClick={() => setOpen(false)} aria-label="Fermer le menu" style={{
             background: 'transparent', border: 'none', color: FOOD_PAL.ink,
             fontSize: 32, cursor: 'pointer',
           }}>×</button>
@@ -483,6 +491,12 @@ function FoodNav2({ current = 'home' }) {
       }
       .food2-pill[data-active="false"]:hover .food2-pill-dot {
         transform: translateY(-50%) scale(1) !important;
+      }
+      .food-skip { position: absolute; left: 12px; top: -200px; z-index: 2000; padding: 10px 16px; background: ${FOOD_PAL.ink}; color: ${FOOD_PAL.bg}; font-family: ${FOOD_PAL.sans}; font-size: 14px; border-radius: 8px; text-decoration: none; }
+      .food-skip:focus { top: 12px; }
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible, [tabindex]:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
       }
       @media (max-width: 1024px) {
         .food2-nav-links { display: none !important; }
@@ -710,12 +724,15 @@ function FoodHero2() {
                   Notre savoir-faire en 90 sec
                 </div>
               </div>
-              <button style={{
+              <button type="button" aria-label="Lire ou mettre en pause la vidéo" onClick={() => {
+                const v = document.querySelector('video[src="/showreel-2026.mp4"]');
+                if (v) { if (v.paused) v.play(); else v.pause(); }
+              }} style={{
                 width: 56, height: 56, borderRadius: '50%',
                 background: FOOD_PAL.ink, color: FOOD_PAL.bg, border: 'none',
                 cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 2l9 5-9 5V2z" fill="currentColor" /></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 2l9 5-9 5V2z" fill="currentColor" /></svg>
               </button>
             </div>
           </div>
@@ -2343,6 +2360,7 @@ function FoodHomePage2() {
     <div style={{ background: FOOD_PAL.bg, color: FOOD_PAL.ink, fontFamily: FOOD_PAL.sans, position: 'relative', overflow: 'hidden' }}>
       <FoodCursor />
       <FoodNav2 current="home" />
+      <main id="contenu">
       <FoodHero2 />
       <FoodContentWall2 />
       <FoodManifesto2 />
@@ -2353,6 +2371,7 @@ function FoodHomePage2() {
       <FoodProcess2 />
       <FoodStudios2 />
       <FoodFAQ2 />
+      </main>
       <FoodFooter2 />
     </div>
   );
