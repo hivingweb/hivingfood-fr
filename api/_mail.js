@@ -65,7 +65,7 @@ function adresseContact() {
 
 function indisponible(res) {
   return res.status(503).json({
-    error: `Envoi momentanément indisponible, écrivez-nous à ${adresseContact()}.`,
+    error: `Envoi momentanément indisponible, écris-nous à ${adresseContact()}.`,
     contact: adresseContact(),
   });
 }
