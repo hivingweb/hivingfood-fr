@@ -22,11 +22,11 @@ function valider(b) {
     name: ligne(b.name, 120),
   };
   const erreurs = {};
-  if (!TYPES.includes(v.type)) erreurs.type = 'Choisissez un type de demande.';
-  if (v.company.length < 2) erreurs.company = 'Indiquez votre marque ou société.';
-  if (!BUDGETS.includes(v.budget)) erreurs.budget = 'Choisissez un budget indicatif.';
-  if (!ECHEANCES.includes(v.deadline)) erreurs.deadline = 'Choisissez une échéance.';
-  if (v.message.length < 10) erreurs.message = 'Décrivez votre projet en quelques mots (10 caractères minimum).';
+  if (!TYPES.includes(v.type)) erreurs.type = 'Choisis un type de demande.';
+  if (v.company.length < 2) erreurs.company = 'Indique ta marque ou ta société.';
+  if (!BUDGETS.includes(v.budget)) erreurs.budget = 'Choisis un budget indicatif.';
+  if (!ECHEANCES.includes(v.deadline)) erreurs.deadline = 'Choisis une échéance.';
+  if (v.message.length < 10) erreurs.message = 'Décris ton projet en quelques mots (10 caractères minimum).';
   if (!EMAIL_RE.test(v.email)) erreurs.email = 'Adresse e-mail invalide.';
   return { v, erreurs };
 }
@@ -56,7 +56,7 @@ module.exports = async (req, res) => {
 
   const envoi = await envoyerEmail({ sujet: `Brief ${SITE.nom} : ${v.company} (${v.type})`, corps, replyTo: v.email });
   if (!envoi.ok) return indisponible(res);
-  return res.status(200).json({ success: true, message: 'Brief reçu. On revient vers vous sous 48h.' });
+  return res.status(200).json({ success: true, message: 'Brief reçu. On revient vers toi sous 48h.' });
 };
 
 module.exports.TYPES = TYPES;
