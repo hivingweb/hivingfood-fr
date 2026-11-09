@@ -9,6 +9,10 @@ Ne jamais casser une de ces adresses sans redirection dans `vercel.json` (voir C
 - https://www.hivingfood.fr/food/campagnes.html
 - https://www.hivingfood.fr/food/evenementiel.html
 - https://www.hivingfood.fr/food/blog.html
+- https://www.hivingfood.fr/food/agence-influenceurs-gastronomie/ (ajoutée le 2026-11-09)
+- https://www.hivingfood.fr/food/influence-restaurant/ (ajoutée le 2026-11-09)
+- https://www.hivingfood.fr/food/influence-grande-distribution/ (ajoutée le 2026-11-09)
+- https://www.hivingfood.fr/food/influence-vins-spiritueux/ (ajoutée le 2026-11-09)
 - https://www.hivingfood.fr/food/campagnes/picard/
 - https://www.hivingfood.fr/food/campagnes/metro/
 - https://www.hivingfood.fr/food/campagnes/coyote-20-ans/

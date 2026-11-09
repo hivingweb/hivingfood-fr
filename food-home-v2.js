@@ -3224,6 +3224,18 @@ function FoodFooter2() {
     l: 'Blog & insights',
     h: sub('blog.html')
   }, {
+    l: 'Influence gastronomie',
+    h: '/food/agence-influenceurs-gastronomie/'
+  }, {
+    l: 'Influence restaurant',
+    h: '/food/influence-restaurant/'
+  }, {
+    l: 'Influence GMS',
+    h: '/food/influence-grande-distribution/'
+  }, {
+    l: 'Vins & spiritueux',
+    h: '/food/influence-vins-spiritueux/'
+  }, {
     l: 'Contact',
     h: 'mailto:contact@hivingfood.fr'
   }].map(it => /*#__PURE__*/React.createElement("li", {
