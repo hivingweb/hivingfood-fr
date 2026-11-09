@@ -87,6 +87,11 @@
       "source": "/campagnes/:slug(metro|president|picard)",
       "destination": "/food/campagnes/:slug/",
       "permanent": true
+    },
+    {
+      "source": "/:file(.*\\.(?:mp4|glb))",
+      "destination": "https://xy8wkkceax6fodpg.public.blob.vercel-storage.com/hivingfood-fr/:file",
+      "permanent": false
     }
   ],
   "headers": [
