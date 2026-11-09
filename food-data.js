@@ -562,7 +562,7 @@ const FOOD_CAMPAIGNS = [{
 const FOOD_EXPERTISES = [{
   num: '01',
   title: 'Production [Stage]',
-  desc: '3 studios équipés, tournage et post-production en interne',
+  desc: '2 studios équipés, tournage et post-production en interne',
   href: 'studios.html'
 }, {
   num: '02',
@@ -612,7 +612,7 @@ const FOOD_WHY = [{
 }, {
   icon: '⏱',
   title: 'Studios prêts à tourner',
-  desc: "3 plateaux équipés à Clichy, disponibles 7j/7. Éclairage, électroménager pro, régie : vous arrivez, on tourne."
+  desc: "2 plateaux équipés à Clichy, disponibles 7j/7. Éclairage, électroménager pro, régie : vous arrivez, on tourne."
 }, {
   icon: '▶',
   title: 'Des contenus qui convertissent',
@@ -652,7 +652,7 @@ const FOOD_FAQ = [{
   a: "Reporting de campagne avec engagement organique, vues, reach, CPM, CPV, sentiment audience et, quand le client en a la mesure, impact ventes ou conversion site. On lit toujours le business derrière la metric."
 }, {
   q: "Peut-on louer un studio sans faire appel à vos talents ?",
-  a: "Oui. Nos 3 studios à Clichy sont ouverts à toutes les marques, agences, photographes, vidéastes et créateurs indépendants. Tarifs à la journée : Studio Lifestyle 450 €, Studio Pro 800 €, Studio Famille 1 000 €. Réservation à contact@hivingfood.fr."
+  a: "Oui. Nos 2 studios à Clichy sont ouverts à toutes les marques, agences, photographes, vidéastes et créateurs indépendants. Tarifs à la journée : Studio Pro (80 m²) 850 € HT, Studio Famille (65 m²) 1 000 € HT. Réservation à contact@hivingfood.fr."
 }, {
   q: "Pourquoi choisir Hiving Food plutôt qu'une agence d'influence généraliste ?",
   a: "Parce qu'on ne fait que de la food. Nos chefs sont nos talents. Nos studios sont conçus pour la cuisine. Notre équipe vit dans la cuisine. Une agence généraliste connaît l'influence ; nous, on connaît la cuisine ET l'influence."

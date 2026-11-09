@@ -40,7 +40,7 @@ function FoodAgencePage2() {
     hand: "On",
     title: "connaît la food",
     italic: "mieux que personne.",
-    intro: "Hiving Food est la première agence d'influence 100% food en France. des créateurs exclusifs, 3 studios cuisine pro à Clichy, et 4 ans d'expérience à transformer les marques food en bouchées mémorables."
+    intro: "Hiving Food est la première agence d'influence 100% food en France. des créateurs exclusifs, 2 studios cuisine pro à Clichy, et 4 ans d'expérience à transformer les marques food en bouchées mémorables."
   }), /*#__PURE__*/React.createElement("section", {
     style: {
       padding: '64px 40px 96px',
@@ -277,7 +277,7 @@ function FoodAgencePage2() {
           @media (max-width: 900px) { .food2-team-grid { grid-template-columns: repeat(2, 1fr) !important; } }
         `)), /*#__PURE__*/React.createElement(PageCTA, {
     title: "On construit votre campagne food ?",
-    subtitle: "des créateurs exclusifs, 3 studios pro, et une équipe qui ne fait que ça depuis 2022.",
+    subtitle: "des créateurs exclusifs, 2 studios pro, et une équipe qui ne fait que ça depuis 2022.",
     primary: {
       label: 'Discuter du projet',
       href: '/#contact'
@@ -1955,7 +1955,7 @@ function FoodCampagneDetail2() {
   }, {
     tone: 'lime',
     label: 'Tournage',
-    cap: 'jour 02 · plateau LE BLANC',
+    cap: 'jour 02 · STUDIO PRO',
     rot: 1.8
   }, {
     tone: 'warm',
