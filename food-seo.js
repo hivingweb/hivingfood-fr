@@ -9,7 +9,7 @@ const SEO_SITE = {
   logo: 'https://hivingfood.fr/assets/hiving-full-black.svg',
   ogImage: 'https://hivingfood.fr/assets/og-default.jpg',
   twitter: '@hivingfood',
-  desc: "Première agence d'influence food en France. des créateurs exclusifs, 3 studios cuisine pro à Clichy. Stratégie, production et diffusion food de bout en bout.",
+  desc: "Première agence d'influence food en France. des créateurs exclusifs, 2 studios cuisine pro à Clichy. Stratégie, production et diffusion food de bout en bout.",
 };
 
 function _setMeta(name, content, attr = 'name') {

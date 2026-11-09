@@ -407,7 +407,7 @@ function FoodCursor() {
 
 // ── STATUS BAR ──────────────────────────────────────────────────────
 function FoodStatus() {
-  const items = ['AGENCE INFLUENCE FOOD #01', '⊹ CLICHY · 92 ⊹', 'CRÉATEURS EXCLUSIFS', '★ +420M VUES GÉNÉRÉES ★', '3 STUDIOS PRO', 'DEPUIS 2022'];
+  const items = ['AGENCE INFLUENCE FOOD #01', '⊹ CLICHY · 92 ⊹', 'CRÉATEURS EXCLUSIFS', '★ +420M VUES GÉNÉRÉES ★', '2 STUDIOS PRO', 'DEPUIS 2022'];
   return /*#__PURE__*/React.createElement("div", {
     style: {
       background: FOOD_PAL.lime,
@@ -1142,7 +1142,7 @@ function FoodHero2() {
       fontFamily: FOOD_PAL.display,
       fontWeight: 600
     }
-  }, "croissance mesurable"), ".", ' ', "des talents en exclusivité, 3 studios, une équipe stratégie-prod-média sous le même toit."), /*#__PURE__*/React.createElement("div", {
+  }, "croissance mesurable"), ".", ' ', "des talents en exclusivité, 2 studios, une équipe stratégie-prod-média sous le même toit."), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 40,
       display: 'flex',
@@ -1457,7 +1457,7 @@ function FoodManifesto2() {
       color: FOOD_PAL.inkSoft,
       marginTop: 24
     }
-  }, "On a aussi 3 studios cuisine pro à Clichy, une équipe de production interne, et 4 ans d'expérience à construire des campagnes qui transforment la marque en bouchée mémorable."), /*#__PURE__*/React.createElement("div", {
+  }, "On a aussi 2 studios cuisine pro à Clichy, une équipe de production interne, et 4 ans d'expérience à construire des campagnes qui transforment la marque en bouchée mémorable."), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 32
     }
@@ -1491,7 +1491,7 @@ function FoodManifesto2() {
   }, {
     num: '02',
     title: 'Production studio',
-    desc: '3 plateaux, équipe technique, post-prod : du brief à la livraison'
+    desc: '2 plateaux, équipe technique, post-prod : du brief à la livraison'
   }, {
     num: '03',
     title: 'Stratégie d\'influence',
@@ -2144,7 +2144,7 @@ function FoodStudios2() {
     pitch: 'Plateau pro inox, plafond technique, projecteurs Neewer. Pour les recettes high-end, brand films, pubs.',
     surface: '80m²',
     capacity: '2 chefs · 6 crew',
-    price: '800€',
+    price: '850€ HT',
     unit: '/ jour',
     hand: 'cuisine pro',
     tape: '#d4e85a',
@@ -2159,27 +2159,12 @@ function FoodStudios2() {
     pitch: 'Cuisine maison, parquet chevron, lumière douce. Format UGC, recettes lifestyle, contenus chaleureux.',
     surface: '65m²',
     capacity: '1 talent · 4 crew',
-    price: '1 000€',
+    price: '1 000€ HT',
     unit: '/ jour',
     hand: 'lifestyle',
     tape: '#e8dcc4',
     photos: ['/assets/studios/famille-1.webp?v=2', '/assets/studios/famille-2.webp?v=2', '/assets/studios/famille-3.webp?v=2', '/assets/studios/famille-4.webp?v=2', '/assets/studios/famille-5.webp?v=2', '/assets/studios/famille-6.webp?v=2', '/assets/studios/famille-7.webp?v=2', '/assets/studios/famille-8.webp?v=2', '/assets/studios/famille-9.webp?v=2'],
     rotate: 4
-  }, {
-    slug: 'photo',
-    num: '03',
-    name: 'Studio',
-    italic: 'Lifestyle.',
-    tag: 'Fond infini · Set',
-    pitch: 'Fond blanc infini, lumière naturelle, espace lounge. Photos packaging, portraits chefs, set design.',
-    surface: '45m²',
-    capacity: '1 talent · 3 crew',
-    price: '450€',
-    unit: '/ jour',
-    hand: 'fond infini',
-    tape: '#0a0908',
-    photos: ['/assets/studios/photo-1.webp?v=2', '/assets/studios/photo-2.webp?v=2', '/assets/studios/photo-3.webp?v=2', '/assets/studios/photo-4.webp?v=2', '/assets/studios/photo-5.webp?v=2', '/assets/studios/photo-6.webp?v=2', '/assets/studios/photo-7.webp?v=2', '/assets/studios/photo-8.webp?v=2', '/assets/studios/photo-9.webp?v=2', '/assets/studios/photo-10.webp?v=2'],
-    rotate: -3
   }];
   const [active, setActive] = React.useState(null);
   const [photoIdx, setPhotoIdx] = React.useState({
@@ -2231,7 +2216,7 @@ function FoodStudios2() {
       transform: 'rotate(-8deg)',
       pointerEvents: 'none'
     }
-  }, "3 plateaux ↓"), /*#__PURE__*/React.createElement("div", {
+  }, "2 plateaux ↓"), /*#__PURE__*/React.createElement("div", {
     "aria-hidden": "true",
     style: {
       position: 'absolute',
@@ -2282,7 +2267,7 @@ function FoodStudios2() {
       height: 1,
       background: FOOD_PAL.ink
     }
-  }), "3 plateaux · Clichy 92"), /*#__PURE__*/React.createElement("h2", {
+  }), "2 plateaux · Clichy 92"), /*#__PURE__*/React.createElement("h2", {
     style: {
       fontFamily: FOOD_PAL.display,
       fontWeight: 700,
@@ -2325,8 +2310,7 @@ function FoodStudios2() {
   }, (() => {
     const map = {
       pro: 'cuisine pro.',
-      famille: 'cuisine famille.',
-      photo: 'studio lifestyle.'
+      famille: 'cuisine famille.'
     };
     const label = active ? map[active] : 'cuisine pro.';
     return label.split('').map((ch, i) => /*#__PURE__*/React.createElement("span", {
@@ -2363,7 +2347,7 @@ function FoodStudios2() {
       lineHeight: 1.5,
       color: FOOD_PAL.inkSoft
     }
-  }, "80m² inox pro, 65m² parquet chevron lifestyle, ou 45m² fond blanc studio lifestyle. Trois ambiances, trois usages, une seule adresse à Clichy.")), /*#__PURE__*/React.createElement("a", {
+  }, "80m² inox pro ou 65m² parquet chevron lifestyle. Deux ambiances, deux usages, une seule adresse à Clichy.")), /*#__PURE__*/React.createElement("a", {
     href: "https://hivingstudio.fr/",
     target: "_blank",
     rel: "noopener",
@@ -2431,8 +2415,10 @@ function FoodStudios2() {
       position: 'relative',
       zIndex: 2,
       display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
+      gridTemplateColumns: 'repeat(2, 1fr)',
       gap: 60,
+      maxWidth: 960,
+      margin: '0 auto',
       transformStyle: 'preserve-3d',
       transform: 'rotateX(6deg)',
       transformOrigin: 'center top'
@@ -3123,7 +3109,7 @@ function FoodFooter2() {
       maxWidth: 360,
       margin: '0 0 24px'
     }
-  }, "Première agence d'influence food en France. Des créateurs exclusifs, 3 studios cuisine pro à Clichy, et une obsession : faire saliver vos audiences."), /*#__PURE__*/React.createElement("div", {
+  }, "Première agence d'influence food en France. Des créateurs exclusifs, 2 studios cuisine pro à Clichy, et une obsession : faire saliver vos audiences."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: 8,
