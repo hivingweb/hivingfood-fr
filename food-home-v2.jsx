@@ -1646,6 +1646,304 @@ function FoodFAQ2() {
   );
 }
 
+// ── FORMULAIRES (fonctions Vercel /api/*, envoi par e-mail via Resend) ──
+// Aucun traceur. Messages lus par les lecteurs d'écran (aria-live).
+const HF_CONTACT = 'contact@hivingfood.fr';
+const HF_INDISPO = `Envoi momentanément indisponible, écrivez-nous à ${HF_CONTACT}.`;
+const HF_SR_ONLY = { position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 };
+const HF_PIEGE = { position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' };
+
+function hfPost(url, data) {
+  return fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  }).then(r => r.json().catch(() => ({})).then(d => ({ ok: r.ok, status: r.status, data: d })))
+    .catch(() => ({ ok: false, status: 0, data: {} }));
+}
+
+function hfMessageErreur(res) {
+  if (res.status === 503 || res.status === 0) return HF_INDISPO;
+  return (res.data && res.data.error) || HF_INDISPO;
+}
+
+// Champ piège invisible : les robots le remplissent, les humains ne le voient pas.
+function HfPiege() {
+  return (
+    <div aria-hidden="true" style={HF_PIEGE}>
+      <label>Ne pas remplir<input type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" /></label>
+    </div>
+  );
+}
+
+// Newsletter « La carte du chef » / « la lettre du chef » — variant 'footer' (fond sombre) ou 'blog' (bandeau lime)
+function FoodNewsletterForm({ source = 'footer', variant = 'footer' }) {
+  const [etat, setEtat] = React.useState('idle'); // idle | envoi | ok | erreur
+  const [msg, setMsg] = React.useState('');
+  const id = 'hf-nl-' + source;
+  const sombre = variant === 'footer';
+
+  const envoyer = (e) => {
+    e.preventDefault();
+    const f = e.currentTarget;
+    const email = f.elements.email.value.trim();
+    if (!email || !f.elements.email.checkValidity()) {
+      setEtat('erreur'); setMsg('Indiquez une adresse e-mail valide.'); return;
+    }
+    setEtat('envoi'); setMsg('Envoi en cours…');
+    hfPost('/api/newsletter', { email, source, website: f.elements.website.value }).then(res => {
+      if (res.ok) { setEtat('ok'); setMsg('Merci, c’est noté !'); f.reset(); }
+      else { setEtat('erreur'); setMsg(hfMessageErreur(res)); }
+    });
+  };
+
+  const formStyle = sombre ? {
+    display: 'flex', gap: 6, padding: 5, position: 'relative',
+    background: FOOD_PAL.bg, color: FOOD_PAL.ink, borderRadius: 999,
+    border: `1.5px solid ${FOOD_PAL.lime}`,
+  } : { display: 'flex', gap: 0, position: 'relative' };
+  const inputStyle = sombre ? {
+    flex: 1, background: 'transparent', border: 'none', outline: 'none',
+    color: FOOD_PAL.ink, padding: '10px 14px', fontFamily: FOOD_PAL.sans, fontSize: 13,
+    minWidth: 0,
+  } : {
+    background: FOOD_PAL.bg, border: `1.5px solid ${FOOD_PAL.ink}`, borderRight: 'none',
+    padding: '14px 18px', fontFamily: FOOD_PAL.sans, fontSize: 14, color: FOOD_PAL.ink,
+    width: 240, minWidth: 0,
+  };
+  const btnStyle = sombre ? {
+    background: FOOD_PAL.ink, color: FOOD_PAL.lime, border: 'none',
+    fontFamily: FOOD_PAL.display, fontWeight: 600, fontSize: 12,
+    letterSpacing: '0.1em', textTransform: 'uppercase',
+    padding: '10px 18px', borderRadius: 999, cursor: 'pointer', whiteSpace: 'nowrap',
+  } : {
+    background: FOOD_PAL.ink, color: FOOD_PAL.lime,
+    padding: '14px 22px', border: `1.5px solid ${FOOD_PAL.ink}`,
+    fontFamily: FOOD_PAL.display, fontWeight: 600, fontSize: 12, letterSpacing: '0.14em',
+    textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap',
+  };
+
+  return (
+    <div>
+      <form onSubmit={envoyer} noValidate style={formStyle} aria-describedby={id + '-statut'}>
+        <label htmlFor={id} style={HF_SR_ONLY}>Votre adresse e-mail</label>
+        <input id={id} name="email" type="email" required autoComplete="email"
+          placeholder={sombre ? 'votre@email.com' : 'prenom@marque.com'} style={inputStyle}
+          aria-invalid={etat === 'erreur' ? 'true' : undefined} />
+        <HfPiege />
+        <button type="submit" data-cursor disabled={etat === 'envoi'} aria-disabled={etat === 'envoi'}
+          style={{ ...btnStyle, opacity: etat === 'envoi' ? 0.6 : 1 }}>
+          {etat === 'envoi' ? 'Envoi…' : 'S’abonner →'}
+        </button>
+      </form>
+      <p id={id + '-statut'} role="status" aria-live="polite" style={{
+        margin: msg ? '8px 0 0' : 0, minHeight: 0,
+        fontFamily: FOOD_PAL.sans, fontSize: 13, lineHeight: 1.4,
+        color: sombre ? FOOD_PAL.lime : FOOD_PAL.ink, fontWeight: etat === 'erreur' ? 600 : 400,
+      }}>{msg}</p>
+    </div>
+  );
+}
+
+// Brief en 3 étapes — envoyé à /api/brief (validation refaite côté serveur)
+const HF_BRIEF_TYPES = ['Campagne influence', 'Production de contenus / studio', 'Événementiel', 'Talents / créateurs food', 'Autre'];
+const HF_BRIEF_BUDGETS = ['Moins de 5 000 € HT', '5 000 à 15 000 € HT', '15 000 à 50 000 € HT', 'Plus de 50 000 € HT', 'À définir'];
+const HF_BRIEF_ECHEANCES = ['Dès que possible', 'Sous 1 mois', '1 à 3 mois', 'Plus de 3 mois', 'Pas encore fixée'];
+
+function FoodBriefForm() {
+  const [etape, setEtape] = React.useState(1);
+  const [d, setD] = React.useState({ type: '', company: '', budget: '', deadline: '', message: '', email: '', name: '' });
+  const [erreurs, setErreurs] = React.useState({});
+  const [etat, setEtat] = React.useState('idle'); // idle | envoi | ok | erreur
+  const [msg, setMsg] = React.useState('');
+  const titreRef = React.useRef(null);
+  const premierRendu = React.useRef(true);
+
+  React.useEffect(() => {
+    if (premierRendu.current) { premierRendu.current = false; return; }
+    if (titreRef.current) titreRef.current.focus();
+  }, [etape, etat === 'ok']);
+
+  const maj = (k) => (e) => setD({ ...d, [k]: e.target.value });
+
+  const verifier = (n) => {
+    const er = {};
+    if (n === 1 && !d.type) er.type = 'Choisissez un type de demande.';
+    if (n === 2) {
+      if (d.company.trim().length < 2) er.company = 'Indiquez votre marque ou société.';
+      if (!d.budget) er.budget = 'Choisissez un budget indicatif.';
+      if (!d.deadline) er.deadline = 'Choisissez une échéance.';
+    }
+    if (n === 3) {
+      if (d.message.trim().length < 10) er.message = 'Décrivez votre projet en quelques mots (10 caractères minimum).';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email.trim())) er.email = 'Adresse e-mail invalide.';
+    }
+    setErreurs(er);
+    const cles = Object.keys(er);
+    if (cles.length) { setEtat('erreur'); setMsg(er[cles[0]]); }
+    else { setEtat('idle'); setMsg(''); }
+    return cles.length === 0;
+  };
+
+  const suivant = () => { if (verifier(etape)) setEtape(etape + 1); };
+  const retour = () => { setErreurs({}); setEtat('idle'); setMsg(''); setEtape(etape - 1); };
+
+  const envoyer = (e) => {
+    e.preventDefault();
+    if (etape < 3) { suivant(); return; }
+    if (!verifier(3) || etat === 'envoi') return;
+    setEtat('envoi'); setMsg('Envoi en cours…');
+    hfPost('/api/brief', { ...d, website: e.currentTarget.elements.website.value }).then(res => {
+      if (res.ok) { setEtat('ok'); setMsg(''); }
+      else {
+        if (res.data && res.data.fields) setErreurs(res.data.fields);
+        setEtat('erreur'); setMsg(hfMessageErreur(res));
+      }
+    });
+  };
+
+  const champ = {
+    width: '100%', boxSizing: 'border-box', background: FOOD_PAL.paper, color: FOOD_PAL.ink,
+    border: `1.5px solid ${FOOD_PAL.ink}`, borderRadius: 12, padding: '12px 14px',
+    fontFamily: FOOD_PAL.sans, fontSize: 15,
+  };
+  const etiquette = { display: 'block', fontFamily: FOOD_PAL.mono, fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', margin: '0 0 8px', color: FOOD_PAL.ink };
+  const erreurTxt = { fontFamily: FOOD_PAL.sans, fontSize: 13, fontWeight: 600, margin: '6px 0 0', color: FOOD_PAL.ink };
+  const bouton = (plein) => ({
+    background: plein ? FOOD_PAL.ink : 'transparent', color: plein ? FOOD_PAL.lime : FOOD_PAL.ink,
+    border: `2px solid ${FOOD_PAL.ink}`, borderRadius: 999, padding: '14px 26px', cursor: 'pointer',
+    fontFamily: FOOD_PAL.display, fontWeight: 600, fontSize: 13, letterSpacing: '0.12em', textTransform: 'uppercase',
+  });
+  const pastilles = (nom, options) => (
+    <div role="radiogroup" aria-labelledby={'hf-brief-' + nom + '-l'} aria-describedby={erreurs[nom] ? 'hf-brief-' + nom + '-e' : undefined}
+      style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+      {options.map(o => {
+        const actif = d[nom] === o;
+        return (
+          <label key={o} data-cursor style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer',
+            padding: '10px 16px', borderRadius: 999, border: `1.5px solid ${FOOD_PAL.ink}`,
+            background: actif ? FOOD_PAL.ink : FOOD_PAL.paper, color: actif ? FOOD_PAL.lime : FOOD_PAL.ink,
+            fontFamily: FOOD_PAL.sans, fontSize: 14,
+          }}>
+            <input type="radio" name={nom} value={o} checked={actif} onChange={maj(nom)} style={{ accentColor: FOOD_PAL.ink, margin: 0 }} />
+            {o}
+          </label>
+        );
+      })}
+    </div>
+  );
+
+  const carte = {
+    maxWidth: 760, margin: '56px auto 0', textAlign: 'left', position: 'relative',
+    background: FOOD_PAL.bg, color: FOOD_PAL.ink, border: `2px solid ${FOOD_PAL.ink}`,
+    borderRadius: 24, padding: 'clamp(24px, 4vw, 40px)', boxShadow: `6px 6px 0 ${FOOD_PAL.ink}`,
+  };
+
+  if (etat === 'ok') {
+    return (
+      <div style={carte}>
+        <h3 ref={titreRef} tabIndex={-1} style={{ fontFamily: FOOD_PAL.display, fontWeight: 700, fontSize: 28, margin: '0 0 12px', outline: 'none' }}>
+          Brief reçu, merci !
+        </h3>
+        <p role="status" aria-live="polite" style={{ fontFamily: FOOD_PAL.sans, fontSize: 16, lineHeight: 1.55, margin: 0 }}>
+          On revient vers vous sous 48h à l’adresse indiquée.
+        </p>
+      </div>
+    );
+  }
+
+  const titres = { 1: 'Votre demande', 2: 'Votre marque et votre cadre', 3: 'Votre projet' };
+
+  return (
+    <form onSubmit={envoyer} noValidate style={carte} aria-labelledby="hf-brief-titre">
+      <div style={{ fontFamily: FOOD_PAL.mono, fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: 8 }}>
+        Brief en 3 étapes · étape {etape} / 3
+      </div>
+      <div aria-hidden="true" style={{ display: 'flex', gap: 6, marginBottom: 20 }}>
+        {[1, 2, 3].map(n => (
+          <span key={n} style={{ flex: 1, height: 6, borderRadius: 999, border: `1.5px solid ${FOOD_PAL.ink}`, background: n <= etape ? FOOD_PAL.ink : 'transparent' }} />
+        ))}
+      </div>
+      <h3 id="hf-brief-titre" ref={titreRef} tabIndex={-1} style={{ fontFamily: FOOD_PAL.display, fontWeight: 700, fontSize: 'clamp(22px, 2.4vw, 30px)', margin: '0 0 24px', outline: 'none' }}>
+        {titres[etape]}
+      </h3>
+
+      {etape === 1 && (
+        <div>
+          <span id="hf-brief-type-l" style={etiquette}>Type de demande *</span>
+          {pastilles('type', HF_BRIEF_TYPES)}
+          {erreurs.type && <p id="hf-brief-type-e" style={erreurTxt}>{erreurs.type}</p>}
+        </div>
+      )}
+
+      {etape === 2 && (
+        <div style={{ display: 'grid', gap: 22 }}>
+          <div>
+            <label htmlFor="hf-brief-company" style={etiquette}>Marque / société *</label>
+            <input id="hf-brief-company" type="text" autoComplete="organization" value={d.company} onChange={maj('company')} style={champ}
+              aria-invalid={erreurs.company ? 'true' : undefined} aria-describedby={erreurs.company ? 'hf-brief-company-e' : undefined} />
+            {erreurs.company && <p id="hf-brief-company-e" style={erreurTxt}>{erreurs.company}</p>}
+          </div>
+          <div>
+            <span id="hf-brief-budget-l" style={etiquette}>Budget indicatif (HT) *</span>
+            {pastilles('budget', HF_BRIEF_BUDGETS)}
+            {erreurs.budget && <p id="hf-brief-budget-e" style={erreurTxt}>{erreurs.budget}</p>}
+          </div>
+          <div>
+            <label htmlFor="hf-brief-deadline" style={etiquette}>Échéance *</label>
+            <select id="hf-brief-deadline" value={d.deadline} onChange={maj('deadline')} style={champ}
+              aria-invalid={erreurs.deadline ? 'true' : undefined} aria-describedby={erreurs.deadline ? 'hf-brief-deadline-e' : undefined}>
+              <option value="">Choisir…</option>
+              {HF_BRIEF_ECHEANCES.map(o => <option key={o} value={o}>{o}</option>)}
+            </select>
+            {erreurs.deadline && <p id="hf-brief-deadline-e" style={erreurTxt}>{erreurs.deadline}</p>}
+          </div>
+        </div>
+      )}
+
+      {etape === 3 && (
+        <div style={{ display: 'grid', gap: 22 }}>
+          <div>
+            <label htmlFor="hf-brief-message" style={etiquette}>Votre message *</label>
+            <textarea id="hf-brief-message" rows={5} value={d.message} onChange={maj('message')} style={{ ...champ, resize: 'vertical' }}
+              placeholder="Produit, cible, objectifs, formats envisagés…"
+              aria-invalid={erreurs.message ? 'true' : undefined} aria-describedby={erreurs.message ? 'hf-brief-message-e' : undefined} />
+            {erreurs.message && <p id="hf-brief-message-e" style={erreurTxt}>{erreurs.message}</p>}
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
+            <div>
+              <label htmlFor="hf-brief-email" style={etiquette}>E-mail *</label>
+              <input id="hf-brief-email" type="email" autoComplete="email" value={d.email} onChange={maj('email')} style={champ}
+                aria-invalid={erreurs.email ? 'true' : undefined} aria-describedby={erreurs.email ? 'hf-brief-email-e' : undefined} />
+              {erreurs.email && <p id="hf-brief-email-e" style={erreurTxt}>{erreurs.email}</p>}
+            </div>
+            <div>
+              <label htmlFor="hf-brief-name" style={etiquette}>Nom (facultatif)</label>
+              <input id="hf-brief-name" type="text" autoComplete="name" value={d.name} onChange={maj('name')} style={champ} />
+            </div>
+          </div>
+        </div>
+      )}
+
+      <HfPiege />
+
+      <p role="status" aria-live="polite" style={{ fontFamily: FOOD_PAL.sans, fontSize: 14, fontWeight: etat === 'erreur' ? 600 : 400, margin: msg ? '20px 0 0' : 0 }}>
+        {msg}
+        {etat === 'erreur' && msg === HF_INDISPO && <> <a href={'mailto:' + HF_CONTACT} style={{ color: FOOD_PAL.ink }}>Écrire un e-mail</a></>}
+      </p>
+
+      <div style={{ display: 'flex', gap: 12, justifyContent: 'space-between', flexWrap: 'wrap', marginTop: 24 }}>
+        {etape > 1 ? <button type="button" data-cursor onClick={retour} style={bouton(false)}>← Retour</button> : <span />}
+        {etape < 3
+          ? <button type="button" data-cursor onClick={suivant} style={bouton(true)}>Suivant →</button>
+          : <button type="submit" data-cursor disabled={etat === 'envoi'} aria-disabled={etat === 'envoi'}
+              style={{ ...bouton(true), opacity: etat === 'envoi' ? 0.6 : 1 }}>{etat === 'envoi' ? 'Envoi en cours…' : 'Envoyer mon brief →'}</button>}
+      </div>
+    </form>
+  );
+}
+
 // ── CONTACT/FOOTER ──────────────────────────────────────────────────
 function FoodFooter2() {
   const inSub = typeof window !== 'undefined' && window.location.pathname.includes('/food/');
@@ -1733,6 +2031,8 @@ function FoodFooter2() {
               border: `2px solid ${FOOD_PAL.ink}`,
             }}>Découvrir l'agence</a>
           </div>
+
+          <FoodBriefForm />
         </div>
       </div>
 
@@ -1857,23 +2157,7 @@ function FoodFooter2() {
                 fontFamily: FOOD_PAL.sans, fontSize: 13, color: FOOD_PAL.bg, opacity: 0.7,
                 margin: '0 0 16px', lineHeight: 1.55,
               }}>Une fois par mois, les insights food et les coulisses des campagnes.</p>
-              <form onSubmit={e => e.preventDefault()} style={{
-                display: 'flex', gap: 6, padding: 5,
-                background: FOOD_PAL.bg, color: FOOD_PAL.ink, borderRadius: 999,
-                border: `1.5px solid ${FOOD_PAL.lime}`,
-              }}>
-                <input type="email" placeholder="votre@email.com" style={{
-                  flex: 1, background: 'transparent', border: 'none', outline: 'none',
-                  color: FOOD_PAL.ink, padding: '10px 14px', fontFamily: FOOD_PAL.sans, fontSize: 13,
-                  minWidth: 0,
-                }} />
-                <button data-cursor style={{
-                  background: FOOD_PAL.ink, color: FOOD_PAL.lime, border: 'none',
-                  fontFamily: FOOD_PAL.display, fontWeight: 600, fontSize: 12,
-                  letterSpacing: '0.1em', textTransform: 'uppercase',
-                  padding: '10px 18px', borderRadius: 999, cursor: 'pointer', whiteSpace: 'nowrap',
-                }}>S'abonner →</button>
-              </form>
+              <FoodNewsletterForm source="footer" variant="footer" />
 
               <div style={{ marginTop: 28 }}>
                 <div style={{ fontFamily: FOOD_PAL.mono, fontSize: 10, letterSpacing: '0.18em', color: FOOD_PAL.bg, opacity: 0.5, textTransform: 'uppercase', marginBottom: 8 }}>Email</div>

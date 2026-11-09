@@ -205,6 +205,26 @@
   ],
   "rewrites": [
     {
+      "source": "/api/contact/",
+      "destination": "/api/contact"
+    },
+    {
+      "source": "/api/brief/",
+      "destination": "/api/brief"
+    },
+    {
+      "source": "/api/newsletter/",
+      "destination": "/api/newsletter"
+    },
+    {
+      "source": "/api/newsletter/subscribe",
+      "destination": "/api/newsletter"
+    },
+    {
+      "source": "/api/newsletter/subscribe/",
+      "destination": "/api/newsletter"
+    },
+    {
       "source": "/blog/:slug((?!.*\\.).+)",
       "destination": "/blog/:slug.html"
     }

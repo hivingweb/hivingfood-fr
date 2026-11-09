@@ -1465,19 +1465,7 @@ function FoodBlogPage2() {
               </div>
               <p style={{ fontFamily: PP.sans, fontSize: 14, color: PP.ink, margin: '8px 0 0', maxWidth: 540 }}>Insights food, tarifs, cas d'études et coups de cœur de la rédac', à lire en mangeant.</p>
             </div>
-            <div style={{ display: 'flex', gap: 0 }}>
-              <input type="email" placeholder="prenom@marque.com" style={{
-                background: PP.bg, border: `1.5px solid ${PP.ink}`, borderRight: 'none',
-                padding: '14px 18px', fontFamily: PP.sans, fontSize: 14, color: PP.ink,
-                outline: 'none', width: 240,
-              }} />
-              <button style={{
-                background: PP.ink, color: PP.lime,
-                padding: '14px 22px', border: `1.5px solid ${PP.ink}`,
-                fontFamily: PP.display, fontWeight: 600, fontSize: 12, letterSpacing: '0.14em',
-                textTransform: 'uppercase', cursor: 'pointer',
-              }}>S'abonner →</button>
-            </div>
+            <FoodNewsletterForm source="blog" variant="blog" />
           </div>
         </div>
         <style>{`@media (max-width: 800px) { .food2-blog-news { grid-template-columns: 1fr !important; } .food2-blog-news > div:last-child { width: 100%; } .food2-blog-news input { flex: 1; } }`}</style>
