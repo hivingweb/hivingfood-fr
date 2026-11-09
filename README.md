@@ -1,2 +1,7 @@
-# hivingfood-fr
-Site hivingfood.fr (agence influence food), deploye par Vercel
+# Hiving Food — www.hivingfood.fr
+
+Code du site www.hivingfood.fr, déployé automatiquement par Vercel (équipe Hiving) à chaque push sur `main`. Chaque branche a son adresse de prévisualisation.
+
+- Règles du dépôt (à lire avant toute modif) : [CLAUDE.md](CLAUDE.md)
+- Rejoindre l'équipe et travailler sur le site : [ONBOARDING.md](ONBOARDING.md)
+- Vidéos et médias lourds : [docs/medias.md](docs/medias.md)

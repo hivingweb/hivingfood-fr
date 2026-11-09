@@ -1,0 +1,152 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "hivingfood.fr"
+        }
+      ],
+      "destination": "https://www.hivingfood.fr/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/agence-influence-food",
+      "destination": "/food/agence.html",
+      "permanent": true
+    },
+    {
+      "source": "/agence-influence-food/",
+      "destination": "/food/agence.html",
+      "permanent": true
+    },
+    {
+      "source": "/influenceurs-food",
+      "destination": "/food/talents.html",
+      "permanent": true
+    },
+    {
+      "source": "/influenceurs-food/",
+      "destination": "/food/talents.html",
+      "permanent": true
+    },
+    {
+      "source": "/studio-food",
+      "destination": "/food/studios.html",
+      "permanent": true
+    },
+    {
+      "source": "/studio-food/",
+      "destination": "/food/studios.html",
+      "permanent": true
+    },
+    {
+      "source": "/campagnes-influence-food",
+      "destination": "/food/campagnes.html",
+      "permanent": true
+    },
+    {
+      "source": "/campagnes-influence-food/",
+      "destination": "/food/campagnes.html",
+      "permanent": true
+    },
+    {
+      "source": "/evenementiel",
+      "destination": "/food/evenementiel.html",
+      "permanent": true
+    },
+    {
+      "source": "/evenementiel/",
+      "destination": "/food/evenementiel.html",
+      "permanent": true
+    },
+    {
+      "source": "/preview-header",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/preview-header/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/v3",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/v3/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/campagnes/:slug(metro|president|picard)",
+      "destination": "/food/campagnes/:slug/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(jpg|jpeg|png|webp|gif|svg|ico|woff2|woff)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(css|js|jsx|json)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/blog/:slug((?!.*\\.).+)",
+      "destination": "/blog/:slug.html"
+    }
+  ]
+}

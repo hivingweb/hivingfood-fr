@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MRNZZVKC');</script>
+    <!-- End Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z8X5C8SD3C"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z8X5C8SD3C');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événementiel Culinaire | Hiving Food</title>
+    <meta name="description" content="Hiving Food conçoit des expériences culinaires sur mesure pour vos événements d'entreprise : pâtisseries brandées, traiteur pizza, cocktails. Dior, Nike, LVMH, Porsche nous font confiance.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* ====== HERO ====== */
+        .ev-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 160px 40px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .ev-hero-video {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .ev-hero-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+        }
+        .ev-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.55) 55%, var(--black) 100%);
+            z-index: 1;
+        }
+        .ev-hero-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gray);
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+        .ev-hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+        .ev-hero h1 em { color: var(--accent); font-style: normal; }
+        .ev-hero-sub {
+            font-size: 1.15rem;
+            color: var(--gray-light);
+            max-width: 640px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        .ev-cta {
+            display: inline-block;
+            padding: 18px 48px;
+            background: var(--accent);
+            color: var(--black);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 60px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+        .ev-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200,255,0,0.3); }
+
+        /* Hero stats */
+        .ev-hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        .ev-hero-stat {
+            text-align: center;
+        }
+        .ev-hero-stat strong {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+        .ev-hero-stat span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gray);
+        }
+
+        /* ====== MARQUEE ====== */
+        .ev-marquee-wrap {
+            width: 100%;
+            overflow: hidden;
+            padding: 50px 0 0;
+            position: relative;
+            z-index: 2;
+        }
+        .ev-marquee {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            will-change: transform;
+        }
+        .ev-marquee img {
+            height: 200px;
+            width: auto;
+            border-radius: 14px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .ev-marquee-wrap::before,
+        .ev-marquee-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 120px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .ev-marquee-wrap::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
+        .ev-marquee-wrap::after { right: 0; background: linear-gradient(to left, var(--black), transparent); }
+
+        /* ====== SCROLL ANIMATIONS ====== */
+        .ev-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(.22,.61,.36,1), transform 0.7s cubic-bezier(.22,.61,.36,1);
+        }
+        .ev-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .ev-reveal-delay-1 { transition-delay: 0.1s; }
+        .ev-reveal-delay-2 { transition-delay: 0.2s; }
+        .ev-reveal-delay-3 { transition-delay: 0.25s; }
+
+        /* ====== SECTIONS ====== */
+        .ev-section {
+            padding: 80px 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        /* Alternating subtle backgrounds */
+        .ev-bg-alt {
+            background: rgba(255,255,255,0.04);
+            max-width: 100%;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .ev-bg-alt > .ev-section,
+        .ev-bg-alt .ev-section-label,
+        .ev-bg-alt h2 {
+            max-width: 1300px;
+        }
+        .ev-bg-alt-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+        .ev-section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--gray);
+            margin-bottom: 12px;
+        }
+        .ev-section h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        .ev-section h2 em { color: var(--accent); font-style: normal; }
+        .ev-section-intro {
+            font-size: 1.05rem;
+            color: var(--gray-light);
+            max-width: 700px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+        }
+
+        /* ====== BRAND PILLS ====== */
+        .ev-brands {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px 20px;
+            margin-top: 40px;
+        }
+        .ev-brand-pill {
+            padding: 10px 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-light);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .ev-brand-pill:hover { border-color: var(--accent); color: var(--white); }
+        /* Brand pills staggered animation */
+        .ev-brands .ev-brand-pill {
+            opacity: 0;
+            transform: translateY(12px) scale(0.95);
+            transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.3s, color 0.3s;
+        }
+        .ev-brands.visible .ev-brand-pill {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* ====== ACCOMPAGNEMENT ====== */
+        .ev-accomp {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .ev-accomp-item {
+            padding: 36px 28px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .ev-accomp-item:hover {
+            border-color: var(--accent);
+            background: rgba(200,255,0,0.03);
+        }
+        .ev-accomp-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, background 0.3s;
+        }
+        .ev-accomp.visible .ev-accomp-item { opacity: 1; transform: translateY(0); }
+        .ev-accomp.visible .ev-accomp-item:nth-child(1) { transition-delay: 0s; }
+        .ev-accomp.visible .ev-accomp-item:nth-child(2) { transition-delay: 0.08s; }
+        .ev-accomp.visible .ev-accomp-item:nth-child(3) { transition-delay: 0.16s; }
+        .ev-accomp.visible .ev-accomp-item:nth-child(4) { transition-delay: 0.24s; }
+        .ev-accomp.visible .ev-accomp-item:nth-child(5) { transition-delay: 0.32s; }
+        .ev-accomp.visible .ev-accomp-item:nth-child(6) { transition-delay: 0.4s; }
+        .ev-accomp-icon {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+        .ev-accomp-item h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .ev-accomp-item p {
+            font-size: 0.88rem;
+            color: var(--gray-light);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ====== GALLERY ====== */
+        .ev-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .ev-gallery-item {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+        .ev-gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .ev-gallery-item:hover img { transform: scale(1.08); }
+        .ev-gallery-item .ev-gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .ev-gallery-item:hover .ev-gallery-overlay { opacity: 1; }
+        .ev-gallery-overlay span {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .ev-gallery-item.ev-wide { grid-column: span 2; aspect-ratio: 2/1; }
+        .ev-gallery-item {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .ev-gallery.visible .ev-gallery-item { opacity: 1; transform: scale(1); }
+        .ev-gallery.visible .ev-gallery-item:nth-child(1) { transition-delay: 0s; }
+        .ev-gallery.visible .ev-gallery-item:nth-child(2) { transition-delay: 0.05s; }
+        .ev-gallery.visible .ev-gallery-item:nth-child(3) { transition-delay: 0.1s; }
+        .ev-gallery.visible .ev-gallery-item:nth-child(4) { transition-delay: 0.15s; }
+        .ev-gallery.visible .ev-gallery-item:nth-child(5) { transition-delay: 0.2s; }
+        .ev-gallery.visible .ev-gallery-item:nth-child(6) { transition-delay: 0.25s; }
+        .ev-gallery.visible .ev-gallery-item:nth-child(7) { transition-delay: 0.3s; }
+        .ev-gallery.visible .ev-gallery-item:nth-child(8) { transition-delay: 0.35s; }
+        .ev-gallery.visible .ev-gallery-item:nth-child(n+9) { transition-delay: 0.4s; }
+
+        /* ====== OFFRES ====== */
+        .ev-offres {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .ev-offre {
+            display: flex;
+            gap: 20px;
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .ev-offre:hover {
+            border-color: var(--accent);
+            background: rgba(200,255,0,0.03);
+        }
+        .ev-offre {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, background 0.3s;
+        }
+        .ev-offres.visible .ev-offre { opacity: 1; transform: translateX(0); }
+        .ev-offres.visible .ev-offre:nth-child(1) { transition-delay: 0s; }
+        .ev-offres.visible .ev-offre:nth-child(2) { transition-delay: 0.06s; }
+        .ev-offres.visible .ev-offre:nth-child(3) { transition-delay: 0.12s; }
+        .ev-offres.visible .ev-offre:nth-child(4) { transition-delay: 0.18s; }
+        .ev-offres.visible .ev-offre:nth-child(5) { transition-delay: 0.24s; }
+        .ev-offres.visible .ev-offre:nth-child(6) { transition-delay: 0.3s; }
+        .ev-offres.visible .ev-offre:nth-child(7) { transition-delay: 0.36s; }
+        .ev-offres.visible .ev-offre:nth-child(8) { transition-delay: 0.42s; }
+        .ev-offre-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(200,255,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .ev-offre-text h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .ev-offre-text p {
+            font-size: 0.88rem;
+            color: var(--gray-light);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ====== SHOWCASE ====== */
+        .ev-showcase {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 12px;
+        }
+        .ev-showcase-item {
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+        }
+        .ev-showcase-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .ev-showcase-item:hover img { transform: scale(1.06); }
+        .ev-showcase-item.ev-sh-wide { grid-column: span 2; }
+        .ev-showcase-item.ev-sh-tall { grid-row: span 2; }
+        .ev-showcase-item .ev-sh-label {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 12px 16px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* ====== FORMATS ====== */
+        .ev-formats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .ev-format {
+            padding: 36px 28px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .ev-format:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .ev-format {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        .ev-formats.visible .ev-format { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s; }
+        .ev-formats.visible .ev-format:nth-child(1) { transition-delay: 0s; }
+        .ev-formats.visible .ev-format:nth-child(2) { transition-delay: 0.12s; }
+        .ev-formats.visible .ev-format:nth-child(3) { transition-delay: 0.24s; }
+        .ev-format-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        .ev-format h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .ev-format p {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            line-height: 1.65;
+        }
+
+        /* ====== TESTIMONIALS ====== */
+        .ev-testimonials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .ev-testimonial {
+            padding: 32px 28px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+        .ev-testimonial-stars {
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .ev-testimonial blockquote {
+            font-size: 0.92rem;
+            color: var(--gray-light);
+            line-height: 1.7;
+            margin: 0 0 auto;
+            padding-bottom: 20px;
+            font-style: italic;
+        }
+        .ev-testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .ev-testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(200,255,0,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .ev-testimonial-name {
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+        .ev-testimonial-role {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+        @media (max-width: 1024px) {
+            .ev-testimonials { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .ev-testimonials { grid-template-columns: 1fr; }
+        }
+
+        /* ====== STATS ====== */
+        .ev-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 60px 0;
+        }
+        .ev-stat { text-align: center; }
+        .ev-stat strong {
+            display: block;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            color: var(--accent);
+        }
+        .ev-stat span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gray);
+        }
+
+        /* ====== TALENTS (compact) ====== */
+        .ev-talents {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .ev-talent {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            transition: border-color 0.3s;
+        }
+        .ev-talent:hover { border-color: var(--accent); }
+        .ev-talent img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            flex-shrink: 0;
+        }
+        .ev-talent-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .ev-talent-info span {
+            font-size: 0.78rem;
+            color: var(--gray-light);
+        }
+
+        /* ====== FAQ ====== */
+        .ev-faq { max-width: 800px; }
+        .ev-faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .ev-faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            padding: 22px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: inherit;
+        }
+        .ev-faq-q::after {
+            content: '+';
+            font-size: 1.4rem;
+            color: var(--accent);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+        .ev-faq-item.open .ev-faq-q::after { transform: rotate(45deg); }
+        .ev-faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .ev-faq-item.open .ev-faq-a { max-height: 300px; }
+        .ev-faq-a p {
+            padding: 0 0 22px;
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ====== PROCESS TIMELINE ====== */
+        .ev-process {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+            margin-top: 50px;
+        }
+        .ev-process::before {
+            content: '';
+            position: absolute;
+            top: 32px;
+            left: 12%;
+            right: 12%;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), rgba(200,255,0,0.2));
+        }
+        .ev-process-step {
+            text-align: center;
+            position: relative;
+            padding: 0 12px;
+        }
+        .ev-process-num {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(200,255,0,0.08);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin: 0 auto 18px;
+            position: relative;
+            z-index: 2;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .ev-process-step:hover .ev-process-num {
+            background: var(--accent);
+            color: var(--black);
+            transform: scale(1.1);
+        }
+        .ev-process-step h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .ev-process-step p {
+            font-size: 0.82rem;
+            color: var(--gray-light);
+            line-height: 1.6;
+            margin: 0;
+        }
+        .ev-process-step {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .ev-process.visible .ev-process-step { opacity: 1; transform: translateY(0); }
+        .ev-process.visible .ev-process-step:nth-child(1) { transition-delay: 0s; }
+        .ev-process.visible .ev-process-step:nth-child(2) { transition-delay: 0.15s; }
+        .ev-process.visible .ev-process-step:nth-child(3) { transition-delay: 0.3s; }
+        .ev-process.visible .ev-process-step:nth-child(4) { transition-delay: 0.45s; }
+        @media (max-width: 768px) {
+            .ev-process { grid-template-columns: repeat(2, 1fr); gap: 30px 0; }
+            .ev-process::before { display: none; }
+        }
+
+        /* ====== VIDEO SHOWCASE ====== */
+        .ev-video-showcase {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 40px;
+            aspect-ratio: 16/9;
+            max-height: 500px;
+        }
+        .ev-video-showcase video {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* ====== CASE STUDY ====== */
+        .ev-case {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .ev-case-visual {
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+        .ev-case-visual:has(.ev-video-showcase) {
+            aspect-ratio: auto;
+        }
+        .ev-case-visual .ev-video-showcase {
+            margin-top: 0;
+            height: 100%;
+        }
+        .ev-case-visual img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .ev-case-content {
+            padding: 10px 0;
+        }
+        .ev-case-brand {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .ev-case-content h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .ev-case-content p {
+            font-size: 0.92rem;
+            color: var(--gray-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .ev-case-details {
+            display: flex;
+            gap: 30px;
+        }
+        .ev-case-detail {
+            text-align: left;
+        }
+        .ev-case-detail strong {
+            display: block;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+        .ev-case-detail span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+        }
+        .ev-case + .ev-case {
+            margin-top: 60px;
+            direction: rtl;
+        }
+        .ev-case + .ev-case > * {
+            direction: ltr;
+        }
+        @media (max-width: 768px) {
+            .ev-case { grid-template-columns: 1fr; gap: 24px; }
+            .ev-case + .ev-case { direction: ltr; }
+        }
+
+        /* ====== CTA FINAL ====== */
+        .ev-cta-section {
+            text-align: center;
+            padding: 100px 40px;
+            position: relative;
+        }
+        .ev-cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(200,255,0,0.05) 0%, transparent 60%);
+        }
+        .ev-cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .ev-cta-section h2 em { color: var(--accent); font-style: normal; }
+        .ev-cta-section p {
+            font-size: 1.05rem;
+            color: var(--gray-light);
+            max-width: 550px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+            position: relative;
+        }
+        .ev-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            position: relative;
+            text-align: left;
+        }
+        .ev-form-full { grid-column: 1 / -1; }
+        .ev-form label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .ev-form input,
+        .ev-form select,
+        .ev-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 0.92rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+        .ev-form input::placeholder,
+        .ev-form textarea::placeholder {
+            color: var(--gray);
+        }
+        .ev-form input:focus,
+        .ev-form select:focus,
+        .ev-form textarea:focus {
+            border-color: var(--accent);
+        }
+        .ev-form select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+        .ev-form select option { background: var(--black); }
+        .ev-form textarea { resize: vertical; min-height: 100px; }
+        .ev-form .ev-cta {
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            width: 100%;
+        }
+        .ev-form-success {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .ev-form-success.show { display: block; }
+        .ev-form-success .ev-check {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(200,255,0,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin: 0 auto 16px;
+        }
+        .ev-form-success h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .ev-form-success p {
+            font-size: 0.95rem;
+            color: var(--gray-light);
+        }
+        @media (max-width: 768px) {
+            .ev-form { grid-template-columns: 1fr; }
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 1024px) {
+            .ev-gallery { grid-template-columns: repeat(3, 1fr); }
+            .ev-showcase { grid-template-columns: repeat(3, 1fr); }
+            .ev-accomp { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .ev-section { padding: 50px 24px; }
+            .ev-bg-alt-inner { padding: 50px 24px; }
+            .ev-hero { padding: 140px 24px 60px; min-height: 85vh; }
+            .ev-hero-stats { gap: 24px; flex-wrap: wrap; justify-content: center; }
+            .ev-accomp { grid-template-columns: 1fr; }
+            .ev-formats { grid-template-columns: 1fr; }
+            .ev-stats { flex-direction: column; gap: 30px; }
+            .ev-gallery { grid-template-columns: repeat(2, 1fr); }
+            .ev-gallery-item.ev-wide { grid-column: span 2; }
+            .ev-offres { grid-template-columns: 1fr; }
+            .ev-showcase { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+            .ev-marquee img { height: 150px; }
+            .ev-brands { gap: 10px 12px; }
+            .ev-brand-pill { padding: 8px 16px; font-size: 0.7rem; }
+            .ev-talents { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRNZZVKC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header" id="header" style="background:rgba(0,0,0,0.95);backdrop-filter:blur(12px)">
+        <a href="/" class="header-logo"><img src="/img/logo/food.svg" alt="Hiving Food" class="header-logo-food"></a>
+        <nav class="header-nav" id="headerNav">
+            <a href="/">Accueil</a>
+            <a href="/agence-influence-food">L'agence</a>
+            <a href="/influenceurs-food">Talents</a>
+            <a href="/studio-food">Studios</a>
+            <a href="/campagnes-influence-food">Campagnes</a>
+            <a href="/blog">Blog</a>
+            <a href="/#contact" class="nav-cta">CONTACT</a>
+        </nav>
+        <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- ====== HERO ====== -->
+    <section class="ev-hero">
+        <div class="ev-hero-video">
+            <video autoplay muted loop playsinline>
+                <source src="/img/evenementiel/hero-video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="ev-hero-label">( Événementiel culinaire )</div>
+        <h1>L'expérience food qui marque les <em>esprits.</em></h1>
+        <p class="ev-hero-sub">Conception, production, livraison. On orchestre des expériences culinaires sur mesure pour vos événements, du macaron brandé au traiteur grand format.</p>
+        <a href="#contact-ev" class="ev-cta">Parlons de votre projet</a>
+
+        <div class="ev-hero-stats">
+            <div class="ev-hero-stat"><strong>50+</strong><span>Événements produits</span></div>
+            <div class="ev-hero-stat"><strong>27</strong><span>Marques luxe & corporate</span></div>
+            <div class="ev-hero-stat"><strong>30 à 1 000</strong><span>Convives</span></div>
+        </div>
+
+        <div class="ev-marquee-wrap">
+            <div class="ev-marquee" id="evMarquee">
+                <img src="/img/evenementiel/dorian/dior.webp" alt="Macarons Dior">
+                <img src="/img/evenementiel/dorian/nike.webp" alt="Macarons Nike">
+                <img src="/img/evenementiel/vincent/viennoiserie-chocolat.webp" alt="Viennoiserie chocolat">
+                <img src="/img/evenementiel/dorian/aston-martin.webp" alt="Macarons Aston Martin">
+                <img src="/img/evenementiel/dorian/psg.webp" alt="Macarons PSG">
+                <img src="/img/evenementiel/vincent/tartelette-pistache.webp" alt="Tartelette pistache">
+                <img src="/img/evenementiel/dorian/burberry.webp" alt="Viennoiseries Burberry">
+                <img src="/img/evenementiel/dorian/snapchat.webp" alt="Macarons Snapchat">
+                <img src="/img/evenementiel/vincent/sandwich-sale.webp" alt="Sandwich artisanal">
+                <img src="/img/evenementiel/dorian/jordan.webp" alt="Macarons Jordan">
+                <img src="/img/evenementiel/dorian/lvmh.webp" alt="Macarons LVMH">
+                <img src="/img/evenementiel/vincent/galeries-lafayette-noel.webp" alt="Galeries Lafayette">
+                <img src="/img/evenementiel/dorian/porsche.webp" alt="Chocolats Porsche">
+                <img src="/img/evenementiel/dorian/givenchy.webp" alt="Choux Givenchy">
+                <img src="/img/evenementiel/vincent/cookie-chocolat.webp" alt="Cookie chocolat">
+                <img src="/img/evenementiel/dorian/loewe.webp" alt="Macarons Loewe">
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ILS NOUS FONT CONFIANCE ====== -->
+    <div class="ev-bg-alt">
+    <div class="ev-section ev-reveal" style="text-align:center">
+        <div class="ev-section-label">( Ils nous font confiance )</div>
+        <h2>Des marques <em>exigeantes.</em></h2>
+        <p class="ev-section-intro" style="margin-left:auto;margin-right:auto">Lancements produits, galas, séminaires, soirées presse. Les marques les plus exigeantes nous confient leurs événements.</p>
+
+        <div class="ev-brands">
+            <span class="ev-brand-pill">Dior</span>
+            <span class="ev-brand-pill">Nike</span>
+            <span class="ev-brand-pill">LVMH</span>
+            <span class="ev-brand-pill">Burberry</span>
+            <span class="ev-brand-pill">Givenchy</span>
+            <span class="ev-brand-pill">Armani</span>
+            <span class="ev-brand-pill">Porsche</span>
+            <span class="ev-brand-pill">Aston Martin</span>
+            <span class="ev-brand-pill">Jordan</span>
+            <span class="ev-brand-pill">PSG</span>
+            <span class="ev-brand-pill">Loewe</span>
+            <span class="ev-brand-pill">APM Monaco</span>
+            <span class="ev-brand-pill">Djula</span>
+            <span class="ev-brand-pill">Snapchat</span>
+
+            <span class="ev-brand-pill">Pullman</span>
+            <span class="ev-brand-pill">Uniqlo</span>
+            <span class="ev-brand-pill">Adidas</span>
+            <span class="ev-brand-pill">Hechter Paris</span>
+            <span class="ev-brand-pill">Goutal Paris</span>
+            <span class="ev-brand-pill">Jean-Louis David</span>
+            <span class="ev-brand-pill">Crédit Agricole</span>
+            <span class="ev-brand-pill">Courir</span>
+            <span class="ev-brand-pill">PrettyLittleThing</span>
+            <span class="ev-brand-pill">Paris Match</span>
+            <span class="ev-brand-pill">Jetex</span>
+            <span class="ev-brand-pill">Galeries Lafayette</span>
+            <span class="ev-brand-pill">Qatar Prix Arc de Triomphe</span>
+        </div>
+    </div>
+    </div>
+
+    <!-- ====== NOTRE ACCOMPAGNEMENT ====== -->
+    <div class="ev-section ev-reveal">
+        <div class="ev-section-label">( Notre accompagnement )</div>
+        <h2>Du brief au jour J, on gère <em>tout.</em></h2>
+        <p class="ev-section-intro">Une date, un lieu, un nombre d'invités. On s'occupe du reste : conception, production, logistique, mise en place.</p>
+
+        <div class="ev-accomp">
+            <div class="ev-accomp-item">
+                <div class="ev-accomp-icon">&#129309;</div>
+                <h4>Un seul interlocuteur</h4>
+                <p>Un chef de projet dédié qui connaît votre marque, pilote les équipes et assure le suivi de A à Z. Pas de standard, pas de transfert.</p>
+            </div>
+            <div class="ev-accomp-item">
+                <div class="ev-accomp-icon">&#127919;</div>
+                <h4>Sur mesure intégral</h4>
+                <p>Logo imprimé sur chaque pièce, couleurs de marque, packaging custom. Chaque création incarne votre identité, en marque blanche ou co-branding.</p>
+            </div>
+            <div class="ev-accomp-item">
+                <div class="ev-accomp-icon">&#128205;</div>
+                <h4>On vient à vous</h4>
+                <p>Bureaux, rooftop, salon, château, on se déplace partout en France avec notre matériel, nos équipes et notre logistique complète.</p>
+            </div>
+            <div class="ev-accomp-item">
+                <div class="ev-accomp-icon">&#128101;</div>
+                <h4>30 à 1 000 convives</h4>
+                <p>Petit-déjeuner d'équipe ou gala grand format. On monte en volume sans jamais rogner sur l'exécution.</p>
+            </div>
+            <div class="ev-accomp-item">
+                <div class="ev-accomp-icon">&#128248;</div>
+                <h4>Contenu clé en main</h4>
+                <p>Photo, vidéo, stories. On capte votre événement et on vous livre du contenu prêt à poster le jour même.</p>
+            </div>
+            <div class="ev-accomp-item">
+                <div class="ev-accomp-icon">&#9889;</div>
+                <h4>Délais serrés, pas de compromis</h4>
+                <p>5 jours pour tout organiser ? On l'a déjà fait. Devis en 24h, production express, même niveau d'exigence.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== NOS CRÉATIONS ====== -->
+    <div class="ev-bg-alt">
+    <div class="ev-section ev-reveal">
+        <div class="ev-section-label">( Nos créations )</div>
+        <h2>Votre marque, nos <em>mains</em></h2>
+        <p class="ev-section-intro">Chaque pièce est conçue sur mesure : vos couleurs, votre logo, votre univers. De la pâtisserie haute couture au snacking premium.</p>
+
+        <div class="ev-gallery">
+            <div class="ev-gallery-item ev-wide">
+                <img src="/img/evenementiel/dorian/dior-2.webp" alt="Macarons Dior" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Dior</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/nike.webp" alt="Macarons Nike" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Nike</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/jordan.webp" alt="Macarons Jordan" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Jordan</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/lvmh.webp" alt="Macarons LVMH" loading="lazy">
+                <div class="ev-gallery-overlay"><span>LVMH</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/burberry.webp" alt="Viennoiseries Burberry" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Burberry</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/aston-martin.webp" alt="Macarons Aston Martin" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Aston Martin</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/snapchat.webp" alt="Macarons Snapchat" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Snapchat</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/givenchy.webp" alt="Choux Givenchy" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Givenchy</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/psg.webp" alt="Macarons PSG" loading="lazy">
+                <div class="ev-gallery-overlay"><span>PSG</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/porsche.webp" alt="Chocolats Porsche" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Porsche</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/loewe.webp" alt="Macarons Loewe" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Loewe</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/apm-monaco.webp" alt="Madeleines APM Monaco" loading="lazy">
+                <div class="ev-gallery-overlay"><span>APM Monaco</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/armani.webp" alt="Jus Armani" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Armani</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/adidas.webp" alt="Pâtisseries Adidas" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Adidas</span></div>
+            </div>
+            <div class="ev-gallery-item">
+                <img src="/img/evenementiel/dorian/courir.webp" alt="Pâtisseries Courir" loading="lazy">
+                <div class="ev-gallery-overlay"><span>Courir</span></div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- ====== CE QU'ON PROPOSE ====== -->
+    <div class="ev-section ev-reveal">
+        <div class="ev-section-label">( Nos prestations )</div>
+        <h2>De l'apéro au dessert, tout est <em>couvert.</em></h2>
+        <p class="ev-section-intro">Sucré, salé, show cooking, contenu. Une offre complète pensée pour des événements qui ne ressemblent à aucun autre.</p>
+
+        <div class="ev-offres">
+            <div class="ev-offre">
+                <div class="ev-offre-icon">&#127856;</div>
+                <div class="ev-offre-text">
+                    <h4>Pâtisseries brandées</h4>
+                    <p>Macarons, choux, madeleines, cookies, imprimés à votre logo et déclinés dans vos couleurs. Coffret ou buffet.</p>
+                </div>
+            </div>
+            <div class="ev-offre">
+                <div class="ev-offre-icon">&#129360;</div>
+                <div class="ev-offre-text">
+                    <h4>Viennoiseries sur mesure</h4>
+                    <p>Croissants, pains au chocolat, brioches marqués au fer avec votre identité. Le petit-déjeuner corporate dont on se souvient.</p>
+                </div>
+            </div>
+            <div class="ev-offre">
+                <div class="ev-offre-icon">&#127829;</div>
+                <div class="ev-offre-text">
+                    <h4>Pizza show cooking</h4>
+                    <p>Napolitaines cuites au feu de bois, en live, devant vos invités. Spectacle et dégustation, de 30 à 500 convives.</p>
+                </div>
+            </div>
+            <div class="ev-offre">
+                <div class="ev-offre-icon">&#127865;</div>
+                <div class="ev-offre-text">
+                    <h4>Bar & cocktails</h4>
+                    <p>Cocktails signature, mocktails, jus pressés à vos couleurs. Bar éphémère élégant, instagrammable, prêt à servir.</p>
+                </div>
+            </div>
+            <div class="ev-offre">
+                <div class="ev-offre-icon">&#127860;</div>
+                <div class="ev-offre-text">
+                    <h4>Salé & finger food</h4>
+                    <p>Bouchées, sandwichs artisanaux, planches apéritives. Produits frais, de saison, préparés le jour même.</p>
+                </div>
+            </div>
+            <div class="ev-offre">
+                <div class="ev-offre-icon">&#127874;</div>
+                <div class="ev-offre-text">
+                    <h4>Pièces d'exception</h4>
+                    <p>Gâteaux monumentaux, sculptures sucrées, number cakes. Les pièces qui créent le moment fort de votre soirée.</p>
+                </div>
+            </div>
+            <div class="ev-offre">
+                <div class="ev-offre-icon">&#129489;&#8205;&#127859;</div>
+                <div class="ev-offre-text">
+                    <h4>Ateliers & masterclass</h4>
+                    <p>Team building pâtisserie, pizza ou cocktails. Dans nos studios à Clichy ou dans vos locaux.</p>
+                </div>
+            </div>
+            <div class="ev-offre">
+                <div class="ev-offre-icon">&#127916;</div>
+                <div class="ev-offre-text">
+                    <h4>Contenu & captation</h4>
+                    <p>Photo, vidéo, stories. On capte chaque moment et on vous livre du contenu pro le jour même.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== PROCESSUS ====== -->
+    <div class="ev-bg-alt">
+    <div class="ev-section ev-reveal" style="text-align:center">
+        <div class="ev-section-label">( Comment ça marche )</div>
+        <h2>4 étapes, zéro <em>stress.</em></h2>
+        <p class="ev-section-intro" style="margin-left:auto;margin-right:auto">De votre premier message à l'événement, on gère tout le processus.</p>
+
+        <div class="ev-process">
+            <div class="ev-process-step">
+                <div class="ev-process-num">01</div>
+                <h4>Brief</h4>
+                <p>Vous nous décrivez votre événement : date, lieu, nombre d'invités, ambiance souhaitée.</p>
+            </div>
+            <div class="ev-process-step">
+                <div class="ev-process-num">02</div>
+                <h4>Devis en 24h</h4>
+                <p>On vous envoie une proposition sur mesure avec le détail des prestations et le budget.</p>
+            </div>
+            <div class="ev-process-step">
+                <div class="ev-process-num">03</div>
+                <h4>Production</h4>
+                <p>Nos chefs créent vos pièces sur mesure. Couleurs, logo, packaging, tout est personnalisé.</p>
+            </div>
+            <div class="ev-process-step">
+                <div class="ev-process-num">04</div>
+                <h4>Jour J</h4>
+                <p>Livraison, mise en place, service, captation contenu. Vous profitez, on gère le reste.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- ====== CASE STUDIES ====== -->
+    <div class="ev-section ev-reveal">
+        <div class="ev-section-label">( Nos réalisations )</div>
+        <h2>Derrière chaque événement, une <em>histoire</em></h2>
+        <p class="ev-section-intro">Quelques projets récents qui illustrent notre approche, du brief au jour J.</p>
+
+        <div class="ev-case">
+            <div class="ev-case-visual">
+                <img src="/img/evenementiel/dorian/dior-3.webp" alt="Dior - Lancement produit" loading="lazy">
+            </div>
+            <div class="ev-case-content">
+                <div class="ev-case-brand">Dior</div>
+                <h3>Miss Dior : Pâtisseries haute couture</h3>
+                <p>Pour le lancement de Miss Dior, on a imaginé une collection de madeleines brandées aux codes de la maison. Couleurs, packaging, mise en scène buffet : chaque détail a été pensé pour prolonger l'univers du parfum. Production et livraison en 10 jours.</p>
+                <div class="ev-case-details">
+                    <div class="ev-case-detail"><strong>350</strong><span>Pièces produites</span></div>
+                    <div class="ev-case-detail"><strong>10j</strong><span>Délai de production</span></div>
+                    <div class="ev-case-detail"><strong>200</strong><span>Invités</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ev-case">
+            <div class="ev-case-visual">
+                <div class="ev-video-showcase">
+                    <video autoplay muted loop playsinline preload="none" class="ev-lazy-video">
+                        <source src="/img/evenementiel/peppe/porsche.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="ev-case-content">
+                <div class="ev-case-brand">Porsche</div>
+                <h3>Show cooking pizza : Concession Porsche Paris</h3>
+                <p>Nos pizzaioli ont installé leur four juste à côté des moteurs : cuisson minute, pizzas napolitaines non-stop, ambiance Naples au milieu des showrooms. Un format qui mêle expérience culinaire et univers automobile haut de gamme.</p>
+                <div class="ev-case-details">
+                    <div class="ev-case-detail"><strong>Live</strong><span>Show cooking</span></div>
+                    <div class="ev-case-detail"><strong>Sur site</strong><span>Concession</span></div>
+                    <div class="ev-case-detail"><strong>Premium</strong><span>Clientèle</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== PIZZA LIVE ====== -->
+    <div class="ev-bg-alt">
+    <div class="ev-section ev-reveal" style="text-align:center">
+        <div class="ev-section-label">( En live )</div>
+        <h2>Le show cooking qui fait <em>sensation</em></h2>
+        <p class="ev-section-intro" style="margin-left:auto;margin-right:auto">Pizzas napolitaines cuites au feu de bois par un champion du monde, en direct devant vos invités.</p>
+        <div class="ev-video-showcase">
+            <video autoplay muted loop playsinline preload="none" class="ev-lazy-video">
+                <source src="/img/evenementiel/peppe/peppe-traiteur.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    </div>
+
+    <!-- ====== SHOWCASE PHOTOS ====== -->
+    <div class="ev-bg-alt">
+    <div class="ev-section ev-reveal">
+        <div class="ev-section-label">( En images )</div>
+        <h2>Le goût du <em>détail</em></h2>
+
+        <div class="ev-showcase">
+            <div class="ev-showcase-item ev-sh-wide">
+                <img src="/img/evenementiel/vincent/viennoiserie-chocolat.webp" alt="Viennoiserie chocolat" loading="lazy">
+                <div class="ev-sh-label">Viennoiserie chocolat</div>
+            </div>
+            <div class="ev-showcase-item">
+                <img src="/img/evenementiel/vincent/tartelette-pistache.webp" alt="Tartelette pistache" loading="lazy">
+                <div class="ev-sh-label">Tartelette pistache</div>
+            </div>
+            <div class="ev-showcase-item">
+                <img src="/img/evenementiel/vincent/cookie-chocolat.webp" alt="Cookie chocolat" loading="lazy">
+                <div class="ev-sh-label">Cookie chocolat</div>
+            </div>
+            <div class="ev-showcase-item ev-sh-tall">
+                <img src="/img/evenementiel/vincent/sandwich-sale.webp" alt="Sandwichs artisanaux" loading="lazy">
+                <div class="ev-sh-label">Sandwichs artisanaux</div>
+            </div>
+            <div class="ev-showcase-item">
+                <img src="/img/evenementiel/vincent/paris-brest.webp" alt="Paris-Brest" loading="lazy">
+                <div class="ev-sh-label">Paris-Brest</div>
+            </div>
+            <div class="ev-showcase-item">
+                <img src="/img/evenementiel/vincent/cake-pistache.webp" alt="Cake pistache" loading="lazy">
+                <div class="ev-sh-label">Cake pistache</div>
+            </div>
+            <div class="ev-showcase-item">
+                <img src="/img/evenementiel/vincent/croissant.webp" alt="Croissants" loading="lazy">
+                <div class="ev-sh-label">Croissants</div>
+            </div>
+            <div class="ev-showcase-item ev-sh-wide">
+                <img src="/img/evenementiel/vincent/galeries-lafayette-noel.webp" alt="Collection Noël Galeries Lafayette" loading="lazy">
+                <div class="ev-sh-label">Collection Noël · Galeries Lafayette</div>
+            </div>
+            <div class="ev-showcase-item">
+                <img src="/img/evenementiel/vincent/galette.webp" alt="Galette des rois" loading="lazy">
+                <div class="ev-sh-label">Galette des rois</div>
+            </div>
+            <div class="ev-showcase-item">
+                <img src="/img/evenementiel/vincent/sale-2.webp" alt="Buffet salé" loading="lazy">
+                <div class="ev-sh-label">Quiches & tartes salées</div>
+            </div>
+            <div class="ev-showcase-item">
+                <img src="/img/evenementiel/vincent/patisserie-noel.webp" alt="Pâtisseries de Noël" loading="lazy">
+                <div class="ev-sh-label">Pâtisseries de Noël</div>
+            </div>
+            <div class="ev-showcase-item">
+                <img src="/img/evenementiel/vincent/viennoiserie-2.webp" alt="Viennoiseries" loading="lazy">
+                <div class="ev-sh-label">Viennoiseries</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- ====== FORMATS ====== -->
+    <div class="ev-section ev-reveal">
+        <div class="ev-section-label">( Formats )</div>
+        <h2>Un événement, un <em>format</em></h2>
+
+        <div class="ev-formats">
+            <div class="ev-format">
+                <div class="ev-format-num">01</div>
+                <h3>Soirées & Lancements</h3>
+                <p>Cocktail dînatoire, soirée presse, lancement produit. On conçoit l'offre culinaire complète, de l'accueil au dessert, contenu inclus.</p>
+            </div>
+            <div class="ev-format">
+                <div class="ev-format-num">02</div>
+                <h3>Activations & Pop-up</h3>
+                <p>Stand culinaire sur salon, animation en point de vente, pop-up food. Clé en main, pensé pour créer du trafic et du contenu.</p>
+            </div>
+            <div class="ev-format">
+                <div class="ev-format-num">03</div>
+                <h3>Séminaires & Team Building</h3>
+                <p>Petit-déjeuner, pause gourmande, atelier culinaire. Dans nos studios à Clichy ou directement dans vos locaux.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== TÉMOIGNAGES ====== -->
+    <div class="ev-bg-alt">
+    <div class="ev-section ev-reveal">
+        <div class="ev-section-label">( Témoignages )</div>
+        <h2>Ce qu'en disent nos <em>clients</em></h2>
+        <p class="ev-section-intro">Retours d'expérience de marques qui nous ont fait confiance pour leurs événements.</p>
+
+        <div class="ev-testimonials">
+            <div class="ev-testimonial">
+                <div class="ev-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote>On cherchait un partenaire capable de produire des macarons brandés Snapchat pour notre événement annuel. Hiving Food a tout géré : création, production, livraison. Le rendu était parfait, nos équipes ont adoré.</blockquote>
+                <div class="ev-testimonial-author">
+                    <div class="ev-testimonial-avatar">SC</div>
+                    <div>
+                        <div class="ev-testimonial-name">Équipe Events</div>
+                        <div class="ev-testimonial-role">Snapchat</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ev-testimonial">
+                <div class="ev-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote>Le show cooking pizza a bluffé nos clients lors de notre soirée en concession. Ambiance, qualité, service, tout était au niveau. On recommence l'année prochaine, c'est sûr.</blockquote>
+                <div class="ev-testimonial-author">
+                    <div class="ev-testimonial-avatar">PO</div>
+                    <div>
+                        <div class="ev-testimonial-name">Équipe Marketing</div>
+                        <div class="ev-testimonial-role">Porsche</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ev-testimonial">
+                <div class="ev-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote>Pour notre activation Armani Beauty, on avait besoin de pâtisseries haut de gamme aux couleurs de la maison. Hiving Food a livré des pièces impeccables dans un délai très court. Zéro fausse note.</blockquote>
+                <div class="ev-testimonial-author">
+                    <div class="ev-testimonial-avatar">AR</div>
+                    <div>
+                        <div class="ev-testimonial-name">Équipe Événementiel</div>
+                        <div class="ev-testimonial-role">Armani</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- ====== CHIFFRES ====== -->
+    <div class="ev-section ev-reveal">
+        <div class="ev-stats">
+            <div class="ev-stat"><strong>50+</strong><span>Événements produits</span></div>
+            <div class="ev-stat"><strong>27</strong><span>Marques accompagnées</span></div>
+            <div class="ev-stat"><strong>3</strong><span>Studios de production</span></div>
+            <div class="ev-stat"><strong>1 000</strong><span>Convives max. par événement</span></div>
+        </div>
+    </div>
+
+    <!-- ====== NOS ÉQUIPES (compact) ====== -->
+    <div class="ev-section ev-reveal">
+        <div class="ev-section-label">( Nos talents )</div>
+        <h2>Les meilleurs dans leur <em>domaine</em></h2>
+        <p class="ev-section-intro">Des chefs reconnus, intégrés à notre collectif. Leur savoir-faire, notre direction artistique.</p>
+
+        <div class="ev-talents">
+            <div class="ev-talent">
+                <img src="/img/talents/peppe.webp" alt="Peppe" loading="lazy">
+                <div class="ev-talent-info">
+                    <h4>Peppe</h4>
+                    <span>Champion du monde de pizza 2025 · 8 restaurants</span>
+                </div>
+            </div>
+            <div class="ev-talent">
+                <img src="/img/talents/vincent-salur.webp" alt="Vincent Salur" loading="lazy">
+                <div class="ev-talent-info">
+                    <h4>Vincent Salur</h4>
+                    <span>Chef pâtissier · 426K abonnés · 4 boutiques</span>
+                </div>
+            </div>
+            <div class="ev-talent">
+                <img src="/img/evenementiel/dorian/dorian-portrait.webp" alt="Dorian Tudeau" loading="lazy">
+                <div class="ev-talent-info">
+                    <h4>Dorian Tudeau</h4>
+                    <span>Pâtissier événementiel · 543K abonnés</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== FAQ ====== -->
+    <div class="ev-bg-alt">
+    <div class="ev-section ev-reveal">
+        <div class="ev-section-label">( FAQ )</div>
+        <h2>Vos questions, nos <em>réponses</em></h2>
+
+        <div class="ev-faq">
+            <div class="ev-faq-item">
+                <button class="ev-faq-q">Quel est le délai minimum pour organiser un événement ?</button>
+                <div class="ev-faq-a"><p>On peut intervenir sous 5 jours ouvrés pour la plupart des prestations. Pour des projets complexes ou des volumes importants, on recommande de nous contacter au moins 2 à 3 semaines en avance.</p></div>
+            </div>
+            <div class="ev-faq-item">
+                <button class="ev-faq-q">Vous intervenez uniquement à Paris ?</button>
+                <div class="ev-faq-a"><p>Non. On intervient dans toute la France : Paris, Île-de-France et au-delà. On s'est déjà déplacés à Lyon, Marseille, Monaco, et même à l'international.</p></div>
+            </div>
+            <div class="ev-faq-item">
+                <button class="ev-faq-q">Combien de personnes pouvez-vous servir ?</button>
+                <div class="ev-faq-a"><p>De 30 à plus de 1 000 convives. On adapte notre production et nos équipes à la taille de votre événement sans compromis sur la qualité.</p></div>
+            </div>
+            <div class="ev-faq-item">
+                <button class="ev-faq-q">Peut-on personnaliser les créations avec notre logo ?</button>
+                <div class="ev-faq-a"><p>Absolument. Macarons, choux, madeleines, viennoiseries, packaging, tout peut être personnalisé avec votre logo, vos couleurs et votre charte graphique.</p></div>
+            </div>
+            <div class="ev-faq-item">
+                <button class="ev-faq-q">Gérez-vous aussi le sucré ET le salé ?</button>
+                <div class="ev-faq-a"><p>Oui. On propose une offre complète : petit-déjeuner, buffet salé, finger food, pizza au feu de bois, cocktails, pâtisseries et desserts. De l'apéro au dessert, on couvre tout.</p></div>
+            </div>
+            <div class="ev-faq-item">
+                <button class="ev-faq-q">Comment se passe le processus de commande ?</button>
+                <div class="ev-faq-a"><p>1. Vous nous décrivez votre événement (date, lieu, nombre de convives, ambiance). 2. On vous envoie une proposition sur mesure sous 24-48h. 3. On valide ensemble les détails. 4. On produit, on livre, vous profitez.</p></div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- ====== CTA CONTACT ====== -->
+    <section class="ev-cta-section ev-reveal" id="contact-ev">
+        <h2>Un projet ? <em>Parlons-en.</em></h2>
+        <p>Date, lieu, nombre d'invités, ambiance. Donnez-nous les grandes lignes. On revient avec une proposition sur mesure sous 24h.</p>
+
+        <form class="ev-form" id="evContactForm">
+            <div>
+                <label for="ev-name">Nom</label>
+                <input type="text" id="ev-name" name="name" placeholder="Votre nom" required>
+            </div>
+            <div>
+                <label for="ev-email">Email</label>
+                <input type="email" id="ev-email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div>
+                <label for="ev-company">Entreprise</label>
+                <input type="text" id="ev-company" name="company" placeholder="Nom de la marque / société">
+            </div>
+            <div>
+                <label for="ev-type">Type d'événement</label>
+                <select id="ev-type" name="type">
+                    <option value="" disabled selected>Sélectionner</option>
+                    <option>Soirée / Lancement</option>
+                    <option>Activation / Pop-up</option>
+                    <option>Séminaire / Team building</option>
+                    <option>Show cooking</option>
+                    <option>Traiteur / Réception</option>
+                    <option>Autre</option>
+                </select>
+            </div>
+            <div>
+                <label for="ev-date">Date souhaitée</label>
+                <input type="date" id="ev-date" name="date">
+            </div>
+            <div>
+                <label for="ev-guests">Nombre d'invités</label>
+                <input type="text" id="ev-guests" name="guests" placeholder="ex. 150">
+            </div>
+            <div class="ev-form-full">
+                <label for="ev-message">Votre projet</label>
+                <textarea id="ev-message" name="message" placeholder="Décrivez votre événement : lieu, ambiance, attentes..." rows="4"></textarea>
+            </div>
+            <div class="ev-form-full">
+                <button type="submit" class="ev-cta">Envoyer ma demande</button>
+            </div>
+        </form>
+
+        <div class="ev-form-success" id="evFormSuccess">
+            <div class="ev-check">&#10003;</div>
+            <h3>Demande envoyée !</h3>
+            <p>On revient vers vous sous 24h avec une proposition sur mesure.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-logo"><img src="/img/logo/hiving-white.png" alt="Hiving" class="footer-logo-img"></span>
+            <span class="footer-copy">&copy; <script>document.write(new Date().getFullYear())</script> Hiving Food. Tous droits réservés. &middot; <a href="/mentions-legales.html" style="color:var(--gray-light);text-decoration:underline;text-underline-offset:3px">Mentions l&eacute;gales</a> &middot; <a href="/politique-confidentialite.html" style="color:var(--gray-light);text-decoration:underline;text-underline-offset:3px">Confidentialit&eacute;</a></span>
+        </div>
+    </footer>
+
+    <script>
+    // Burger menu
+    !function(){var b=document.getElementById("burger"),n=document.getElementById("headerNav");if(!b||!n)return;b.addEventListener("click",function(){var o=n.classList.toggle("open");b.classList.toggle("active");b.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":""});n.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){n.classList.remove("open");b.classList.remove("active");b.setAttribute("aria-expanded","false");document.body.style.overflow=""})})}();
+
+    // Animate stats on scroll
+    !function(){var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.ev-stat strong').forEach(function(el){var text=el.textContent.trim();var num=parseInt(text.replace(/\s/g,''));if(isNaN(num))return;var suffix=text.replace(/[\d\s]/g,'');var start=0;var duration=1500;var startTime=null;function animate(ts){if(!startTime)startTime=ts;var p=Math.min((ts-startTime)/duration,1);var ease=1-Math.pow(1-p,3);el.textContent=Math.floor(ease*num).toLocaleString('fr-FR')+suffix;if(p<1)requestAnimationFrame(animate)}requestAnimationFrame(animate)});observer.unobserve(e.target)}})},{threshold:0.3});var s=document.querySelector('.ev-stats');if(s)observer.observe(s)}();
+
+    // Marquee – clone images + pixel-perfect scroll
+    !function(){
+        var m=document.getElementById('evMarquee');if(!m)return;
+        var imgs=Array.from(m.querySelectorAll('img'));
+        var gap=16;
+        // Clone all images for seamless loop
+        imgs.forEach(function(img){var c=img.cloneNode(true);m.appendChild(c)});
+        // Wait for all images to load, then start animation
+        function startScroll(){
+            var half=0;
+            imgs.forEach(function(img,i){half+=img.offsetWidth;if(i<imgs.length-1)half+=gap});
+            half+=gap; // trailing gap before clone set
+            var speed=50; // pixels per second
+            var duration=half/speed;
+            var style=document.createElement('style');
+            style.textContent='@keyframes ev-scroll{0%{transform:translateX(0)}100%{transform:translateX(-'+half+'px)}}';
+            document.head.appendChild(style);
+            m.style.animation='ev-scroll '+duration+'s linear infinite';
+        }
+        var loaded=0,total=imgs.length;
+        imgs.forEach(function(img){
+            if(img.complete){loaded++;if(loaded>=total)startScroll()}
+            else{img.onload=img.onerror=function(){loaded++;if(loaded>=total)startScroll()}}
+        });
+    }();
+
+    // Lazy-load videos (preload=none → play on scroll)
+    !function(){var vids=document.querySelectorAll('.ev-lazy-video');if(!vids.length)return;var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var v=e.target;v.preload='auto';v.play().catch(function(){});io.unobserve(v)}})},{rootMargin:'300px'});vids.forEach(function(v){io.observe(v)})}();
+
+    // Contact form
+    !function(){
+        var form = document.getElementById('evContactForm');
+        if (!form) return;
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var d = new FormData(form);
+            var btn = form.querySelector('button[type="submit"]');
+            var btnText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Envoi en cours...';
+
+            // Fold extra fields into message
+            var parts = [];
+            if (d.get('type')) parts.push('Type : ' + d.get('type'));
+            if (d.get('date')) parts.push('Date : ' + d.get('date'));
+            if (d.get('guests')) parts.push('Invités : ' + d.get('guests'));
+            if (d.get('message')) parts.push('\n' + d.get('message'));
+            var fullMessage = parts.join('\n');
+
+            fetch('/api/contact/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: d.get('name'),
+                    email: d.get('email'),
+                    company: d.get('company') || '',
+                    message: fullMessage
+                })
+            })
+            .then(function(res) {
+                if (!res.ok) throw new Error('Erreur serveur');
+                return res.json();
+            })
+            .then(function() {
+                form.style.display = 'none';
+                document.getElementById('evFormSuccess').classList.add('show');
+            })
+            .catch(function() {
+                btn.disabled = false;
+                btn.textContent = btnText;
+                alert('Une erreur est survenue. Réessayez ou contactez-nous directement à contact@hivingfood.fr');
+            });
+        });
+    }();
+
+    // FAQ accordion
+    document.querySelectorAll('.ev-faq-q').forEach(function(btn){btn.addEventListener('click',function(){var item=this.parentElement;var wasOpen=item.classList.contains('open');document.querySelectorAll('.ev-faq-item').forEach(function(i){i.classList.remove('open')});if(!wasOpen)item.classList.add('open')})});
+
+    // Scroll reveal animations
+    !function(){
+        var revealObs = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if(e.isIntersecting){
+                    e.target.classList.add('visible');
+                    revealObs.unobserve(e.target);
+                }
+            });
+        },{threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+        document.querySelectorAll('.ev-reveal, .ev-accomp, .ev-gallery, .ev-offres, .ev-formats, .ev-brands, .ev-process').forEach(function(el){
+            revealObs.observe(el);
+        });
+        // Stagger brand pills
+        document.querySelectorAll('.ev-brands .ev-brand-pill').forEach(function(pill, i){
+            pill.style.transitionDelay = (i * 0.03) + 's';
+        });
+        // Stagger process steps
+        document.querySelectorAll('.ev-process .ev-process-step').forEach(function(step, i){
+            step.style.transitionDelay = (i * 0.15) + 's';
+        });
+    }();
+    </script>
+</body>
+</html>
