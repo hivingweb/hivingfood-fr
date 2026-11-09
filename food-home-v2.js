@@ -3257,7 +3257,7 @@ function FoodFooter2() {
       lineHeight: 1.55
     }
   }, "Une fois par mois, les insights food et les coulisses des campagnes."), /*#__PURE__*/React.createElement("form", {
-    onSubmit: e => e.preventDefault(),
+    onSubmit: e => { e.preventDefault(); const f = e.currentTarget, i = f.querySelector('input'), em = i.value.trim(); if (!em) return; i.disabled = true; fetch('/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: em, source: 'footer' }) }).then(r => { i.value = ''; i.placeholder = r.ok ? 'Merci, c\u2019est noté !' : 'Oups, réessayez plus tard'; }).catch(() => { i.placeholder = 'Oups, réessayez plus tard'; }).finally(() => { i.disabled = false; }); },
     style: {
       display: 'flex',
       gap: 6,

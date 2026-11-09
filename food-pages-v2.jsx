@@ -1465,8 +1465,8 @@ function FoodBlogPage2() {
               </div>
               <p style={{ fontFamily: PP.sans, fontSize: 14, color: PP.ink, margin: '8px 0 0', maxWidth: 540 }}>Insights food, tarifs, cas d'études et coups de cœur de la rédac', à lire en mangeant.</p>
             </div>
-            <div style={{ display: 'flex', gap: 0 }}>
-              <input type="email" placeholder="prenom@marque.com" style={{
+            <form style={{ display: 'flex', gap: 0 }} onSubmit={e => { e.preventDefault(); const f = e.currentTarget, i = f.querySelector('input'), em = i.value.trim(); if (!em) return; i.disabled = true; fetch('/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: em, source: 'journal' }) }).then(r => { i.value = ''; i.placeholder = r.ok ? 'Merci, c\u2019est noté !' : 'Oups, réessayez plus tard'; }).catch(() => { i.placeholder = 'Oups, réessayez plus tard'; }).finally(() => { i.disabled = false; }); }}>
+              <input required type="email" placeholder="prenom@marque.com" style={{
                 background: PP.bg, border: `1.5px solid ${PP.ink}`, borderRight: 'none',
                 padding: '14px 18px', fontFamily: PP.sans, fontSize: 14, color: PP.ink,
                 outline: 'none', width: 240,
@@ -1477,7 +1477,7 @@ function FoodBlogPage2() {
                 fontFamily: PP.display, fontWeight: 600, fontSize: 12, letterSpacing: '0.14em',
                 textTransform: 'uppercase', cursor: 'pointer',
               }}>S'abonner →</button>
-            </div>
+            </form>
           </div>
         </div>
         <style>{`@media (max-width: 800px) { .food2-blog-news { grid-template-columns: 1fr !important; } .food2-blog-news > div:last-child { width: 100%; } .food2-blog-news input { flex: 1; } }`}</style>
