@@ -1,4 +1,7 @@
 {
+    "id": "/",
+    "lang": "fr",
+    "dir": "ltr",
     "name": "Hiving Food",
     "short_name": "Hiving Food",
     "description": "La premiere agence talent food de France",
@@ -17,5 +20,6 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ]
+    ],
+    "scope": "/"
 }
