@@ -2156,6 +2156,9 @@ function FoodFooter2() {
                   { l: 'Influence restaurant', h: '/food/influence-restaurant/' },
                   { l: 'Influence GMS', h: '/food/influence-grande-distribution/' },
                   { l: 'Vins & spiritueux', h: '/food/influence-vins-spiritueux/' },
+                  { l: 'Nutrition & sport', h: '/food/influence-nutrition-sport/' },
+                  { l: 'Pâtisserie & boulangerie', h: '/food/influence-patisserie-boulangerie/' },
+                  { l: 'Glossaire influence food', h: '/food/glossaire-influence-food/' },
                   { l: 'Contact', h: 'mailto:contact@hivingfood.fr' },
                 ].map(it => (
                   <li key={it.l}>
