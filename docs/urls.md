@@ -29,7 +29,7 @@ Ne jamais casser une de ces adresses sans redirection dans `vercel.json` (voir C
 - https://www.hivingfood.fr/blog/spark-ads-food-2026
 - https://www.hivingfood.fr/blog/ia-food-marketing-2026
 - https://www.hivingfood.fr/blog/top-influenceurs-food-france
-- https://www.hivingfood.fr/reserver/
+- https://www.hivingfood.fr/reserver/ → redirigée (301) vers https://hivingstudio.fr/pages/devis.html (ancien module de réservation PHP non repris)
 - https://www.hivingfood.fr/talents/chefologue
 - https://www.hivingfood.fr/talents/chester-foodies
 - https://www.hivingfood.fr/talents/damien-pichon
