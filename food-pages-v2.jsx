@@ -37,7 +37,7 @@ function FoodAgencePage2() {
         hand="On"
         title="connaît la food"
         italic="mieux que personne."
-        intro="Hiving Food est la première agence d'influence 100% food en France. des créateurs exclusifs, 3 studios cuisine pro à Clichy, et 4 ans d'expérience à transformer les marques food en bouchées mémorables."
+        intro="Hiving Food est la première agence d'influence 100% food en France. des créateurs exclusifs, 2 studios cuisine pro à Clichy, et 4 ans d'expérience à transformer les marques food en bouchées mémorables."
       />
 
       {/* Manifesto — façon ardoise/menu du chef */}
@@ -207,7 +207,7 @@ function FoodAgencePage2() {
 
       <PageCTA
         title="On construit votre campagne food ?"
-        subtitle="des créateurs exclusifs, 3 studios pro, et une équipe qui ne fait que ça depuis 2022."
+        subtitle="des créateurs exclusifs, 2 studios pro, et une équipe qui ne fait que ça depuis 2022."
         primary={{ label: 'Discuter du projet', href: '/#contact' }}
         secondary={{ label: 'Voir nos campagnes', href: 'campagnes.html' }}
       />
@@ -1027,7 +1027,7 @@ function FoodCampagneDetail2() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
                 {[
                   { tone: 'cream', label: 'Casting', cap: 'jour 01 · briefing créateurs', rot: -2.5 },
-                  { tone: 'lime', label: 'Tournage', cap: 'jour 02 · plateau LE BLANC', rot: 1.8 },
+                  { tone: 'lime', label: 'Tournage', cap: 'jour 02 · STUDIO PRO', rot: 1.8 },
                   { tone: 'warm', label: 'Photo', cap: 'jour 03 · packshots produit', rot: -1.2 },
                 ].map((p, i) => (
                   <div key={i} style={{

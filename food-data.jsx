@@ -321,7 +321,7 @@ const FOOD_CAMPAIGNS = [
 
 // ── EXPERTISES
 const FOOD_EXPERTISES = [
-  { num: '01', title: 'Production [Stage]', desc: '3 studios équipés, tournage et post-production en interne', href: 'studios.html' },
+  { num: '01', title: 'Production [Stage]', desc: '2 studios équipés, tournage et post-production en interne', href: 'studios.html' },
   { num: '02', title: 'Talent [Management]', desc: 'Talents exclusifs, casting sur mesure et suivi de campagnes', href: 'talents.html' },
   { num: '03', title: 'Content [Création]', desc: 'UGC, Reels, TikTok, YouTube, recettes et lives', href: 'campagnes.html' },
   { num: '04', title: 'Stratégie [d\'influence]', desc: 'Conseil, activation marque et pilotage de campagnes food', href: 'agence.html' },
@@ -338,7 +338,7 @@ const FOOD_PROCESS = [
 // ── WHY HIVING
 const FOOD_WHY = [
   { icon: '★', title: 'On maîtrise toute la chaîne',     desc: "Talents, studios, production, diffusion. Du brief à la publication, tout est géré en interne. Aucun intermédiaire, aucune friction." },
-  { icon: '⏱', title: 'Studios prêts à tourner',          desc: "3 plateaux équipés à Clichy, disponibles 7j/7. Éclairage, électroménager pro, régie : vous arrivez, on tourne." },
+  { icon: '⏱', title: 'Studios prêts à tourner',          desc: "2 plateaux équipés à Clichy, disponibles 7j/7. Éclairage, électroménager pro, régie : vous arrivez, on tourne." },
   { icon: '▶', title: 'Des contenus qui convertissent',   desc: "UGC, Reels, TikTok, YouTube, recettes, lives. Des contenus qui donnent faim et qui performent. ROI mesurable." },
   { icon: '▲', title: '100% Food. Rien d\'autre.',        desc: "On ne fait que de la food. Cette spécialisation fait notre force : on connaît les codes, les tendances, les audiences." },
   { icon: '◆', title: 'Talents exclusifs',             desc: "Chefs, pâtissiers, food creators. Un roster unique de créateurs culinaires avec des millions d'abonnés engagés." },
@@ -353,7 +353,7 @@ const FOOD_FAQ = [
   { q: "Travaillez-vous avec des marques hors France ?", a: "Oui. Nous accompagnons des marques internationales sur leur lancement français (ex : Feastables) ou européen. Nos studios sont à Paris/Clichy, mais nos campagnes peuvent être tournées partout en Europe." },
   { q: "Quels types de contenus produisez-vous ?", a: "TikTok, Instagram Reels, YouTube Shorts, brand content long format, recettes filmées, UGC (User Generated Content), publicités vidéo et photos culinaires. On maîtrise la production de bout en bout, du brief créatif à la publication, dans nos studios à Clichy." },
   { q: "Comment mesurez-vous les performances ?", a: "Reporting de campagne avec engagement organique, vues, reach, CPM, CPV, sentiment audience et, quand le client en a la mesure, impact ventes ou conversion site. On lit toujours le business derrière la metric." },
-  { q: "Peut-on louer un studio sans faire appel à vos talents ?", a: "Oui. Nos 3 studios à Clichy sont ouverts à toutes les marques, agences, photographes, vidéastes et créateurs indépendants. Tarifs à la journée : Studio Lifestyle 450 €, Studio Pro 800 €, Studio Famille 1 000 €. Réservation à contact@hivingfood.fr." },
+  { q: "Peut-on louer un studio sans faire appel à vos talents ?", a: "Oui. Nos 2 studios à Clichy sont ouverts à toutes les marques, agences, photographes, vidéastes et créateurs indépendants. Tarifs à la journée : Studio Pro (80 m²) 850 € HT, Studio Famille (65 m²) 1 000 € HT. Réservation à contact@hivingfood.fr." },
   { q: "Pourquoi choisir Hiving Food plutôt qu'une agence d'influence généraliste ?", a: "Parce qu'on ne fait que de la food. Nos chefs sont nos talents. Nos studios sont conçus pour la cuisine. Notre équipe vit dans la cuisine. Une agence généraliste connaît l'influence ; nous, on connaît la cuisine ET l'influence." },
 ];
 

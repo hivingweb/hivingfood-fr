@@ -248,7 +248,7 @@ function FoodStatus() {
     '⊹ CLICHY · 92 ⊹',
     'CRÉATEURS EXCLUSIFS',
     '★ +100M VUES GÉNÉRÉES ★',
-    '3 STUDIOS PRO',
+    '2 STUDIOS PRO',
     'DEPUIS 2022',
   ];
   return (
@@ -654,7 +654,7 @@ function FoodHero2() {
             }}>
               Pour les marques food, retail &amp; CPG qui veulent transformer du contenu en{' '}
               <span style={{ background: FOOD_PAL.lime, padding: '0 8px', fontStyle: 'normal', fontFamily: FOOD_PAL.display, fontWeight: 600 }}>croissance mesurable</span>.
-              {' '}des talents en exclusivité, 3 studios, une équipe stratégie-prod-média sous le même toit.
+              {' '}des talents en exclusivité, 2 studios, une équipe stratégie-prod-média sous le même toit.
             </p>
             <div style={{ marginTop: 40, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               <a href="#contact" data-cursor style={{
@@ -815,7 +815,7 @@ function FoodManifesto2() {
               fontFamily: FOOD_PAL.sans, fontSize: 17, lineHeight: 1.7,
               color: FOOD_PAL.inkSoft, marginTop: 24,
             }}>
-              On a aussi 3 studios cuisine pro à Clichy, une équipe de production interne, et 4 ans d'expérience à construire des campagnes qui transforment la marque en bouchée mémorable.
+              On a aussi 2 studios cuisine pro à Clichy, une équipe de production interne, et 4 ans d'expérience à construire des campagnes qui transforment la marque en bouchée mémorable.
             </p>
             <div style={{ marginTop: 32 }}>
               <a href="food/agence.html" data-cursor style={{
@@ -833,7 +833,7 @@ function FoodManifesto2() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {[
               { num: '01', title: 'Talent management', desc: 'Casting, négo, suivi de campagnes pour nos créateurs food exclusifs' },
-              { num: '02', title: 'Production studio', desc: '3 plateaux, équipe technique, post-prod : du brief à la livraison' },
+              { num: '02', title: 'Production studio', desc: '2 plateaux, équipe technique, post-prod : du brief à la livraison' },
               { num: '03', title: 'Stratégie d\'influence', desc: 'Brand content, UGC, recettes, lives : on choisit le bon format' },
             ].map(c => (
               <div key={c.num} style={{
@@ -1200,7 +1200,7 @@ function FoodStudios2() {
       slug: 'pro', num: '01', name: 'Studio', italic: 'Pro.',
       tag: 'Cuisine inox · Pro',
       pitch: 'Plateau pro inox, plafond technique, projecteurs Neewer. Pour les recettes high-end, brand films, pubs.',
-      surface: '80m²', capacity: '2 chefs · 6 crew', price: '800€', unit: '/ jour',
+      surface: '80m²', capacity: '2 chefs · 6 crew', price: '850€ HT', unit: '/ jour',
       hand: 'cuisine pro',
       tape: '#d4e85a',
       photos: ['/assets/studios/pro-1.webp?v=2', '/assets/studios/pro-2.webp?v=2', '/assets/studios/pro-3.webp?v=2', '/assets/studios/pro-4.webp?v=2', '/assets/studios/pro-5.webp?v=2', '/assets/studios/pro-6.webp?v=2'],
@@ -1210,21 +1210,11 @@ function FoodStudios2() {
       slug: 'famille', num: '02', name: 'Studio', italic: 'Famille.',
       tag: 'Maison · Lifestyle',
       pitch: 'Cuisine maison, parquet chevron, lumière douce. Format UGC, recettes lifestyle, contenus chaleureux.',
-      surface: '65m²', capacity: '1 talent · 4 crew', price: '1 000€', unit: '/ jour',
+      surface: '65m²', capacity: '1 talent · 4 crew', price: '1 000€ HT', unit: '/ jour',
       hand: 'lifestyle',
       tape: '#e8dcc4',
       photos: ['/assets/studios/famille-1.webp?v=2', '/assets/studios/famille-2.webp?v=2', '/assets/studios/famille-3.webp?v=2', '/assets/studios/famille-4.webp?v=2', '/assets/studios/famille-5.webp?v=2', '/assets/studios/famille-6.webp?v=2', '/assets/studios/famille-7.webp?v=2', '/assets/studios/famille-8.webp?v=2', '/assets/studios/famille-9.webp?v=2'],
       rotate: 4,
-    },
-    {
-      slug: 'photo', num: '03', name: 'Studio', italic: 'Lifestyle.',
-      tag: 'Fond infini · Set',
-      pitch: 'Fond blanc infini, lumière naturelle, espace lounge. Photos packaging, portraits chefs, set design.',
-      surface: '45m²', capacity: '1 talent · 3 crew', price: '450€', unit: '/ jour',
-      hand: 'fond infini',
-      tape: '#0a0908',
-      photos: ['/assets/studios/photo-1.webp?v=2', '/assets/studios/photo-2.webp?v=2', '/assets/studios/photo-3.webp?v=2', '/assets/studios/photo-4.webp?v=2', '/assets/studios/photo-5.webp?v=2', '/assets/studios/photo-6.webp?v=2', '/assets/studios/photo-7.webp?v=2', '/assets/studios/photo-8.webp?v=2', '/assets/studios/photo-9.webp?v=2', '/assets/studios/photo-10.webp?v=2'],
-      rotate: -3,
     },
   ];
 
@@ -1252,7 +1242,7 @@ function FoodStudios2() {
         position: 'absolute', top: 80, left: '6%',
         fontFamily: FOOD_PAL.hand, fontSize: 22, color: FOOD_PAL.ink,
         opacity: 0.4, transform: 'rotate(-8deg)', pointerEvents: 'none',
-      }}>3 plateaux ↓</div>
+      }}>2 plateaux ↓</div>
       <div aria-hidden="true" style={{
         position: 'absolute', top: 140, right: '8%', pointerEvents: 'none',
         fontFamily: FOOD_PAL.hand, fontSize: 32, color: FOOD_PAL.lime,
@@ -1272,7 +1262,7 @@ function FoodStudios2() {
               color: FOOD_PAL.ink, textTransform: 'uppercase', marginBottom: 24,
             }}>
               <span style={{ width: 32, height: 1, background: FOOD_PAL.ink }} />
-              3 plateaux · Clichy 92
+              2 plateaux · Clichy 92
             </div>
             <h2 style={{
               fontFamily: FOOD_PAL.display, fontWeight: 700,
@@ -1293,7 +1283,7 @@ function FoodStudios2() {
                   transition: 'color 360ms',
                 }}>
                   {(() => {
-                    const map = { pro: 'cuisine pro.', famille: 'cuisine famille.', photo: 'studio lifestyle.' };
+                    const map = { pro: 'cuisine pro.', famille: 'cuisine famille.' };
                     const label = active ? map[active] : 'cuisine pro.';
                     return label.split('').map((ch, i) => (
                       <span key={`${active || 'idle'}-${i}`} style={{
@@ -1320,8 +1310,8 @@ function FoodStudios2() {
               fontFamily: FOOD_PAL.serif, fontStyle: 'italic', fontWeight: 400,
               fontSize: 'clamp(18px, 1.5vw, 22px)', lineHeight: 1.5, color: FOOD_PAL.inkSoft,
             }}>
-              80m² inox pro, 65m² parquet chevron lifestyle, ou 45m² fond blanc studio lifestyle.
-              Trois ambiances, trois usages, une seule adresse à Clichy.
+              80m² inox pro ou 65m² parquet chevron lifestyle.
+              Deux ambiances, deux usages, une seule adresse à Clichy.
             </p>
           </div>
 
@@ -1362,7 +1352,8 @@ function FoodStudios2() {
 
           <div style={{
             position: 'relative', zIndex: 2,
-            display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 60,
+            display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 60,
+            maxWidth: 960, margin: '0 auto',
             transformStyle: 'preserve-3d', transform: 'rotateX(6deg)',
             transformOrigin: 'center top',
           }} className="food2-studios-grid">
@@ -1801,7 +1792,7 @@ function FoodFooter2() {
                 color: FOOD_PAL.bg, opacity: 0.7, maxWidth: 360, margin: '0 0 24px',
               }}>
                 Première agence d'influence food en France. Des créateurs exclusifs,
-                3 studios cuisine pro à Clichy, et une obsession : faire saliver vos audiences.
+                2 studios cuisine pro à Clichy, et une obsession : faire saliver vos audiences.
               </p>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {[['Instagram', 'https://www.instagram.com/hivingfood/'], ['TikTok', 'https://www.tiktok.com/@hivingfood']].map(([s, u]) => (
